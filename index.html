@@ -232,6 +232,7 @@ nav {
   filter: none;
   display: block;
   transition: filter 0.6s;
+  background: #2b2b27;
 }
 .hero-right:hover img {
   filter: none;
@@ -1059,21 +1060,21 @@ body.edit-mode [data-editable="true"] {
   left: 1rem;
   display: none;
   gap: 0.4rem;
-  z-index: 5;
+  z-index: 10;
 }
 body.edit-mode .img-edit-wrap { display: flex; }
 .img-edit-btn {
-  background: rgba(8,8,7,0.9);
-  border: 1px solid var(--graphite);
+  background: var(--acid);
+  border: 1px solid var(--acid);
   font-family: 'Space Mono', monospace;
-  font-size: 0.55rem;
-  padding: 0.35rem 0.5rem;
+  font-size: 0.6rem;
+  padding: 0.4rem 0.7rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--dust);
+  color: var(--void);
   cursor: pointer;
 }
-.img-edit-btn:hover { border-color: var(--acid); color: var(--acid); }
+.img-edit-btn:hover { filter: brightness(0.9); }
 .edit-note {
   position: fixed;
   left: 1.5rem;
