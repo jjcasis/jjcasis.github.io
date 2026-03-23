@@ -625,6 +625,25 @@ section { position: relative; z-index: 1; }
   transition: max-height 0.25s ease, opacity 0.25s ease;
 }
 
+.proj-gallery-tools {
+  display: none;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+body.edit-mode .proj-gallery-tools { display: flex; }
+.proj-gallery-tools button {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dust);
+  background: transparent;
+  border: 1px solid var(--graphite);
+  padding: 0.25rem 0.45rem;
+  cursor: pointer;
+}
+.proj-gallery-tools button:hover { color: var(--acid); border-color: var(--acid); }
+
 /* IMAGE MODAL */
 .img-modal {
   position: fixed;
@@ -641,6 +660,25 @@ section { position: relative; z-index: 1; }
   max-height: 88vh;
   object-fit: contain;
   border: 1px solid var(--graphite);
+}
+.img-modal-nav {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+.img-modal-btn {
+  pointer-events: auto;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--acid);
+  border: 1px solid var(--graphite);
+  background: var(--void);
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
 }
 .img-modal-close {
   position: absolute;
@@ -1328,6 +1366,11 @@ body.edit-mode .img-edit-wrap { display: flex; }
         <div class="proj-name">Casa Yara</div>
         <div class="proj-sub">Residencia Modular — Costa Pacífica // 420 m² // CLT + Concreto</div>
         <button class="proj-toggle" type="button">Detalles</button>
+        <div class="proj-gallery-tools">
+          <button type="button" data-gallery-index="0">Img 1</button>
+          <button type="button" data-gallery-index="1">Img 2</button>
+          <button type="button" data-gallery-index="2">Img 3</button>
+        </div>
       </div>
       <div class="proj-img">
         <img src="assets/p1.jpg"
@@ -1347,6 +1390,11 @@ body.edit-mode .img-edit-wrap { display: flex; }
         <div class="proj-name">Refugio Palmar</div>
         <div class="proj-sub">Resort Boutique — 8 Villas // Costa Rica // Off-grid Solar</div>
         <button class="proj-toggle" type="button">Detalles</button>
+        <div class="proj-gallery-tools">
+          <button type="button" data-gallery-index="0">Img 1</button>
+          <button type="button" data-gallery-index="1">Img 2</button>
+          <button type="button" data-gallery-index="2">Img 3</button>
+        </div>
       </div>
       <div class="proj-img">
         <img src="assets/p2.jpg"
@@ -1366,6 +1414,11 @@ body.edit-mode .img-edit-wrap { display: flex; }
         <div class="proj-name">Residencia Canopea</div>
         <div class="proj-sub">Penthouse Urbano — Ciudad de Panamá // Sky Garden</div>
         <button class="proj-toggle" type="button">Detalles</button>
+        <div class="proj-gallery-tools">
+          <button type="button" data-gallery-index="0">Img 1</button>
+          <button type="button" data-gallery-index="1">Img 2</button>
+          <button type="button" data-gallery-index="2">Img 3</button>
+        </div>
       </div>
       <div class="proj-img">
         <img src="assets/p3.jpg"
@@ -1567,6 +1620,10 @@ body.edit-mode .img-edit-wrap { display: flex; }
 <!-- IMAGE MODAL -->
 <div id="img-modal" class="img-modal" aria-hidden="true">
   <button id="img-modal-close" class="img-modal-close" type="button">Cerrar</button>
+  <div class="img-modal-nav">
+    <button id="img-modal-prev" class="img-modal-btn" type="button">◀</button>
+    <button id="img-modal-next" class="img-modal-btn" type="button">▶</button>
+  </div>
   <img id="img-modal-view" src="" alt="Imagen ampliada">
 </div>
 
@@ -2506,6 +2563,11 @@ body.edit-mode .img-edit-wrap { display: flex; }
             <div class="proj-name">${r.name}</div>
             <div class="proj-sub">${r.sub}</div>
             <button class="proj-toggle" type="button">Detalles</button>
+            <div class="proj-gallery-tools">
+              <button type="button" data-gallery-index="0">Img 1</button>
+              <button type="button" data-gallery-index="1">Img 2</button>
+              <button type="button" data-gallery-index="2">Img 3</button>
+            </div>
           </div>
           <div class="proj-img">
             <img src="${withCacheBust(r.image)}" alt="${r.alt || ''}">
@@ -2516,6 +2578,14 @@ body.edit-mode .img-edit-wrap { display: flex; }
             <span class="proj-arrow">→</span>
           </div>
         </div>`).join('');
+
+      const rows = projList.querySelectorAll('.project-row');
+      rows.forEach((rowEl, i) => {
+        const gallery = Array.isArray(c.projects.rows[i].gallery) ? c.projects.rows[i].gallery.filter(Boolean) : [];
+        rowEl.__gallery = gallery;
+        const img = rowEl.querySelector('.proj-img img');
+        if (img) img.__gallery = gallery;
+      });
     }
 
     const addTitle = document.querySelector('#additional-work .projects-title');
@@ -2702,6 +2772,10 @@ body.edit-mode .img-edit-wrap { display: flex; }
   const imgModal = document.getElementById('img-modal');
   const imgModalView = document.getElementById('img-modal-view');
   const imgModalClose = document.getElementById('img-modal-close');
+  const imgModalPrev = document.getElementById('img-modal-prev');
+  const imgModalNext = document.getElementById('img-modal-next');
+  let modalImages = [];
+  let modalIndex = 0;
   let currentLang = 'es';
 
   function getLangContent(lang) {
@@ -2891,6 +2965,39 @@ body.edit-mode .img-edit-wrap { display: flex; }
     document.querySelectorAll('.additional-grid .additional-thumb img').forEach((img, i) => {
       addImageEditor(`#additional-work .additional-grid .additional-card:nth-child(${i + 1}) .additional-thumb img`, `additionalWork.items.${i}.image`);
     });
+    document.querySelectorAll('.projects-list .project-row').forEach((row, i) => {
+      row.querySelectorAll('.proj-gallery-tools button').forEach((btn, j) => {
+        addGalleryEditor(btn, `projects.rows.${i}.gallery.${j}`);
+      });
+    });
+  }
+
+  function addGalleryEditor(buttonEl, path) {
+    if (!buttonEl) return;
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.style.display = 'none';
+    buttonEl.parentElement.appendChild(input);
+    buttonEl.addEventListener('click', () => input.click());
+    input.addEventListener('change', () => {
+      const file = input.files && input.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        const m = path.match(/^projects\\.rows\\.(\\d+)\\.gallery\\.(\\d+)$/);
+        if (m) {
+          const rowIdx = parseInt(m[1], 10);
+          if (!Array.isArray(currentContent.projects.rows[rowIdx].gallery)) {
+            currentContent.projects.rows[rowIdx].gallery = [];
+          }
+        }
+        setPath(currentContent, path, reader.result);
+        scheduleRecord();
+        saveDraft();
+      };
+      reader.readAsDataURL(file);
+    });
   }
 
   function bindProjectInteractions() {
@@ -2909,14 +3016,27 @@ body.edit-mode .img-edit-wrap { display: flex; }
     });
   }
 
+  function openModal(images, startIndex = 0) {
+    if (!imgModal || !imgModalView) return;
+    modalImages = images.map(withCacheBust);
+    modalIndex = startIndex;
+    imgModalView.src = modalImages[modalIndex];
+    imgModal.classList.add('visible');
+    imgModal.setAttribute('aria-hidden', 'false');
+    const showNav = modalImages.length > 1;
+    if (imgModalPrev) imgModalPrev.style.display = showNav ? 'inline-flex' : 'none';
+    if (imgModalNext) imgModalNext.style.display = showNav ? 'inline-flex' : 'none';
+  }
+
   function bindImageModal() {
-    document.querySelectorAll('.proj-img img, .featured-img img, .hero-right img').forEach(img => {
+    document.querySelectorAll('.proj-img img').forEach(img => {
       img.addEventListener('click', () => {
-        if (!imgModal || !imgModalView) return;
-        imgModalView.src = img.src;
-        imgModal.classList.add('visible');
-        imgModal.setAttribute('aria-hidden', 'false');
+        const gallery = img.__gallery && img.__gallery.length ? img.__gallery : [img.src];
+        openModal(gallery, 0);
       });
+    });
+    document.querySelectorAll('.featured-img img, .hero-right img').forEach(img => {
+      img.addEventListener('click', () => openModal([img.src], 0));
     });
     if (imgModalClose) {
       imgModalClose.addEventListener('click', () => {
@@ -2932,6 +3052,20 @@ body.edit-mode .img-edit-wrap { display: flex; }
           imgModal.setAttribute('aria-hidden', 'true');
           imgModalView.src = '';
         }
+      });
+    }
+    if (imgModalPrev) {
+      imgModalPrev.addEventListener('click', () => {
+        if (!modalImages.length) return;
+        modalIndex = (modalIndex - 1 + modalImages.length) % modalImages.length;
+        imgModalView.src = modalImages[modalIndex];
+      });
+    }
+    if (imgModalNext) {
+      imgModalNext.addEventListener('click', () => {
+        if (!modalImages.length) return;
+        modalIndex = (modalIndex + 1) % modalImages.length;
+        imgModalView.src = modalImages[modalIndex];
       });
     }
   }
