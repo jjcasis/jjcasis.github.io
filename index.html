@@ -2001,6 +2001,15 @@ body.edit-mode .img-edit-wrap { display: flex; }
   let historyStack = [];
   let redoStack = [];
   let recordTimer = null;
+  const cacheBust = Date.now();
+
+  function withCacheBust(src) {
+    if (!src) return src;
+    if (src.startsWith('data:')) return src;
+    if (src.includes('?')) return src;
+    if (src.startsWith('http')) return src;
+    return `${src}?v=${cacheBust}`;
+  }
 
   function setPath(obj, path, value) {
     const keys = path.split('.');
@@ -2077,7 +2086,7 @@ body.edit-mode .img-edit-wrap { display: flex; }
     if (heroName) heroName.innerHTML = c.hero?.nameHtml || heroName.innerHTML;
     if (heroDesc) heroDesc.textContent = c.hero?.desc || heroDesc.textContent;
     if (heroCta) heroCta.textContent = c.hero?.cta || heroCta.textContent;
-    if (heroImg && c.hero?.image) { heroImg.src = c.hero.image; heroImg.alt = c.hero.imageAlt || heroImg.alt; }
+    if (heroImg && c.hero?.image) { heroImg.src = withCacheBust(c.hero.image); heroImg.alt = c.hero.imageAlt || heroImg.alt; }
     if (heroCaption) heroCaption.textContent = c.hero?.imgCaption || heroCaption.textContent;
     if (heroProj) heroProj.textContent = c.hero?.imgProjName || heroProj.textContent;
 
@@ -2139,7 +2148,7 @@ body.edit-mode .img-edit-wrap { display: flex; }
             <div class="proj-sub">${r.sub}</div>
           </div>
           <div class="proj-img">
-            <img src="${r.image}" alt="${r.alt || ''}">
+            <img src="${withCacheBust(r.image)}" alt="${r.alt || ''}">
           </div>
           <div class="proj-meta">
             <span class="proj-tag">${r.tag}</span>
@@ -2157,7 +2166,7 @@ body.edit-mode .img-edit-wrap { display: flex; }
     if (addGrid && Array.isArray(c.additionalWork?.items)) {
       addGrid.innerHTML = c.additionalWork.items.map(i => `
         <div class="additional-card">
-          <div class="additional-thumb"><img src="${i.image}" alt="${i.title}"></div>
+          <div class="additional-thumb"><img src="${withCacheBust(i.image)}" alt="${i.title}"></div>
           <div class="additional-meta">
             <div class="additional-title">${i.title}</div>
             <div class="additional-tag">${i.tag}</div>
@@ -2172,7 +2181,7 @@ body.edit-mode .img-edit-wrap { display: flex; }
     const featTitle = document.querySelector('.feat-title');
     const featBody = document.querySelector('.feat-body');
     const featSpecs = document.querySelector('.feat-specs-grid');
-    if (featImg && c.featured?.image) { featImg.src = c.featured.image; featImg.alt = c.featured.alt || featImg.alt; }
+    if (featImg && c.featured?.image) { featImg.src = withCacheBust(c.featured.image); featImg.alt = c.featured.alt || featImg.alt; }
     if (featLabel) featLabel.textContent = c.featured?.labelImg || featLabel.textContent;
     if (featProjectId) featProjectId.textContent = c.featured?.projectId || featProjectId.textContent;
     if (featTitle) featTitle.innerHTML = c.featured?.titleHtml || featTitle.innerHTML;
@@ -2232,7 +2241,7 @@ body.edit-mode .img-edit-wrap { display: flex; }
 
   async function loadContent() {
     try {
-      const res = await fetch('content.json', { cache: 'no-store' });
+      const res = await fetch(`content.json?v=${cacheBust}`, { cache: 'no-store' });
       if (!res.ok) throw new Error('no content.json');
       const data = await res.json();
       defaultContent = data;
