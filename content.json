@@ -50,28 +50,28 @@
   },
   "dataStrip": [
     {
-      "label": "Experiencia EN ARQUITECTURA",
-      "val": "24+YRS",
+      "label": "EXPERIENCIA EN ARQUITECTURA",
+      "val": "24+",
       "unit": "YRS"
     },
     {
-      "label": "Licencia",
-      "val": "2009-001-070 JTIA",
+      "label": "LICENCIA",
+      "val": "2009-001-070",
       "unit": "LIC"
     },
     {
-      "label": "diseno Y DESARROLLO conceptual ",
-      "val": "Sí NIVEL: AVANZADO",
-      "unit": "LANG"
+      "label": "DISEÑO Y DESARROLLO CONCEPTUAL",
+      "val": "<span class=\"dc-big\">SI</span><span class=\"dc-sub\">NIVEL: AVANZADO</span>",
+      "unit": ""
     },
     {
-      "label": "DISENO Y dESARROLLO DE PLANOS ",
-      "val": "Sí NIVEL: AVANZADO",
-      "unit": "PGR"
+      "label": "DISEÑO Y DESARROLLO DE PLANOS",
+      "val": "<span class=\"dc-big\">SI</span><span class=\"dc-sub\">NIVEL: AVANZADO</span>",
+      "unit": ""
     },
     {
-      "label": "INSPECCION TECNICA DE Obra ",
-      "val": "Sí NIVEL: AVANZADO",
+      "label": "INSPECCION TECNICA DE OBRA",
+      "val": "<span class=\"dc-big\">SI</span><span class=\"dc-sub\">NIVEL: AVANZADO</span>",
       "unit": ""
     }
   ],
@@ -131,7 +131,7 @@
       {
         "index": "01",
         "name": "Casa corteza",
-        "sub": "Residencia Modular — Cerro Azul // 420 m² // CLT + Concreto",
+        "sub": "Residencia Modular — Santa Catalina, Veraguas // 420 m² // CLT + Concreto",
         "image": "assets/projects_rows_0_image.png",
         "alt": "Casa Yara",
         "tag": "Residencial",
@@ -344,28 +344,28 @@
       },
       "dataStrip": [
         {
-          "label": "Experience",
-          "val": "22",
+          "label": "ARCHITECTURE EXPERIENCE",
+          "val": "24+",
           "unit": "YRS"
         },
         {
-          "label": "License",
-          "val": "20 09",
+          "label": "LICENSE",
+          "val": "2009-001-070",
           "unit": "LIC"
         },
         {
-          "label": "Languages",
-          "val": "2",
-          "unit": "LANG"
+          "label": "CONCEPT DESIGN & DEVELOPMENT",
+          "val": "<span class=\"dc-big\">YES</span><span class=\"dc-sub\">LEVEL: ADVANCED</span>",
+          "unit": ""
         },
         {
-          "label": "Postgrad",
-          "val": "2",
-          "unit": "PGR"
+          "label": "PLAN DEVELOPMENT",
+          "val": "<span class=\"dc-big\">YES</span><span class=\"dc-sub\">LEVEL: ADVANCED</span>",
+          "unit": ""
         },
         {
-          "label": "Built Work",
-          "val": "Yes",
+          "label": "CONSTRUCTION TECHNICAL INSPECTION",
+          "val": "<span class=\"dc-big\">YES</span><span class=\"dc-sub\">LEVEL: ADVANCED</span>",
           "unit": ""
         }
       ],
