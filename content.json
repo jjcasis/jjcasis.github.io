@@ -1,0 +1,123 @@
+{
+  "meta": {
+    "title": "Portfolio — Arquitecto de Diseño Conceptual"
+  },
+  "nav": {
+    "logo": "Juan José Casis",
+    "links": [
+      { "href": "#projects", "label": "Proyectos" },
+      { "href": "#process", "label": "Proceso" },
+      { "href": "#contact", "label": "Contacto" }
+    ]
+  },
+  "hero": {
+    "tag": "Arquitecto de Diseño Conceptual · Panamá",
+    "headlineHtml": "Donde la forma<br>se une con la <em>naturaleza</em><br>viva.",
+    "desc": "Lidero visión arquitectónica conceptual — de la exploración volumétrica a propuestas listas para construir — con enfoque en diseño tropical contemporáneo, integración ecológica y flujos de trabajo potenciados por AI.",
+    "cta": "Ver Proyectos →",
+    "image": "assets/hero.jpg",
+    "imageAlt": "Residencia tropical contemporánea"
+  },
+  "aiStrip": {
+    "label": "Workflow con AI",
+    "tools": [
+      "Midjourney",
+      "Flux / Stable Diffusion",
+      "ComfyUI",
+      "ControlNet",
+      "AI Upscaling",
+      "ChatGPT / Claude",
+      "Runway Gen-3"
+    ]
+  },
+  "philosophy": {
+    "label": "Filosofía de Diseño",
+    "titleHtml": "Arquitectura<br>como <em style=\"font-style:italic;\">ecosistema<br>vivo.</em>",
+    "stats": [
+      { "num": "22+", "label": "Años de Experiencia" },
+      { "num": "2", "label": "Idiomas Profesionales" },
+      { "num": "2", "label": "Posgrados" },
+      { "num": "100%", "label": "Enfoque Integral" }
+    ],
+    "paragraphs": [
+      "La arquitectura debe ir más allá del abrigo: debe amplificar el entorno natural que habita. Mi proceso conceptual inicia con la lectura del terreno: topografía, luz y ritmos ecológicos. La forma construida surge como respuesta, nunca como imposición.",
+      "Mi trabajo abarca residencias de alto nivel, hospitalidad boutique y desarrollos mixtos en climas tropicales. Cada proyecto nace de una exploración rigurosa — estudios volumétricos, narrativa material y secuencias espaciales — antes de producir el primer plano técnico.",
+      "Integro herramientas de AI en cada etapa conceptual: ideación generativa, visualización en tiempo real para clientes, exploración de materiales y storytelling espacial. Esto acelera la toma de decisiones sin sacrificar profundidad de diseño."
+    ]
+  },
+  "projects": {
+    "label": "Selección",
+    "title": "Proyectos Conceptuales",
+    "viewAll": "Ver Todo →",
+    "cards": [
+      {
+        "image": "assets/p1.jpg",
+        "alt": "Casa Yara",
+        "tag": "Residencial · 2024 · Panamá",
+        "title": "Casa Yara",
+        "sub": "Residencia Modular Tropical — Costa Pacífica"
+      },
+      {
+        "image": "assets/p2.jpg",
+        "alt": "Refugio Palmar",
+        "tag": "Hospitalidad · 2024 · Costa Rica",
+        "title": "Refugio Palmar",
+        "sub": "Resort Boutique — 8 Villas"
+      },
+      {
+        "image": "assets/p3.jpg",
+        "alt": "Residencia Canopea",
+        "tag": "Residencial · 2023 · Ciudad de Panamá",
+        "title": "Residencia Canopea",
+        "sub": "Vertical Urbana — Sky Garden"
+      }
+    ]
+  },
+  "feature": {
+    "label": "Concepto Destacado · 2024",
+    "titleHtml": "Casa Yararé<br>— Canopy House",
+    "textHtml": "Residencia unifamiliar diseñada para disolver el límite entre el interior y el dosel forestal. El sistema estructural — híbrido de paneles CLT y concreto expuesto — permite que la vivienda conecte dos crestas, preservando intacto el suelo del bosque.<br><br>La exploración asistida por AI generó múltiples iteraciones volumétricas en la primera semana conceptual, habilitando un proceso de co-navegación con el cliente en tiempo real. La propuesta final emergió de ese diálogo — no a pesar de la tecnología, sino a través de ella.",
+    "image": "assets/featured.jpg",
+    "imageAlt": "Proyecto Destacado",
+    "specs": [
+      { "label": "Área", "val": "420 m²" },
+      { "label": "Estructura", "val": "CLT + Concreto" },
+      { "label": "Sistemas", "val": "Off-grid Solar + Recolección de Agua" },
+      { "label": "AI Tools", "val": "Midjourney + ControlNet" }
+    ]
+  },
+  "process": {
+    "label": "Cómo Trabajo",
+    "titleHtml": "Del territorio al concepto<br>y a la propuesta.",
+    "steps": [
+      {
+        "num": "01",
+        "title": "Lectura de Sitio y Contexto",
+        "text": "Cada concepto inicia con una lectura profunda del terreno, clima, trayectoria solar y sistemas ecológicos. Uso AI para procesar fotos del sitio, topografía y precedentes en hipótesis espaciales rápidas.",
+        "tools": ["AutoCAD", "SketchUp", "AI Image Analysis"]
+      },
+      {
+        "num": "02",
+        "title": "Exploración Volumétrica",
+        "text": "Genero series de estudios de masa asistidos por AI para iterar forma, aperturas y lenguaje material. Esto comprime semanas de exploración análoga en horas de dirección de diseño precisa.",
+        "tools": ["Midjourney", "Flux", "ControlNet", "Revit"]
+      },
+      {
+        "num": "03",
+        "title": "Visualización y Propuesta",
+        "text": "Integro renders AI fotorealistas, tableros de materialidad y walkthroughs 3D en propuestas sólidas. El cliente navega la visión — no solo un plano técnico — desde la primera reunión.",
+        "tools": ["Adobe Suite", "Runway Gen-3", "BIM", "AI Upscaling"]
+      }
+    ]
+  },
+  "contact": {
+    "label": "Contacto",
+    "titleHtml": "Construyamos algo<br><em style=\"font-style:italic;color:var(--green)\">extraordinario.</em>",
+    "subHtml": "Disponible para roles full-time y colaboraciones selectas.<br>Idiomas: Español e Inglés.",
+    "email": "juanjosecasis@outlook.com"
+  },
+  "footer": {
+    "logo": "Juan José Casis — Arquitecto",
+    "copy": "© 2026 · Panamá"
+  }
+}

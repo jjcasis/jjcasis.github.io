@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Arquitecto de Diseño Conceptual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #F4EFE4;
+    --cream-dark: #E8E0CE;
+    --black: #121208;
+    --green: #233C25;
+    --green-light: #3A5C3D;
+    --bronze: #8B7040;
+    --muted: #6B6454;
+    --white: #FDFAF4;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 4rem;
+    mix-blend-mode: normal;
+    background: transparent;
+    transition: background 0.4s;
+  }
+  nav.scrolled { background: rgba(244,239,228,0.92); backdrop-filter: blur(12px); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: var(--muted); transition: color 0.2s; }
+  .nav-links a:hover { color: var(--black); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 4rem 5rem 4rem;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--bronze);
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--green);
+  }
+  .hero-desc {
+    font-size: 0.92rem;
+    line-height: 1.9;
+    color: var(--muted);
+    max-width: 38ch;
+    margin-bottom: 3rem;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+    text-decoration: none;
+    border-bottom: 1px solid var(--green);
+    padding-bottom: 0.3rem;
+    transition: gap 0.3s;
+  }
+  .hero-cta:hover { gap: 1.6rem; }
+
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.85) contrast(1.05);
+    transition: transform 8s ease;
+  }
+  .hero-right:hover .hero-img { transform: scale(1.03); }
+  .hero-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 35%;
+    background: linear-gradient(to top, rgba(18,18,8,0.4), transparent);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 3rem;
+    left: 4rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    writing-mode: vertical-rl;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 50px;
+    background: var(--muted);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine {
+    0%, 100% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+    50% { transform: scaleY(0.3); opacity: 0.4; }
+  }
+
+  /* SECTION SHARED */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 3rem;
+  }
+
+  /* PHILOSOPHY */
+  .philosophy {
+    background: var(--green);
+    color: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .philosophy .section-label { color: rgba(244,239,228,0.5); }
+  .philosophy .section-title { color: var(--white); margin-bottom: 0; }
+  .philosophy-text {
+    font-size: 0.95rem;
+    line-height: 2;
+    color: rgba(244,239,228,0.75);
+  }
+  .philosophy-text p { margin-bottom: 1.5rem; }
+  .philosophy-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(244,239,228,0.15);
+  }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(244,239,228,0.5);
+  }
+
+  /* PROJECTS */
+  .projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+  }
+  .projects-header .section-title { margin-bottom: 0; }
+  .view-all {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--muted);
+    border-bottom: 1px solid var(--cream-dark);
+    padding-bottom: 0.2rem;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1.5rem;
+  }
+  .project-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--cream-dark);
+  }
+  .project-card:first-child { grid-row: span 2; }
+  .project-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.8) contrast(1.05);
+    transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+    min-height: 280px;
+  }
+  .project-card:first-child img { min-height: 600px; }
+  .project-card:hover img { transform: scale(1.05); }
+  .project-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(18,18,8,0.85) 0%, rgba(18,18,8,0.3) 60%, transparent 100%);
+    transform: translateY(0);
+    transition: padding 0.3s;
+  }
+  .project-card:hover .project-info { padding-bottom: 2.4rem; }
+  .project-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(244,239,228,0.6);
+    margin-bottom: 0.5rem;
+  }
+  .project-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+  }
+  .project-sub {
+    font-size: 0.8rem;
+    color: rgba(244,239,228,0.55);
+  }
+  .project-arrow {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    width: 40px; height: 40px;
+    border: 1px solid rgba(244,239,228,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white);
+    font-size: 1rem;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .project-card:hover .project-arrow { opacity: 1; transform: translateY(0); }
+
+  /* PROCESS / AI TOOLS */
+  .process { background: var(--white); }
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 0;
+  }
+  .process-step { position: relative; padding-top: 2rem; }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--cream-dark);
+    line-height: 1;
+    margin-bottom: 1rem;
+    transition: color 0.3s;
+  }
+  .process-step:hover .step-num { color: var(--bronze); }
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 0.8rem;
+    color: var(--black);
+  }
+  .step-text { font-size: 0.88rem; line-height: 1.9; color: var(--muted); }
+  .step-tools {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-top: 1.2rem;
+  }
+  .tool-badge {
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--cream);
+    color: var(--muted);
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--cream-dark);
+  }
+
+  /* FEATURED PROJECT DETAIL */
+  .feature {
+    background: var(--cream-dark);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .feature-img-wrap { overflow: hidden; min-height: 560px; }
+  .feature-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(0.8);
+    transition: transform 6s ease;
+  }
+  .feature-img-wrap:hover img { transform: scale(1.04); }
+  .feature-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem;
+    background: var(--green);
+    color: var(--cream);
+  }
+  .feature-content .section-label { color: rgba(244,239,228,0.45); }
+  .feature-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .feature-text {
+    font-size: 0.9rem;
+    line-height: 1.95;
+    color: rgba(244,239,228,0.7);
+    margin-bottom: 2.5rem;
+  }
+  .feature-specs {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(244,239,228,0.15);
+  }
+  .spec-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(244,239,228,0.4);
+    margin-bottom: 0.3rem;
+  }
+  .spec-val {
+    font-size: 0.9rem;
+    color: rgba(244,239,228,0.85);
+  }
+
+  /* AI BADGE STRIP */
+  .ai-strip {
+    background: var(--black);
+    padding: 1.5rem 4rem;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    overflow: hidden;
+  }
+  .ai-strip-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(244,239,228,0.3);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .ai-tools-list {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .ai-tool {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: rgba(244,239,228,0.6);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .ai-tool span { color: var(--bronze); margin-right: 0.5rem; }
+
+  /* CONTACT */
+  .contact {
+    text-align: center;
+    padding: 8rem 4rem;
+    background: var(--white);
+  }
+  .contact .section-title { margin-bottom: 1rem; }
+  .contact-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 3.5rem;
+    line-height: 1.8;
+  }
+  .contact-email {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--green);
+    text-decoration: none;
+    border-bottom: 1px solid var(--green-light);
+    padding-bottom: 0.2rem;
+    transition: color 0.2s;
+  }
+  .contact-email:hover { color: var(--bronze); border-color: var(--bronze); }
+
+  /* FOOTER */
+  footer {
+    background: var(--green);
+    padding: 2.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(244,239,228,0.7);
+  }
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(244,239,228,0.35);
+    letter-spacing: 0.05em;
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .fade-up:nth-child(2) { transition-delay: 0.1s; }
+  .fade-up:nth-child(3) { transition-delay: 0.2s; }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: var(--cream-dark);
+    margin: 0 4rem;
+  }
+
+  /* ADMIN PANEL */
+  .admin-panel {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    width: 380px;
+    max-width: calc(100vw - 3rem);
+    max-height: 80vh;
+    background: var(--white);
+    border: 1px solid var(--cream-dark);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    z-index: 999;
+    display: none;
+    flex-direction: column;
+  }
+  .admin-panel.visible { display: flex; }
+  .admin-header {
+    padding: 0.9rem 1.2rem;
+    background: var(--green);
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+  }
+  .admin-body {
+    padding: 1rem 1.2rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .admin-body p {
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  #admin-json {
+    width: 100%;
+    min-height: 240px;
+    max-height: 40vh;
+    resize: vertical;
+    border: 1px solid var(--cream-dark);
+    padding: 0.7rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    font-size: 0.7rem;
+    color: var(--black);
+    background: var(--cream);
+  }
+  .admin-actions {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .admin-actions button {
+    border: 1px solid var(--cream-dark);
+    background: var(--white);
+    color: var(--black);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+  }
+  .admin-actions button:hover {
+    border-color: var(--bronze);
+    color: var(--bronze);
+  }
+  .admin-hint {
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    section { padding: 4rem 2rem; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 8rem 2rem 3rem; }
+    .hero-right { height: 50vh; }
+    .hero-scroll { display: none; }
+    .philosophy { grid-template-columns: 1fr; gap: 2rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card:first-child { grid-row: span 1; }
+    .feature { grid-template-columns: 1fr; }
+    .feature-content { padding: 3rem 2rem; }
+    .process-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .ai-strip { padding: 1rem 2rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+    .admin-panel { right: 1rem; left: 1rem; width: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Juan José Casis</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Proyectos</a></li>
+    <li><a href="#process">Proceso</a></li>
+    <li><a href="#contact">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-left">
+    <div class="hero-tag">Arquitecto de Diseño Conceptual · Panamá</div>
+    <h1 class="hero-name">
+      Donde la forma<br>se une con la <em>naturaleza</em><br>viva.
+    </h1>
+    <p class="hero-desc">
+      Lidero visión arquitectónica conceptual — de la exploración volumétrica a propuestas listas para construir — con enfoque en diseño tropical contemporáneo, integración ecológica y flujos de trabajo potenciados por AI.
+    </p>
+    <a href="#projects" class="hero-cta">Ver Proyectos →</a>
+  </div>
+  <div class="hero-right">
+    <img class="hero-img"
+      src="assets/hero.jpg"
+      alt="Residencia tropical contemporánea">
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- AI TOOL STRIP -->
+<div class="ai-strip">
+  <span class="ai-strip-label">Workflow con AI</span>
+  <div class="ai-tools-list">
+    <span class="ai-tool"><span>✦</span>Midjourney</span>
+    <span class="ai-tool"><span>✦</span>Flux / Stable Diffusion</span>
+    <span class="ai-tool"><span>✦</span>ComfyUI</span>
+    <span class="ai-tool"><span>✦</span>ControlNet</span>
+    <span class="ai-tool"><span>✦</span>AI Upscaling</span>
+    <span class="ai-tool"><span>✦</span>ChatGPT / Claude</span>
+    <span class="ai-tool"><span>✦</span>Runway Gen-3</span>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div class="fade-up">
+    <div class="section-label">Filosofía de Diseño</div>
+    <h2 class="section-title">
+      Arquitectura<br>como <em style="font-style:italic;">ecosistema<br>vivo.</em>
+    </h2>
+    <div class="philosophy-stats">
+      <div>
+        <div class="stat-num">22+</div>
+        <div class="stat-label">Años de Experiencia</div>
+      </div>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Idiomas Profesionales</div>
+      </div>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Posgrados</div>
+      </div>
+      <div>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Enfoque Integral</div>
+      </div>
+    </div>
+  </div>
+  <div class="philosophy-text fade-up">
+    <p>
+      La arquitectura debe ir más allá del abrigo: debe amplificar el entorno natural que habita. Mi proceso conceptual inicia con la lectura del terreno: topografía, luz y ritmos ecológicos. La forma construida surge como respuesta, nunca como imposición.
+    </p>
+    <p>
+      Mi trabajo abarca residencias de alto nivel, hospitalidad boutique y desarrollos mixtos en climas tropicales. Cada proyecto nace de una exploración rigurosa — estudios volumétricos, narrativa material y secuencias espaciales — antes de producir el primer plano técnico.
+    </p>
+    <p>
+      Integro herramientas de AI en cada etapa conceptual: ideación generativa, visualización en tiempo real para clientes, exploración de materiales y storytelling espacial. Esto acelera la toma de decisiones sin sacrificar profundidad de diseño.
+    </p>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-header">
+    <div>
+      <div class="section-label">Selección</div>
+      <h2 class="section-title">Proyectos Conceptuales</h2>
+    </div>
+    <a href="#contact" class="view-all">Ver Todo →</a>
+  </div>
+
+  <div class="projects-grid">
+    <!-- Card 1 — large -->
+    <div class="project-card fade-up">
+      <img src="assets/p1.jpg"
+           alt="Casa Yara">
+      <div class="project-overlay"></div>
+      <div class="project-info">
+        <div class="project-tag">Residencial · 2024 · Panamá</div>
+        <div class="project-title">Casa Yara</div>
+        <div class="project-sub">Residencia Modular Tropical — Costa Pacífica</div>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="project-card fade-up">
+      <img src="assets/p2.jpg"
+           alt="Refugio Palmar">
+      <div class="project-info">
+        <div class="project-tag">Hospitalidad · 2024 · Costa Rica</div>
+        <div class="project-title">Refugio Palmar</div>
+        <div class="project-sub">Resort Boutique — 8 Villas</div>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="project-card fade-up">
+      <img src="assets/p3.jpg"
+           alt="Residencia Canopea">
+      <div class="project-info">
+        <div class="project-tag">Residencial · 2023 · Ciudad de Panamá</div>
+        <div class="project-title">Residencia Canopea</div>
+        <div class="project-sub">Vertical Urbana — Sky Garden</div>
+      </div>
+      <div class="project-arrow">↗</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECT -->
+<section class="feature" id="featured">
+  <div class="feature-img-wrap">
+    <img src="assets/featured.jpg"
+         alt="Proyecto Destacado">
+  </div>
+  <div class="feature-content">
+    <div class="section-label">Concepto Destacado · 2024</div>
+    <h2 class="feature-title">Casa Yararé<br>— Canopy House</h2>
+    <p class="feature-text">
+      Residencia unifamiliar diseñada para disolver el límite entre el interior y el dosel forestal. El sistema estructural — híbrido de paneles CLT y concreto expuesto — permite que la vivienda conecte dos crestas, preservando intacto el suelo del bosque.<br><br>
+      La exploración asistida por AI generó múltiples iteraciones volumétricas en la primera semana conceptual, habilitando un proceso de co-navegación con el cliente en tiempo real. La propuesta final emergió de ese diálogo — no a pesar de la tecnología, sino a través de ella.
+    </p>
+    <div class="feature-specs">
+      <div>
+        <div class="spec-label">Área</div>
+        <div class="spec-val">420 m²</div>
+      </div>
+      <div>
+        <div class="spec-label">Estructura</div>
+        <div class="spec-val">CLT + Concreto</div>
+      </div>
+      <div>
+        <div class="spec-label">Sistemas</div>
+        <div class="spec-val">Off-grid Solar + Recolección de Agua</div>
+      </div>
+      <div>
+        <div class="spec-label">AI Tools</div>
+        <div class="spec-val">Midjourney + ControlNet</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="process">
+  <div class="section-label">Cómo Trabajo</div>
+  <h2 class="section-title">Del territorio al concepto<br>y a la propuesta.</h2>
+  <div class="process-grid">
+    <div class="process-step fade-up">
+      <div class="step-num">01</div>
+      <div class="step-title">Lectura de Sitio y Contexto</div>
+      <p class="step-text">Cada concepto inicia con una lectura profunda del terreno, clima, trayectoria solar y sistemas ecológicos. Uso AI para procesar fotos del sitio, topografía y precedentes en hipótesis espaciales rápidas.</p>
+      <div class="step-tools">
+        <span class="tool-badge">AutoCAD</span>
+        <span class="tool-badge">SketchUp</span>
+        <span class="tool-badge">AI Image Analysis</span>
+      </div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-num">02</div>
+      <div class="step-title">Exploración Volumétrica</div>
+      <p class="step-text">Genero series de estudios de masa asistidos por AI para iterar forma, aperturas y lenguaje material. Esto comprime semanas de exploración análoga en horas de dirección de diseño precisa.</p>
+      <div class="step-tools">
+        <span class="tool-badge">Midjourney</span>
+        <span class="tool-badge">Flux</span>
+        <span class="tool-badge">ControlNet</span>
+        <span class="tool-badge">Revit</span>
+      </div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-num">03</div>
+      <div class="step-title">Visualización y Propuesta</div>
+      <p class="step-text">Integro renders AI fotorealistas, tableros de materialidad y walkthroughs 3D en propuestas sólidas. El cliente navega la visión — no solo un plano técnico — desde la primera reunión.</p>
+      <div class="step-tools">
+        <span class="tool-badge">Adobe Suite</span>
+        <span class="tool-badge">Runway Gen-3</span>
+        <span class="tool-badge">BIM</span>
+        <span class="tool-badge">AI Upscaling</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="section-label">Contacto</div>
+  <h2 class="section-title">Construyamos algo<br><em style="font-style:italic;color:var(--green)">extraordinario.</em></h2>
+  <p class="contact-sub">Disponible para roles full-time y colaboraciones selectas.<br>Idiomas: Español e Inglés.</p>
+  <a href="mailto:juanjosecasis@outlook.com" class="contact-email">juanjosecasis@outlook.com</a>
+</section>
+
+<footer>
+  <div class="footer-logo">Juan José Casis — Arquitecto</div>
+  <div class="footer-copy">© 2026 · Panamá</div>
+</footer>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel" class="admin-panel" aria-hidden="true">
+  <div class="admin-header">Editor Rápido</div>
+  <div class="admin-body">
+    <p>Edición directa vía JSON. Cambia textos o rutas de imágenes y pulsa “Aplicar”. Para mostrar este panel usa `?admin=1` o presiona `Ctrl+Shift+A`.</p>
+    <textarea id="admin-json" spellcheck="false"></textarea>
+    <div class="admin-actions">
+      <button id="admin-apply" type="button">Aplicar</button>
+      <button id="admin-download" type="button">Descargar JSON</button>
+      <button id="admin-close" type="button">Cerrar</button>
+    </div>
+    <div class="admin-hint">Nota: las imágenes deben existir en `assets/`.</div>
+  </div>
+</div>
+
+<script type="application/json" id="content-default">
+{
+  "meta": {
+    "title": "Portfolio — Arquitecto de Diseño Conceptual"
+  },
+  "nav": {
+    "logo": "Juan José Casis",
+    "links": [
+      { "href": "#projects", "label": "Proyectos" },
+      { "href": "#process", "label": "Proceso" },
+      { "href": "#contact", "label": "Contacto" }
+    ]
+  },
+  "hero": {
+    "tag": "Arquitecto de Diseño Conceptual · Panamá",
+    "headlineHtml": "Donde la forma<br>se une con la <em>naturaleza</em><br>viva.",
+    "desc": "Lidero visión arquitectónica conceptual — de la exploración volumétrica a propuestas listas para construir — con enfoque en diseño tropical contemporáneo, integración ecológica y flujos de trabajo potenciados por AI.",
+    "cta": "Ver Proyectos →",
+    "image": "assets/hero.jpg",
+    "imageAlt": "Residencia tropical contemporánea"
+  },
+  "aiStrip": {
+    "label": "Workflow con AI",
+    "tools": [
+      "Midjourney",
+      "Flux / Stable Diffusion",
+      "ComfyUI",
+      "ControlNet",
+      "AI Upscaling",
+      "ChatGPT / Claude",
+      "Runway Gen-3"
+    ]
+  },
+  "philosophy": {
+    "label": "Filosofía de Diseño",
+    "titleHtml": "Arquitectura<br>como <em style=\"font-style:italic;\">ecosistema<br>vivo.</em>",
+    "stats": [
+      { "num": "22+", "label": "Años de Experiencia" },
+      { "num": "2", "label": "Idiomas Profesionales" },
+      { "num": "2", "label": "Posgrados" },
+      { "num": "100%", "label": "Enfoque Integral" }
+    ],
+    "paragraphs": [
+      "La arquitectura debe ir más allá del abrigo: debe amplificar el entorno natural que habita. Mi proceso conceptual inicia con la lectura del terreno: topografía, luz y ritmos ecológicos. La forma construida surge como respuesta, nunca como imposición.",
+      "Mi trabajo abarca residencias de alto nivel, hospitalidad boutique y desarrollos mixtos en climas tropicales. Cada proyecto nace de una exploración rigurosa — estudios volumétricos, narrativa material y secuencias espaciales — antes de producir el primer plano técnico.",
+      "Integro herramientas de AI en cada etapa conceptual: ideación generativa, visualización en tiempo real para clientes, exploración de materiales y storytelling espacial. Esto acelera la toma de decisiones sin sacrificar profundidad de diseño."
+    ]
+  },
+  "projects": {
+    "label": "Selección",
+    "title": "Proyectos Conceptuales",
+    "viewAll": "Ver Todo →",
+    "cards": [
+      {
+        "image": "assets/p1.jpg",
+        "alt": "Casa Yara",
+        "tag": "Residencial · 2024 · Panamá",
+        "title": "Casa Yara",
+        "sub": "Residencia Modular Tropical — Costa Pacífica"
+      },
+      {
+        "image": "assets/p2.jpg",
+        "alt": "Refugio Palmar",
+        "tag": "Hospitalidad · 2024 · Costa Rica",
+        "title": "Refugio Palmar",
+        "sub": "Resort Boutique — 8 Villas"
+      },
+      {
+        "image": "assets/p3.jpg",
+        "alt": "Residencia Canopea",
+        "tag": "Residencial · 2023 · Ciudad de Panamá",
+        "title": "Residencia Canopea",
+        "sub": "Vertical Urbana — Sky Garden"
+      }
+    ]
+  },
+  "feature": {
+    "label": "Concepto Destacado · 2024",
+    "titleHtml": "Casa Yararé<br>— Canopy House",
+    "textHtml": "Residencia unifamiliar diseñada para disolver el límite entre el interior y el dosel forestal. El sistema estructural — híbrido de paneles CLT y concreto expuesto — permite que la vivienda conecte dos crestas, preservando intacto el suelo del bosque.<br><br>La exploración asistida por AI generó múltiples iteraciones volumétricas en la primera semana conceptual, habilitando un proceso de co-navegación con el cliente en tiempo real. La propuesta final emergió de ese diálogo — no a pesar de la tecnología, sino a través de ella.",
+    "image": "assets/featured.jpg",
+    "imageAlt": "Proyecto Destacado",
+    "specs": [
+      { "label": "Área", "val": "420 m²" },
+      { "label": "Estructura", "val": "CLT + Concreto" },
+      { "label": "Sistemas", "val": "Off-grid Solar + Recolección de Agua" },
+      { "label": "AI Tools", "val": "Midjourney + ControlNet" }
+    ]
+  },
+  "process": {
+    "label": "Cómo Trabajo",
+    "titleHtml": "Del territorio al concepto<br>y a la propuesta.",
+    "steps": [
+      {
+        "num": "01",
+        "title": "Lectura de Sitio y Contexto",
+        "text": "Cada concepto inicia con una lectura profunda del terreno, clima, trayectoria solar y sistemas ecológicos. Uso AI para procesar fotos del sitio, topografía y precedentes en hipótesis espaciales rápidas.",
+        "tools": ["AutoCAD", "SketchUp", "AI Image Analysis"]
+      },
+      {
+        "num": "02",
+        "title": "Exploración Volumétrica",
+        "text": "Genero series de estudios de masa asistidos por AI para iterar forma, aperturas y lenguaje material. Esto comprime semanas de exploración análoga en horas de dirección de diseño precisa.",
+        "tools": ["Midjourney", "Flux", "ControlNet", "Revit"]
+      },
+      {
+        "num": "03",
+        "title": "Visualización y Propuesta",
+        "text": "Integro renders AI fotorealistas, tableros de materialidad y walkthroughs 3D en propuestas sólidas. El cliente navega la visión — no solo un plano técnico — desde la primera reunión.",
+        "tools": ["Adobe Suite", "Runway Gen-3", "BIM", "AI Upscaling"]
+      }
+    ]
+  },
+  "contact": {
+    "label": "Contacto",
+    "titleHtml": "Construyamos algo<br><em style=\"font-style:italic;color:var(--green)\">extraordinario.</em>",
+    "subHtml": "Disponible para roles full-time y colaboraciones selectas.<br>Idiomas: Español e Inglés.",
+    "email": "juanjosecasis@outlook.com"
+  },
+  "footer": {
+    "logo": "Juan José Casis — Arquitecto",
+    "copy": "© 2026 · Panamá"
+  }
+}
+</script>
+
+<script>
+  const defaultContent = JSON.parse(document.getElementById('content-default').textContent);
+  let currentContent = defaultContent;
+
+  function applyContent(c) {
+    if (!c) return;
+    document.title = c.meta?.title || document.title;
+
+    const navLogo = document.querySelector('.nav-logo');
+    if (navLogo) navLogo.textContent = c.nav?.logo || navLogo.textContent;
+
+    const navLinks = document.querySelectorAll('.nav-links a');
+    if (c.nav?.links && navLinks.length >= c.nav.links.length) {
+      c.nav.links.forEach((l, i) => {
+        if (navLinks[i]) {
+          navLinks[i].textContent = l.label;
+          navLinks[i].setAttribute('href', l.href);
+        }
+      });
+    }
+
+    const heroTag = document.querySelector('.hero-tag');
+    const heroName = document.querySelector('.hero-name');
+    const heroDesc = document.querySelector('.hero-desc');
+    const heroCta = document.querySelector('.hero-cta');
+    const heroImg = document.querySelector('.hero-img');
+    if (heroTag) heroTag.textContent = c.hero?.tag || heroTag.textContent;
+    if (heroName) heroName.innerHTML = c.hero?.headlineHtml || heroName.innerHTML;
+    if (heroDesc) heroDesc.textContent = c.hero?.desc || heroDesc.textContent;
+    if (heroCta) heroCta.textContent = c.hero?.cta || heroCta.textContent;
+    if (heroImg && c.hero?.image) {
+      heroImg.src = c.hero.image;
+      heroImg.alt = c.hero.imageAlt || heroImg.alt;
+    }
+
+    const aiLabel = document.querySelector('.ai-strip-label');
+    const aiList = document.querySelector('.ai-tools-list');
+    if (aiLabel) aiLabel.textContent = c.aiStrip?.label || aiLabel.textContent;
+    if (aiList && Array.isArray(c.aiStrip?.tools)) {
+      aiList.innerHTML = c.aiStrip.tools.map(t => `<span class="ai-tool"><span>✦</span>${t}</span>`).join('');
+    }
+
+    const philLabel = document.querySelector('.philosophy .section-label');
+    const philTitle = document.querySelector('.philosophy .section-title');
+    const philStats = document.querySelector('.philosophy-stats');
+    const philText = document.querySelector('.philosophy-text');
+    if (philLabel) philLabel.textContent = c.philosophy?.label || philLabel.textContent;
+    if (philTitle) philTitle.innerHTML = c.philosophy?.titleHtml || philTitle.innerHTML;
+    if (philStats && Array.isArray(c.philosophy?.stats)) {
+      philStats.innerHTML = c.philosophy.stats.map(s => `
+        <div>
+          <div class="stat-num">${s.num}</div>
+          <div class="stat-label">${s.label}</div>
+        </div>`).join('');
+    }
+    if (philText && Array.isArray(c.philosophy?.paragraphs)) {
+      philText.innerHTML = c.philosophy.paragraphs.map(p => `<p>${p}</p>`).join('');
+    }
+
+    const projLabel = document.querySelector('#projects .section-label');
+    const projTitle = document.querySelector('#projects .section-title');
+    const projViewAll = document.querySelector('#projects .view-all');
+    if (projLabel) projLabel.textContent = c.projects?.label || projLabel.textContent;
+    if (projTitle) projTitle.textContent = c.projects?.title || projTitle.textContent;
+    if (projViewAll) projViewAll.textContent = c.projects?.viewAll || projViewAll.textContent;
+
+    const projCards = document.querySelectorAll('.projects-grid .project-card');
+    if (Array.isArray(c.projects?.cards)) {
+      c.projects.cards.forEach((card, i) => {
+        const cardEl = projCards[i];
+        if (!cardEl) return;
+        const img = cardEl.querySelector('img');
+        const tag = cardEl.querySelector('.project-tag');
+        const title = cardEl.querySelector('.project-title');
+        const sub = cardEl.querySelector('.project-sub');
+        if (img && card.image) {
+          img.src = card.image;
+          img.alt = card.alt || img.alt;
+        }
+        if (tag) tag.textContent = card.tag || tag.textContent;
+        if (title) title.textContent = card.title || title.textContent;
+        if (sub) sub.textContent = card.sub || sub.textContent;
+      });
+    }
+
+    const featImg = document.querySelector('.feature-img-wrap img');
+    const featLabel = document.querySelector('.feature .section-label');
+    const featTitle = document.querySelector('.feature-title');
+    const featText = document.querySelector('.feature-text');
+    const featSpecs = document.querySelector('.feature-specs');
+    if (featImg && c.feature?.image) {
+      featImg.src = c.feature.image;
+      featImg.alt = c.feature.imageAlt || featImg.alt;
+    }
+    if (featLabel) featLabel.textContent = c.feature?.label || featLabel.textContent;
+    if (featTitle) featTitle.innerHTML = c.feature?.titleHtml || featTitle.innerHTML;
+    if (featText) featText.innerHTML = c.feature?.textHtml || featText.innerHTML;
+    if (featSpecs && Array.isArray(c.feature?.specs)) {
+      featSpecs.innerHTML = c.feature.specs.map(s => `
+        <div>
+          <div class="spec-label">${s.label}</div>
+          <div class="spec-val">${s.val}</div>
+        </div>`).join('');
+    }
+
+    const procLabel = document.querySelector('#process .section-label');
+    const procTitle = document.querySelector('#process .section-title');
+    const procGrid = document.querySelector('.process-grid');
+    if (procLabel) procLabel.textContent = c.process?.label || procLabel.textContent;
+    if (procTitle) procTitle.innerHTML = c.process?.titleHtml || procTitle.innerHTML;
+    if (procGrid && Array.isArray(c.process?.steps)) {
+      procGrid.innerHTML = c.process.steps.map(step => `
+        <div class="process-step fade-up">
+          <div class="step-num">${step.num}</div>
+          <div class="step-title">${step.title}</div>
+          <p class="step-text">${step.text}</p>
+          <div class="step-tools">
+            ${step.tools.map(t => `<span class="tool-badge">${t}</span>`).join('')}
+          </div>
+        </div>`).join('');
+    }
+
+    const contactLabel = document.querySelector('#contact .section-label');
+    const contactTitle = document.querySelector('#contact .section-title');
+    const contactSub = document.querySelector('#contact .contact-sub');
+    const contactEmail = document.querySelector('#contact .contact-email');
+    if (contactLabel) contactLabel.textContent = c.contact?.label || contactLabel.textContent;
+    if (contactTitle) contactTitle.innerHTML = c.contact?.titleHtml || contactTitle.innerHTML;
+    if (contactSub) contactSub.innerHTML = c.contact?.subHtml || contactSub.innerHTML;
+    if (contactEmail && c.contact?.email) {
+      contactEmail.textContent = c.contact.email;
+      contactEmail.setAttribute('href', `mailto:${c.contact.email}`);
+    }
+
+    const footerLogo = document.querySelector('.footer-logo');
+    const footerCopy = document.querySelector('.footer-copy');
+    if (footerLogo) footerLogo.textContent = c.footer?.logo || footerLogo.textContent;
+    if (footerCopy) footerCopy.textContent = c.footer?.copy || footerCopy.textContent;
+
+    currentContent = c;
+  }
+
+  async function loadContent() {
+    try {
+      const res = await fetch('content.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error('no content.json');
+      const data = await res.json();
+      applyContent(data);
+    } catch (e) {
+      applyContent(defaultContent);
+    }
+  }
+
+  // Nav scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Intersection Observer for fade-up
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Admin panel
+  const adminPanel = document.getElementById('admin-panel');
+  const adminJson = document.getElementById('admin-json');
+  const adminApply = document.getElementById('admin-apply');
+  const adminDownload = document.getElementById('admin-download');
+  const adminClose = document.getElementById('admin-close');
+
+  function refreshAdminJson() {
+    if (adminJson) adminJson.value = JSON.stringify(currentContent, null, 2);
+  }
+
+  function showAdmin(show) {
+    if (!adminPanel) return;
+    adminPanel.classList.toggle('visible', show);
+    adminPanel.setAttribute('aria-hidden', show ? 'false' : 'true');
+    if (show) refreshAdminJson();
+  }
+
+  if (new URLSearchParams(window.location.search).has('admin')) {
+    showAdmin(true);
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
+      e.preventDefault();
+      showAdmin(!adminPanel.classList.contains('visible'));
+    }
+  });
+
+  if (adminApply) {
+    adminApply.addEventListener('click', () => {
+      try {
+        const parsed = JSON.parse(adminJson.value);
+        applyContent(parsed);
+        refreshAdminJson();
+      } catch (err) {
+        alert('JSON inválido. Revisa la estructura.');
+      }
+    });
+  }
+
+  if (adminDownload) {
+    adminDownload.addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(currentContent, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'content.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(a.href);
+    });
+  }
+
+  if (adminClose) {
+    adminClose.addEventListener('click', () => showAdmin(false));
+  }
+
+  loadContent();
+</script>
+</body>
+</html>
