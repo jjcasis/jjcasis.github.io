@@ -1374,7 +1374,7 @@ body.edit-mode .img-edit-wrap { display: flex; }
   <button id="edit-export" class="edit-btn" type="button">Export JSON</button>
   <button id="edit-reset" class="edit-btn" type="button">Reset</button>
 </div>
-<div id="edit-note" class="edit-note">En modo edición puedes editar textos inline y cambiar imágenes.</div>
+<div id="edit-note" class="edit-note">En modo edición puedes editar textos inline y cambiar imágenes. Guardar intentará escribir imágenes en /assets si el navegador lo permite.</div>
 
 <!-- ADMIN PANEL -->
 <div id="admin-panel" class="admin-panel" aria-hidden="true">
@@ -1522,7 +1522,7 @@ body.edit-mode .img-edit-wrap { display: flex; }
         "index": "01",
         "name": "Casa Yara",
         "sub": "Residencia Modular — Costa Pacífica // 420 m² // CLT + Concreto",
-        "image": "assets/p1.jpg",
+        "image": "assets/projects_rows_0_image.png",
         "alt": "Casa Yara",
         "tag": "Residencial",
         "year": "2024"
@@ -1531,7 +1531,7 @@ body.edit-mode .img-edit-wrap { display: flex; }
         "index": "02",
         "name": "Hotel Contenedor Urbano",
         "sub": "Base gastronómica + rooftop activo · Modular · Contenedores reciclados",
-        "image": "assets/p2.jpg",
+        "image": "assets/projects_rows_1_image.png",
         "alt": "Hotel Contenedor Urbano",
         "tag": "Hospitalidad / Mixed-use",
         "year": "2024"
@@ -1540,7 +1540,7 @@ body.edit-mode .img-edit-wrap { display: flex; }
         "index": "03",
         "name": "Residencia Canopea",
         "sub": "Penthouse Urbano — Ciudad de Panamá // Sky Garden",
-        "image": "assets/p3.jpg",
+        "image": "assets/projects_rows_2_image.png",
         "alt": "Residencia Canopea",
         "tag": "Residencial",
         "year": "2023"
@@ -1548,7 +1548,7 @@ body.edit-mode .img-edit-wrap { display: flex; }
     ]
   },
   "featured": {
-    "image": "assets/featured.jpg",
+    "image": "assets/featured_image.png",
     "alt": "Hotel Contenedor Urbano",
     "labelImg": "// ESTUDIO DESTACADO",
     "projectId": "PROJECT_ID: HCU-2024-01 // MIXED USE",
@@ -2551,9 +2551,79 @@ body.edit-mode .img-edit-wrap { display: flex; }
       saveDraft();
     });
   }
+  function isDataUrl(v) {
+    return typeof v === 'string' && v.startsWith('data:image/');
+  }
+
+  function dataUrlToBlob(dataUrl) {
+    const [meta, b64] = dataUrl.split(',');
+    const mime = meta.match(/data:(.*?);base64/)[1];
+    const bin = atob(b64);
+    const len = bin.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) bytes[i] = bin.charCodeAt(i);
+    return new Blob([bytes], { type: mime });
+  }
+
+  async function writeFile(handle, blob) {
+    const writable = await handle.createWritable();
+    await writable.write(blob);
+    await writable.close();
+  }
+
+  async function saveWithImagesIfPossible() {
+    // If no FS Access API, fallback to JSON download
+    if (!window.showDirectoryPicker) return false;
+
+    // Collect data URLs in content for hero/projects/featured/additional
+    const dataImages = [];
+    const collect = (path, value) => {
+      if (isDataUrl(value)) dataImages.push({ path, value });
+    };
+
+    collect('hero.image', currentContent?.hero?.image);
+    (currentContent?.projects?.rows || []).forEach((r, i) => collect(`projects.rows.${i}.image`, r.image));
+    collect('featured.image', currentContent?.featured?.image);
+    (currentContent?.additionalWork?.items || []).forEach((r, i) => collect(`additionalWork.items.${i}.image`, r.image));
+
+    if (!dataImages.length) return false;
+
+    const dir = await window.showDirectoryPicker();
+    const assetsDir = await dir.getDirectoryHandle('assets', { create: true });
+
+    const updated = cloneContent(currentContent);
+    for (const item of dataImages) {
+      const safeName = item.path.replace(/[^a-z0-9]+/gi, '_').toLowerCase();
+      const filename = `${safeName}.png`;
+      const fileHandle = await assetsDir.getFileHandle(filename, { create: true });
+      await writeFile(fileHandle, dataUrlToBlob(item.value));
+      // Update JSON path to local assets
+      setPath(updated, item.path, `assets/${filename}`);
+    }
+
+    // Write content.json to selected directory
+    const contentHandle = await dir.getFileHandle('content.json', { create: true });
+    await writeFile(contentHandle, new Blob([JSON.stringify(updated, null, 2)], { type: 'application/json' }));
+
+    // Update live state
+    currentContent = updated;
+    const script = document.getElementById('content-default');
+    if (script) script.textContent = JSON.stringify(updated, null, 2);
+    defaultContent = cloneContent(updated);
+    saveDraft();
+    if (adminJson) refreshAdminJson();
+    return true;
+  }
+
   if (editSave) {
-    editSave.addEventListener('click', () => {
+    editSave.addEventListener('click', async () => {
       saveDraft();
+      try {
+        const saved = await saveWithImagesIfPossible();
+        if (saved) return;
+      } catch (e) {
+        // ignore and fall back to JSON download
+      }
       const script = document.getElementById('content-default');
       if (script) script.textContent = JSON.stringify(currentContent, null, 2);
       defaultContent = cloneContent(currentContent);

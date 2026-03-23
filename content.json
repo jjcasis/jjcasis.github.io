@@ -128,7 +128,7 @@
         "index": "01",
         "name": "Casa Yara",
         "sub": "Residencia Modular — Costa Pacífica // 420 m² // CLT + Concreto",
-        "image": "assets/p1.jpg",
+        "image": "assets/projects_rows_0_image.png",
         "alt": "Casa Yara",
         "tag": "Residencial",
         "year": "2024"
@@ -137,7 +137,7 @@
         "index": "02",
         "name": "Hotel Contenedor Urbano",
         "sub": "Base gastronómica + rooftop activo · Modular · Contenedores reciclados",
-        "image": "assets/p2.jpg",
+        "image": "assets/projects_rows_1_image.png",
         "alt": "Hotel Contenedor Urbano",
         "tag": "Hospitalidad / Mixed-use",
         "year": "2024"
@@ -146,7 +146,7 @@
         "index": "03",
         "name": "Residencia Canopea",
         "sub": "Penthouse Urbano — Ciudad de Panamá // Sky Garden",
-        "image": "assets/p3.jpg",
+        "image": "assets/projects_rows_2_image.png",
         "alt": "Residencia Canopea",
         "tag": "Residencial",
         "year": "2023"
@@ -154,7 +154,7 @@
     ]
   },
   "featured": {
-    "image": "assets/featured.jpg",
+    "image": "assets/featured_image.png",
     "alt": "Hotel Contenedor Urbano",
     "labelImg": "// ESTUDIO DESTACADO",
     "projectId": "PROJECT_ID: HCU-2024-01 // MIXED USE",
