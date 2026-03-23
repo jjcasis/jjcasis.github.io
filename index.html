@@ -2245,7 +2245,9 @@ body.edit-mode .img-edit-wrap { display: flex; }
       if (!res.ok) throw new Error('no content.json');
       const data = await res.json();
       defaultContent = data;
-      const draft = loadDraft();
+      const params = new URLSearchParams(window.location.search);
+      const allowDraft = params.has('edit') || params.has('admin') || params.has('draft');
+      const draft = allowDraft ? loadDraft() : null;
       if (draft && draft.content) {
         currentLang = draft.lang || 'es';
         applyContent(draft.content);
