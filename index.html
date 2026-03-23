@@ -41,10 +41,10 @@
   }
   nav.scrolled { background: rgba(244,239,228,0.92); backdrop-filter: blur(12px); }
   .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); text-decoration: none; }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
   .nav-links a { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: var(--muted); transition: color 0.2s; }
   .nav-links a:hover { color: var(--black); }
-  .nav-edit {
+  .nav-links .nav-edit {
     border: 1px solid var(--cream-dark);
     background: transparent;
     color: var(--muted);
@@ -668,8 +668,8 @@
     <li><a href="#projects">Proyectos</a></li>
     <li><a href="#process">Proceso</a></li>
     <li><a href="#contact">Contacto</a></li>
+    <li><button id="nav-edit" class="nav-edit" type="button">Edit</button></li>
   </ul>
-  <button id="nav-edit" class="nav-edit" type="button">Edit</button>
 </nav>
 
 <!-- HERO -->
