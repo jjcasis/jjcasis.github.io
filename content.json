@@ -1,123 +1,600 @@
 {
   "meta": {
-    "title": "Portfolio — Arquitecto de Diseño Conceptual"
+    "title": "Juan José Casis — Arquitecto"
   },
   "nav": {
-    "logo": "Juan José Casis",
+    "id": "JJC.AI // v2026",
     "links": [
-      { "href": "#projects", "label": "Proyectos" },
-      { "href": "#process", "label": "Proceso" },
-      { "href": "#contact", "label": "Contacto" }
-    ]
+      {
+        "href": "#projects",
+        "label": "Proyectos"
+      },
+      {
+        "href": "#process",
+        "label": "Método"
+      },
+      {
+        "href": "#contact",
+        "label": "Contacto"
+      }
+    ],
+    "status": "Disponible — Panamá"
   },
   "hero": {
-    "tag": "Arquitecto de Diseño Conceptual · Panamá",
-    "headlineHtml": "Donde la forma<br>se une con la <em>naturaleza</em><br>viva.",
-    "desc": "Lidero visión arquitectónica conceptual — de la exploración volumétrica a propuestas listas para construir — con enfoque en diseño tropical contemporáneo, integración ecológica y flujos de trabajo potenciados por AI.",
-    "cta": "Ver Proyectos →",
+    "coords": "08°59'N 79°31'W // ARQ. DE DISEÑO CONCEPTUAL",
+    "nameHtml": "JUAN<br>JOSÉ<br>CAS<span class=\"accent\">-</span>IS",
+    "titleBlock": [
+      {
+        "label": "Especialidad",
+        "val": "Diseño Conceptual"
+      },
+      {
+        "label": "Tipología",
+        "val": "Res. / Hospitalidad"
+      },
+      {
+        "label": "Enfoque",
+        "val": "Concepto + Ejecución"
+      }
+    ],
+    "desc": "Arquitecto con 22+ años de experiencia en diseño conceptual, desarrollo técnico y ejecución de obra. Trayectoria comprobada liderando proyectos desde hipótesis tempranas hasta realidad construida, con control sólido sobre estructura, respuesta climática, marcos regulatorios y procesos constructivos.",
+    "cta": "Disponible →",
     "image": "assets/hero.jpg",
-    "imageAlt": "Residencia tropical contemporánea"
+    "imageAlt": "Arquitectura Tropical",
+    "imgCaption": "REF_001 // CASA YARARÉ, 2024",
+    "imgProjName": "CONCEPTO TROPICAL"
   },
-  "aiStrip": {
-    "label": "Workflow con AI",
-    "tools": [
-      "Midjourney",
-      "Flux / Stable Diffusion",
-      "ComfyUI",
-      "ControlNet",
-      "AI Upscaling",
-      "ChatGPT / Claude",
-      "Runway Gen-3"
+  "dataStrip": [
+    {
+      "label": "Experiencia",
+      "val": "22",
+      "unit": "YRS"
+    },
+    {
+      "label": "Licencia",
+      "val": "20 09",
+      "unit": "LIC"
+    },
+    {
+      "label": "Idiomas",
+      "val": "2",
+      "unit": "LANG"
+    },
+    {
+      "label": "Posgrados",
+      "val": "2",
+      "unit": "PGR"
+    },
+    {
+      "label": "Obra Construida",
+      "val": "Sí",
+      "unit": ""
+    }
+  ],
+  "manifesto": {
+    "label": "Enfoque",
+    "titleHtml": "CONCEPTO<br>CON<br><span class=\"highlight\">CRITERIO</span>.",
+    "body": [
+      "Cada proyecto se plantea como un estudio: intención clara, restricciones bien definidas y decisiones verificables.",
+      "La exploración volumétrica se guía por clima, estructura y materialidad; el resultado es una síntesis operativa, no un gesto aislado.",
+      "El objetivo es avanzar rápido sin perder control del diseño.",
+      "El diseño no termina en la imagen: cada propuesta se desarrolla con criterio constructivo, coordinación técnica y viabilidad real, considerando normativa, costos y procesos de obra."
+    ],
+    "specs": [
+      {
+        "key": "Base",
+        "val": "Sitio + clima + estructura"
+      },
+      {
+        "key": "Proceso",
+        "val": "Iterar, comparar, depurar"
+      },
+      {
+        "key": "Entrega",
+        "val": "Concepto → propuesta"
+      },
+      {
+        "key": "Ritmo",
+        "val": "Decisiones rápidas"
+      },
+      {
+        "key": "Precisión",
+        "val": "Detalles claros"
+      },
+      {
+        "key": "Alcance",
+        "val": "Concepto → Construcción"
+      }
     ]
   },
-  "philosophy": {
-    "label": "Filosofía de Diseño",
-    "titleHtml": "Arquitectura<br>como <em style=\"font-style:italic;\">ecosistema<br>vivo.</em>",
-    "stats": [
-      { "num": "22+", "label": "Años de Experiencia" },
-      { "num": "2", "label": "Idiomas Profesionales" },
-      { "num": "2", "label": "Posgrados" },
-      { "num": "100%", "label": "Enfoque Integral" }
-    ],
-    "paragraphs": [
-      "La arquitectura debe ir más allá del abrigo: debe amplificar el entorno natural que habita. Mi proceso conceptual inicia con la lectura del terreno: topografía, luz y ritmos ecológicos. La forma construida surge como respuesta, nunca como imposición.",
-      "Mi trabajo abarca residencias de alto nivel, hospitalidad boutique y desarrollos mixtos en climas tropicales. Cada proyecto nace de una exploración rigurosa — estudios volumétricos, narrativa material y secuencias espaciales — antes de producir el primer plano técnico.",
-      "Integro herramientas de AI en cada etapa conceptual: ideación generativa, visualización en tiempo real para clientes, exploración de materiales y storytelling espacial. Esto acelera la toma de decisiones sin sacrificar profundidad de diseño."
+  "aiBanner": {
+    "label": "// Design Toolchain",
+    "tags": [
+      "Midjourney",
+      "Flux",
+      "ControlNet",
+      "ComfyUI",
+      "Runway Gen-3",
+      "AI Upscaling",
+      "Claude / ChatGPT"
     ]
   },
   "projects": {
     "label": "Selección",
-    "title": "Proyectos Conceptuales",
-    "viewAll": "Ver Todo →",
-    "cards": [
+    "title": "Registro de Proyectos",
+    "count": "// SELECTED WORK",
+    "rows": [
       {
+        "index": "01",
+        "name": "Casa Yara",
+        "sub": "Residencia Modular — Costa Pacífica // 420 m² // CLT + Concreto",
         "image": "assets/p1.jpg",
         "alt": "Casa Yara",
-        "tag": "Residencial · 2024 · Panamá",
-        "title": "Casa Yara",
-        "sub": "Residencia Modular Tropical — Costa Pacífica"
+        "tag": "Residencial",
+        "year": "2024"
       },
       {
+        "index": "02",
+        "name": "Hotel Contenedor Urbano",
+        "sub": "Base gastronómica + rooftop activo · Modular · Contenedores reciclados",
         "image": "assets/p2.jpg",
-        "alt": "Refugio Palmar",
-        "tag": "Hospitalidad · 2024 · Costa Rica",
-        "title": "Refugio Palmar",
-        "sub": "Resort Boutique — 8 Villas"
+        "alt": "Hotel Contenedor Urbano",
+        "tag": "Hospitalidad / Mixed-use",
+        "year": "2024"
       },
       {
+        "index": "03",
+        "name": "Residencia Canopea",
+        "sub": "Penthouse Urbano — Ciudad de Panamá // Sky Garden",
         "image": "assets/p3.jpg",
         "alt": "Residencia Canopea",
-        "tag": "Residencial · 2023 · Ciudad de Panamá",
-        "title": "Residencia Canopea",
-        "sub": "Vertical Urbana — Sky Garden"
+        "tag": "Residencial",
+        "year": "2023"
       }
     ]
   },
-  "feature": {
-    "label": "Concepto Destacado · 2024",
-    "titleHtml": "Casa Yararé<br>— Canopy House",
-    "textHtml": "Residencia unifamiliar diseñada para disolver el límite entre el interior y el dosel forestal. El sistema estructural — híbrido de paneles CLT y concreto expuesto — permite que la vivienda conecte dos crestas, preservando intacto el suelo del bosque.<br><br>La exploración asistida por AI generó múltiples iteraciones volumétricas en la primera semana conceptual, habilitando un proceso de co-navegación con el cliente en tiempo real. La propuesta final emergió de ese diálogo — no a pesar de la tecnología, sino a través de ella.",
+  "featured": {
     "image": "assets/featured.jpg",
-    "imageAlt": "Proyecto Destacado",
+    "alt": "Hotel Contenedor Urbano",
+    "labelImg": "// ESTUDIO DESTACADO",
+    "projectId": "PROJECT_ID: HCU-2024-01 // MIXED USE",
+    "titleHtml": "HOTEL<br>CONTENEDOR<br><span>URBANO</span>",
+    "bodyHtml": "Hotel urbano vertical con base gastronómica y rooftop activo — estructura prefabricada a partir de módulos de contenedor y sistema metálico expuesto.<br><br>Concebido como un sistema modular, donde contenedores reciclados se convierten en unidades habitables conectadas por una estructura metálica visible. La base activa la calle con un gastro/bar abierto, mientras los niveles superiores generan una composición volumétrica dinámica que favorece ventilación, vistas y expansión exterior. El rooftop funciona como punto de encuentro elevado, extendiendo la experiencia del edificio hacia la ciudad.<br><br>Arquitectura concebida para construir rápido, adaptarse fácil y activarse inmediatamente dentro del tejido urbano.<br><br>Desarrollado bajo criterios de viabilidad constructiva, coordinación técnica y adaptación a condiciones reales del sitio.",
     "specs": [
-      { "label": "Área", "val": "420 m²" },
-      { "label": "Estructura", "val": "CLT + Concreto" },
-      { "label": "Sistemas", "val": "Off-grid Solar + Recolección de Agua" },
-      { "label": "AI Tools", "val": "Midjourney + ControlNet" }
+      {
+        "key": "Programa",
+        "val": "Hotel + Gastro/Bar"
+      },
+      {
+        "key": "Sistema",
+        "val": "Modular Prefabricado"
+      },
+      {
+        "key": "Estructura",
+        "val": "Contenedores + Acero"
+      },
+      {
+        "key": "Rooftop",
+        "val": "Activación Urbana"
+      },
+      {
+        "key": "Uso",
+        "val": "Mixed-use"
+      },
+      {
+        "key": "Enfoque",
+        "val": "Urban Infill"
+      }
     ]
   },
   "process": {
-    "label": "Cómo Trabajo",
-    "titleHtml": "Del territorio al concepto<br>y a la propuesta.",
-    "steps": [
+    "label": "Método",
+    "title": "Protocolo de Diseño",
+    "cells": [
       {
         "num": "01",
-        "title": "Lectura de Sitio y Contexto",
-        "text": "Cada concepto inicia con una lectura profunda del terreno, clima, trayectoria solar y sistemas ecológicos. Uso AI para procesar fotos del sitio, topografía y precedentes en hipótesis espaciales rápidas.",
-        "tools": ["AutoCAD", "SketchUp", "AI Image Analysis"]
+        "title": "Lectura de Sitio & Auditoría Ecológica",
+        "body": "Topografía, asoleamiento, vientos, drenajes y vegetación existente se convierten en restricciones de diseño. Con esa base, se plantean hipótesis y se validan con criterio arquitectónico.",
+        "tools": [
+          "AutoCAD — documentación",
+          "SketchUp — masa base",
+          "AI image analysis — contexto"
+        ]
       },
       {
         "num": "02",
-        "title": "Exploración Volumétrica",
-        "text": "Genero series de estudios de masa asistidos por AI para iterar forma, aperturas y lenguaje material. Esto comprime semanas de exploración análoga en horas de dirección de diseño precisa.",
-        "tools": ["Midjourney", "Flux", "ControlNet", "Revit"]
+        "title": "Motor de Iteración Volumétrica",
+        "body": "Iteraciones rápidas para comparar proporciones, aperturas y materialidad. Se selecciona por desempeño y coherencia formal.",
+        "tools": [
+          "Midjourney — ideación",
+          "Flux — control",
+          "ControlNet — modelo",
+          "Revit — BIM"
+        ]
       },
       {
         "num": "03",
-        "title": "Visualización y Propuesta",
-        "text": "Integro renders AI fotorealistas, tableros de materialidad y walkthroughs 3D en propuestas sólidas. El cliente navega la visión — no solo un plano técnico — desde la primera reunión.",
-        "tools": ["Adobe Suite", "Runway Gen-3", "BIM", "AI Upscaling"]
+        "title": "Propuesta & Decisión con Cliente",
+        "body": "Renders, documentación técnica y criterios constructivos consolidan la propuesta. El cliente comprende el proyecto antes de ejecución, reduciendo incertidumbre en obra, optimizando decisiones y facilitando coordinación entre disciplinas. Incluye dirección conceptual, coordinación técnica y supervisión de criterios de calidad. Liderazgo de equipos interdisciplinarios en desarrollo de proyectos, coordinación técnica y mentoría de arquitectos jóvenes en procesos de diseño y ejecución.",
+        "tools": [
+          "Adobe Suite — presentación",
+          "Runway Gen-3 — animación",
+          "Topaz — upscaling",
+          "BIM — entrega"
+        ]
       }
     ]
   },
   "contact": {
     "label": "Contacto",
-    "titleHtml": "Construyamos algo<br><em style=\"font-style:italic;color:var(--green)\">extraordinario.</em>",
-    "subHtml": "Disponible para roles full-time y colaboraciones selectas.<br>Idiomas: Español e Inglés.",
-    "email": "juanjosecasis@outlook.com"
+    "titleHtml": "CONSTRUYAMOS<br><span>ALGO.</span>",
+    "email": "juanjosecasis@outlook.com",
+    "info": [
+      {
+        "key": "Ubicación",
+        "val": "Panamá"
+      },
+      {
+        "key": "Experiencia Reciente",
+        "val": "UNODC — Inspección Arquitectónica"
+      },
+      {
+        "key": "Disponibilidad",
+        "val": "Full-time"
+      },
+      {
+        "key": "Idiomas",
+        "val": "ES / EN"
+      },
+      {
+        "key": "Experiencia",
+        "val": "22+ años"
+      },
+      {
+        "key": "Estado",
+        "val": "ABIERTO<span class=\"blink\">_</span>",
+        "highlight": true
+      }
+    ]
   },
   "footer": {
-    "logo": "Juan José Casis — Arquitecto",
-    "copy": "© 2026 · Panamá"
+    "idHtml": "JJC.AI <span>// ARQUITECTO // PANAMÁ</span>",
+    "copy": "© 2026 — Portafolio conceptual desarrollado con metodologías digitales avanzadas y herramientas de apoyo generativo, bajo criterio y control arquitectónico."
+  },
+  "additionalWork": {
+    "title": "Exploraciones / Estudios",
+    "desc": "Serie de estudios conceptuales y exploraciones formales desarrolladas como parte de investigación proyectual y optimización de procesos de diseño.",
+    "items": [
+      {
+        "title": "Estructura Modular Urbana",
+        "tag": "Urban infill",
+        "image": "assets/p1.jpg"
+      },
+      {
+        "title": "Sistema Contenedor Mixto",
+        "tag": "Mixed-use",
+        "image": "assets/p2.jpg"
+      },
+      {
+        "title": "Volumen Climático Tropical",
+        "tag": "Clima + Ventilación",
+        "image": "assets/hero.jpg"
+      },
+      {
+        "title": "Residencial Compacto",
+        "tag": "Prefabricación",
+        "image": "assets/featured.jpg"
+      }
+    ]
+  },
+  "i18n": {
+    "en": {
+      "meta": {
+        "title": "Juan Jose Casis — Architect"
+      },
+      "nav": {
+        "id": "JJC.AI // v2026",
+        "links": [
+          {
+            "href": "#projects",
+            "label": "Projects"
+          },
+          {
+            "href": "#process",
+            "label": "Method"
+          },
+          {
+            "href": "#contact",
+            "label": "Contact"
+          }
+        ],
+        "status": "Available — Panama"
+      },
+      "hero": {
+        "coords": "08°59'N 79°31'W // CONCEPT DESIGN ARCHITECT",
+        "nameHtml": "JUAN<br>JOSE<br>CAS<span class=\"accent\">-</span>IS",
+        "titleBlock": [
+          {
+            "label": "Specialization",
+            "val": "Concept Design"
+          },
+          {
+            "label": "Typology",
+            "val": "Res. / Hospitality"
+          },
+          {
+            "label": "Focus",
+            "val": "Concept + Execution"
+          }
+        ],
+        "desc": "Architect with 22+ years of experience across conceptual design, technical development and construction execution. Proven track record leading projects from early-stage hypothesis to built reality, with strong control over structure, climate response, regulatory frameworks and construction processes.",
+        "cta": "Available →",
+        "image": "assets/hero.jpg",
+        "imageAlt": "Tropical Architecture",
+        "imgCaption": "REF_001 // CASA YARARE, 2024",
+        "imgProjName": "TROPICAL CONCEPT"
+      },
+      "dataStrip": [
+        {
+          "label": "Experience",
+          "val": "22",
+          "unit": "YRS"
+        },
+        {
+          "label": "License",
+          "val": "20 09",
+          "unit": "LIC"
+        },
+        {
+          "label": "Languages",
+          "val": "2",
+          "unit": "LANG"
+        },
+        {
+          "label": "Postgrad",
+          "val": "2",
+          "unit": "PGR"
+        },
+        {
+          "label": "Built Work",
+          "val": "Yes",
+          "unit": ""
+        }
+      ],
+      "manifesto": {
+        "label": "Approach",
+        "titleHtml": "CONCEPT<br>WITH<br><span class=\"highlight\">CRITERIA</span>.",
+        "body": [
+          "Each project is framed as a study: clear intent, defined constraints, and verifiable decisions.",
+          "Volumetric exploration is guided by climate, structure, and materiality; the result is an operational synthesis, not an isolated gesture.",
+          "The goal is speed without loss of control.",
+          "Design does not end at the image: each proposal is developed with constructive criteria, technical coordination and real feasibility, considering codes, costs and construction processes."
+        ],
+        "specs": [
+          {
+            "key": "Basis",
+            "val": "Site + climate + structure"
+          },
+          {
+            "key": "Process",
+            "val": "Iterate, compare, refine"
+          },
+          {
+            "key": "Delivery",
+            "val": "Concept → proposal"
+          },
+          {
+            "key": "Pace",
+            "val": "Fast decisions"
+          },
+          {
+            "key": "Precision",
+            "val": "Clear details"
+          },
+          {
+            "key": "Scope",
+            "val": "Concept → Construction"
+          }
+        ]
+      },
+      "aiBanner": {
+        "label": "// Design Toolchain",
+        "tags": [
+          "Midjourney",
+          "Flux",
+          "ControlNet",
+          "ComfyUI",
+          "Runway Gen-3",
+          "AI Upscaling",
+          "Claude / ChatGPT"
+        ]
+      },
+      "projects": {
+        "label": "Selected",
+        "title": "Project Log",
+        "count": "// SELECTED WORK",
+        "rows": [
+          {
+            "index": "01",
+            "name": "Casa Yara",
+            "sub": "Modular Residence — Pacific Coast // 420 m² // CLT + Concrete",
+            "image": "assets/p1.jpg",
+            "alt": "Casa Yara",
+            "tag": "Residential",
+            "year": "2024"
+          },
+          {
+            "index": "02",
+            "name": "Urban Container Hotel",
+            "sub": "Food & beverage base + active rooftop · Modular · Recycled containers",
+            "image": "assets/p2.jpg",
+            "alt": "Urban Container Hotel",
+            "tag": "Hospitality / Mixed-use",
+            "year": "2024"
+          },
+          {
+            "index": "03",
+            "name": "Residencia Canopea",
+            "sub": "Urban Penthouse — Panama City // Sky Garden",
+            "image": "assets/p3.jpg",
+            "alt": "Residencia Canopea",
+            "tag": "Residential",
+            "year": "2023"
+          }
+        ]
+      },
+      "featured": {
+        "image": "assets/featured.jpg",
+        "alt": "Hotel Contenedor Urbano",
+        "labelImg": "// FEATURED STUDY",
+        "projectId": "PROJECT_ID: HCU-2024-01 // MIXED USE",
+        "titleHtml": "URBAN<br>CONTAINER<br><span>HOTEL</span>",
+        "bodyHtml": "Vertical urban hotel with a food & beverage base and active rooftop — prefabricated from container modules and exposed steel structure.<br><br>Conceived as a modular system where recycled containers become habitable units connected by a visible steel frame. The base activates the street with an open gastro/bar, while upper levels create a dynamic volumetric composition that improves ventilation, views, and outdoor expansion. The rooftop operates as an elevated gathering point, extending the building’s experience into the city.<br><br>Architecture designed to build fast, adapt easily and activate immediately within the urban fabric.<br><br>Developed under constructive feasibility criteria, technical coordination, and adaptation to real site conditions.",
+        "specs": [
+          {
+            "key": "Program",
+            "val": "Hotel + Gastro/Bar"
+          },
+          {
+            "key": "System",
+            "val": "Prefabricated Modular"
+          },
+          {
+            "key": "Structure",
+            "val": "Containers + Steel"
+          },
+          {
+            "key": "Rooftop",
+            "val": "Urban Activation"
+          },
+          {
+            "key": "Use",
+            "val": "Mixed-use"
+          },
+          {
+            "key": "Approach",
+            "val": "Urban Infill"
+          }
+        ]
+      },
+      "process": {
+        "label": "Method",
+        "title": "Design Protocol",
+        "cells": [
+          {
+            "num": "01",
+            "title": "Site Reading & Ecological Audit",
+            "body": "Topography, sun path, winds, drainage and existing vegetation become design constraints. With this base, hypotheses are formed and validated with architectural criteria.",
+            "tools": [
+              "AutoCAD — documentation",
+              "SketchUp — base massing",
+              "AI image analysis — context"
+            ]
+          },
+          {
+            "num": "02",
+            "title": "Volumetric Iteration Engine",
+            "body": "Rapid iterations to compare proportions, apertures and materiality. Selection is based on performance and formal coherence.",
+            "tools": [
+              "Midjourney — ideation",
+              "Flux — control",
+              "ControlNet — model",
+              "Revit — BIM"
+            ]
+          },
+          {
+            "num": "03",
+            "title": "Proposal & Decision with Client",
+            "body": "Renders, technical documentation and constructive criteria consolidate the proposal. The client understands the project before execution, reducing uncertainty on site, optimizing decisions and facilitating coordination between disciplines. Includes conceptual direction, technical coordination and quality criteria supervision. Leadership of interdisciplinary teams in project development, technical coordination, and mentoring of junior architects in design and execution processes.",
+            "tools": [
+              "Adobe Suite — presentation",
+              "Runway Gen-3 — animation",
+              "Topaz — upscaling",
+              "BIM — delivery"
+            ]
+          }
+        ]
+      },
+      "contact": {
+        "label": "Contact",
+        "titleHtml": "LET'S<br><span>BUILD.</span>",
+        "email": "juanjosecasis@outlook.com",
+        "info": [
+          {
+            "key": "Location",
+            "val": "Panama"
+          },
+          {
+            "key": "Recent Experience",
+            "val": "UNODC — Architectural Inspection"
+          },
+          {
+            "key": "Availability",
+            "val": "Full-time"
+          },
+          {
+            "key": "Languages",
+            "val": "ES / EN"
+          },
+          {
+            "key": "Experience",
+            "val": "22+ years"
+          },
+          {
+            "key": "Status",
+            "val": "OPEN<span class=\"blink\">_</span>",
+            "highlight": true
+          }
+        ]
+      },
+      "footer": {
+        "idHtml": "JJC.AI <span>// ARCHITECT // PANAMA</span>",
+        "copy": "© 2026 — Conceptual portfolio developed with advanced digital methodologies and generative support tools, under architectural criteria and control."
+      },
+      "additionalWork": {
+        "title": "Explorations / Studies",
+        "desc": "Series of conceptual studies and formal explorations developed as part of project research and optimization of design processes.",
+        "items": [
+          {
+            "title": "Urban Modular Structure",
+            "tag": "Urban infill",
+            "image": "assets/p1.jpg"
+          },
+          {
+            "title": "Mixed Container System",
+            "tag": "Mixed-use",
+            "image": "assets/p2.jpg"
+          },
+          {
+            "title": "Tropical Climate Volume",
+            "tag": "Climate + Ventilation",
+            "image": "assets/hero.jpg"
+          },
+          {
+            "title": "Compact Residential",
+            "tag": "Prefabrication",
+            "image": "assets/featured.jpg"
+          }
+        ]
+      },
+      "art": {
+        "title": "Art / Exploration",
+        "desc": "Artistic work focused on composition, materiality and spatial perception, as an extension of architectural thinking.",
+        "items": [
+          {
+            "title": "Material Studies",
+            "tag": "Texture / Light"
+          },
+          {
+            "title": "Spatial Composition",
+            "tag": "Volume"
+          },
+          {
+            "title": "Perception and Scale",
+            "tag": "Rhythm"
+          }
+        ]
+      }
+    }
   }
 }

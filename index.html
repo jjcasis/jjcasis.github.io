@@ -3,899 +3,1384 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio — Arquitecto de Diseño Conceptual</title>
+<title>Juan José Casis — Arquitecto</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  :root {
-    --cream: #F4EFE4;
-    --cream-dark: #E8E0CE;
-    --black: #121208;
-    --green: #233C25;
-    --green-light: #3A5C3D;
-    --bronze: #8B7040;
-    --muted: #6B6454;
-    --white: #FDFAF4;
-  }
+:root {
+  --void: #080807;
+  --concrete: #1A1A16;
+  --bunker: #242420;
+  --graphite: #33332E;
+  --ash: #4D4D46;
+  --dust: #7A7A70;
+  --fog: #A8A89E;
+  --paper: #D4D0C4;
+  --white: #EEEAE0;
+  --acid: #C8FF00;
+  --moss: #4A6640;
+  --moss-light: #6B9460;
+  --rust: #A04830;
+}
 
-  html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }
 
-  body {
-    background: var(--cream);
-    color: var(--black);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-  }
+body {
+  background: var(--void);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.5rem 4rem;
-    mix-blend-mode: normal;
-    background: transparent;
-    transition: background 0.4s;
-  }
-  nav.scrolled { background: rgba(244,239,228,0.92); backdrop-filter: blur(12px); }
-  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--black); text-decoration: none; }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
-  .nav-links a { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: var(--muted); transition: color 0.2s; }
-  .nav-links a:hover { color: var(--black); }
-  .nav-links .nav-edit {
-    border: 1px solid var(--cream-dark);
-    background: transparent;
-    color: var(--muted);
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0.45rem 0.8rem;
-    cursor: pointer;
-  }
-  .nav-edit:hover { color: var(--black); border-color: var(--bronze); }
+/* GRID OVERLAY — decorative */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(200,255,0,0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,255,0,0.015) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: 0;
+}
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 0 4rem 5rem 4rem;
-    position: relative;
-    z-index: 2;
-  }
-  .hero-tag {
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--bronze);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  .hero-tag::before {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 1px;
-    background: var(--bronze);
-  }
-  .hero-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.5rem, 6vw, 5.5rem);
-    font-weight: 300;
-    line-height: 1.0;
-    letter-spacing: -0.01em;
-    margin-bottom: 2rem;
-  }
-  .hero-name em {
-    font-style: italic;
-    color: var(--green);
-  }
-  .hero-desc {
-    font-size: 0.92rem;
-    line-height: 1.9;
-    color: var(--muted);
-    max-width: 38ch;
-    margin-bottom: 3rem;
-  }
-  .hero-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 0.78rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--green);
-    text-decoration: none;
-    border-bottom: 1px solid var(--green);
-    padding-bottom: 0.3rem;
-    transition: gap 0.3s;
-  }
-  .hero-cta:hover { gap: 1.6rem; }
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 3rem;
+  background: rgba(8,8,7,0.92);
+  border-bottom: 1px solid var(--graphite);
+  backdrop-filter: blur(8px);
+}
+.nav-id {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--acid);
+  letter-spacing: 0.05em;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+.nav-links a {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--dust);
+  transition: color 0.15s;
+}
+.nav-links a:hover { color: var(--acid); }
+.nav-edit {
+  border: 1px solid var(--graphite);
+  background: transparent;
+  color: var(--dust);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+}
+.nav-edit:hover { color: var(--acid); border-color: var(--acid); }
+.nav-status {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--dust);
+}
+.status-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--acid);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
 
-  .hero-right {
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: saturate(0.85) contrast(1.05);
-    transition: transform 8s ease;
-  }
-  .hero-right:hover .hero-img { transform: scale(1.03); }
-  .hero-overlay {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 35%;
-    background: linear-gradient(to top, rgba(18,18,8,0.4), transparent);
-  }
+/* HERO */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--graphite);
+}
 
-  .hero-scroll {
-    position: absolute;
-    bottom: 3rem;
-    left: 4rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    writing-mode: vertical-rl;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  .hero-scroll::after {
-    content: '';
-    display: block;
-    width: 1px;
-    height: 50px;
-    background: var(--muted);
-    animation: scrollLine 2s ease-in-out infinite;
-  }
-  @keyframes scrollLine {
-    0%, 100% { transform: scaleY(1); transform-origin: top; opacity: 1; }
-    50% { transform: scaleY(0.3); opacity: 0.4; }
-  }
+.hero-left {
+  padding: 9rem 3rem 4rem;
+  position: relative;
+  z-index: 2;
+  border-right: 1px solid var(--graphite);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
-  /* SECTION SHARED */
-  section { padding: 7rem 4rem; }
-  .section-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--bronze);
-    margin-bottom: 1rem;
-  }
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.2rem, 4vw, 3.5rem);
-    font-weight: 300;
-    line-height: 1.15;
-    margin-bottom: 3rem;
-  }
+.hero-coords {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--ash);
+  letter-spacing: 0.08em;
+  margin-bottom: 3rem;
+}
 
-  /* PHILOSOPHY */
-  .philosophy {
-    background: var(--green);
-    color: var(--cream);
-    display: grid;
-    grid-template-columns: 1fr 1.4fr;
-    gap: 6rem;
-    align-items: center;
-  }
-  .philosophy .section-label { color: rgba(244,239,228,0.5); }
-  .philosophy .section-title { color: var(--white); margin-bottom: 0; }
-  .philosophy-text {
-    font-size: 0.95rem;
-    line-height: 2;
-    color: rgba(244,239,228,0.75);
-  }
-  .philosophy-text p { margin-bottom: 1.5rem; }
-  .philosophy-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 3rem;
-    padding-top: 3rem;
-    border-top: 1px solid rgba(244,239,228,0.15);
-  }
-  .stat-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem;
-    font-weight: 300;
-    color: var(--white);
-    line-height: 1;
-    margin-bottom: 0.4rem;
-  }
-  .stat-label {
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(244,239,228,0.5);
-  }
+.hero-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 9vw, 9rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 0;
+}
+.hero-name .accent { color: var(--acid); }
 
-  /* PROJECTS */
-  .projects-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 4rem;
-  }
-  .projects-header .section-title { margin-bottom: 0; }
-  .view-all {
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--muted);
-    border-bottom: 1px solid var(--cream-dark);
-    padding-bottom: 0.2rem;
-  }
+.hero-title-block {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--graphite);
+  display: flex;
+  gap: 3rem;
+}
+.htb-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.htb-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--ash);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.htb-val {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--fog);
+}
 
-  .projects-grid {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 1.5rem;
-  }
-  .project-card {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    background: var(--cream-dark);
-  }
-  .project-card:first-child { grid-row: span 2; }
-  .project-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: saturate(0.8) contrast(1.05);
-    transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
-    min-height: 280px;
-  }
-  .project-card:first-child img { min-height: 600px; }
-  .project-card:hover img { transform: scale(1.05); }
-  .project-info {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    padding: 2rem;
-    background: linear-gradient(to top, rgba(18,18,8,0.85) 0%, rgba(18,18,8,0.3) 60%, transparent 100%);
-    transform: translateY(0);
-    transition: padding 0.3s;
-  }
-  .project-card:hover .project-info { padding-bottom: 2.4rem; }
-  .project-tag {
-    font-size: 0.68rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(244,239,228,0.6);
-    margin-bottom: 0.5rem;
-  }
-  .project-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
-    font-weight: 300;
-    color: var(--white);
-    line-height: 1.2;
-    margin-bottom: 0.3rem;
-  }
-  .project-sub {
-    font-size: 0.8rem;
-    color: rgba(244,239,228,0.55);
-  }
-  .project-arrow {
-    position: absolute;
-    top: 1.5rem; right: 1.5rem;
-    width: 40px; height: 40px;
-    border: 1px solid rgba(244,239,228,0.3);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--white);
-    font-size: 1rem;
-    opacity: 0;
-    transform: translateY(4px);
-    transition: opacity 0.3s, transform 0.3s;
-  }
-  .project-card:hover .project-arrow { opacity: 1; transform: translateY(0); }
+.hero-desc {
+  font-size: 0.92rem;
+  line-height: 1.85;
+  color: var(--dust);
+  max-width: 42ch;
+  margin-top: 2.5rem;
+}
 
-  /* PROCESS / AI TOOLS */
-  .process { background: var(--white); }
-  .process-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    margin-top: 0;
-  }
-  .process-step { position: relative; padding-top: 2rem; }
-  .step-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 4rem;
-    font-weight: 300;
-    color: var(--cream-dark);
-    line-height: 1;
-    margin-bottom: 1rem;
-    transition: color 0.3s;
-  }
-  .process-step:hover .step-num { color: var(--bronze); }
-  .step-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 400;
-    margin-bottom: 0.8rem;
-    color: var(--black);
-  }
-  .step-text { font-size: 0.88rem; line-height: 1.9; color: var(--muted); }
-  .step-tools {
-    display: flex; flex-wrap: wrap; gap: 0.5rem;
-    margin-top: 1.2rem;
-  }
-  .tool-badge {
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    background: var(--cream);
-    color: var(--muted);
-    padding: 0.3rem 0.7rem;
-    border: 1px solid var(--cream-dark);
-  }
+.hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.hero-scroll-indicator {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--ash);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.scroll-line {
+  width: 40px;
+  height: 1px;
+  background: var(--graphite);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: var(--acid);
+  animation: scanLine 2s ease-in-out infinite;
+}
+@keyframes scanLine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
 
-  /* FEATURED PROJECT DETAIL */
-  .feature {
-    background: var(--cream-dark);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-  .feature-img-wrap { overflow: hidden; min-height: 560px; }
-  .feature-img-wrap img {
-    width: 100%; height: 100%; object-fit: cover;
-    filter: saturate(0.8);
-    transition: transform 6s ease;
-  }
-  .feature-img-wrap:hover img { transform: scale(1.04); }
-  .feature-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 5rem;
-    background: var(--green);
-    color: var(--cream);
-  }
-  .feature-content .section-label { color: rgba(244,239,228,0.45); }
-  .feature-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 300;
-    color: var(--white);
-    line-height: 1.15;
-    margin-bottom: 1.5rem;
-  }
-  .feature-text {
-    font-size: 0.9rem;
-    line-height: 1.95;
-    color: rgba(244,239,228,0.7);
-    margin-bottom: 2.5rem;
-  }
-  .feature-specs {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 1.5rem 2rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid rgba(244,239,228,0.15);
-  }
-  .spec-label {
-    font-size: 0.68rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(244,239,228,0.4);
-    margin-bottom: 0.3rem;
-  }
-  .spec-val {
-    font-size: 0.9rem;
-    color: rgba(244,239,228,0.85);
-  }
+.hero-cta {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--acid);
+  border: 1px solid var(--acid);
+  padding: 0.7rem 1.4rem;
+  transition: background 0.15s, color 0.15s;
+}
+.hero-cta:hover { background: var(--acid); color: var(--void); }
 
-  /* AI BADGE STRIP */
-  .ai-strip {
-    background: var(--black);
-    padding: 1.5rem 4rem;
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    overflow: hidden;
-  }
-  .ai-strip-label {
-    font-size: 0.68rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(244,239,228,0.3);
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .ai-tools-list {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-  .ai-tool {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    font-style: italic;
-    color: rgba(244,239,228,0.6);
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-  }
-  .ai-tool span { color: var(--bronze); margin-right: 0.5rem; }
+/* HERO RIGHT — image with technical overlays */
+.hero-right {
+  position: relative;
+  overflow: hidden;
+}
+.hero-right img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: none;
+  display: block;
+  transition: filter 0.6s;
+}
+.hero-right:hover img {
+  filter: none;
+}
 
-  /* CONTACT */
-  .contact {
-    text-align: center;
-    padding: 8rem 4rem;
-    background: var(--white);
-  }
-  .contact .section-title { margin-bottom: 1rem; }
-  .contact-sub {
-    font-size: 1rem;
-    color: var(--muted);
-    margin-bottom: 3.5rem;
-    line-height: 1.8;
-  }
-  .contact-email {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--green);
-    text-decoration: none;
-    border-bottom: 1px solid var(--green-light);
-    padding-bottom: 0.2rem;
-    transition: color 0.2s;
-  }
-  .contact-email:hover { color: var(--bronze); border-color: var(--bronze); }
+/* Technical overlay on image */
+.tech-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.tech-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(200,255,0,0.04) 0%, transparent 60%);
+}
+.corner-mark {
+  position: absolute;
+  width: 20px; height: 20px;
+}
+.corner-mark.tl { top: 2rem; left: 2rem; border-top: 1px solid var(--acid); border-left: 1px solid var(--acid); }
+.corner-mark.tr { top: 2rem; right: 2rem; border-top: 1px solid var(--acid); border-right: 1px solid var(--acid); }
+.corner-mark.bl { bottom: 2rem; left: 2rem; border-bottom: 1px solid var(--acid); border-left: 1px solid var(--acid); }
+.corner-mark.br { bottom: 2rem; right: 2rem; border-bottom: 1px solid var(--acid); border-right: 1px solid var(--acid); }
 
-  /* FOOTER */
-  footer {
-    background: var(--green);
-    padding: 2.5rem 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .footer-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(244,239,228,0.7);
-  }
-  .footer-copy {
-    font-size: 0.75rem;
-    color: rgba(244,239,228,0.35);
-    letter-spacing: 0.05em;
-  }
+.img-caption {
+  position: absolute;
+  bottom: 3rem;
+  left: 2rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  color: rgba(200,255,0,0.5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.img-proj-name {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.2em;
+  color: rgba(238,234,224,0.2);
+}
 
-  /* ANIMATIONS */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  .fade-up:nth-child(2) { transition-delay: 0.1s; }
-  .fade-up:nth-child(3) { transition-delay: 0.2s; }
+/* DATA STRIP */
+.data-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-bottom: 1px solid var(--graphite);
+}
+.data-cell {
+  padding: 1.5rem 2rem;
+  border-right: 1px solid var(--graphite);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.data-cell:last-child { border-right: none; }
+.dc-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--ash);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.dc-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  color: var(--white);
+  line-height: 1;
+}
+.dc-unit {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--acid);
+}
 
-  /* DIVIDER */
-  .divider {
-    height: 1px;
-    background: var(--cream-dark);
-    margin: 0 4rem;
-  }
+/* SECTION BASE */
+section { position: relative; z-index: 1; }
+.s-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--acid);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.s-label::before {
+  content: '//';
+  color: var(--ash);
+}
 
-  /* ADMIN PANEL */
-  .admin-panel {
-    position: fixed;
-    right: 1.5rem;
-    bottom: 1.5rem;
-    width: 380px;
-    max-width: calc(100vw - 3rem);
-    max-height: 80vh;
-    background: var(--white);
-    border: 1px solid var(--cream-dark);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-    z-index: 999;
-    display: none;
-    flex-direction: column;
-  }
-  .admin-panel.visible { display: flex; }
-  .admin-header {
-    padding: 0.9rem 1.2rem;
-    background: var(--green);
-    color: var(--white);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    letter-spacing: 0.04em;
-  }
-  .admin-body {
-    padding: 1rem 1.2rem 1.2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-  .admin-body p {
-    font-size: 0.78rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-  #admin-json {
-    width: 100%;
-    min-height: 240px;
-    max-height: 40vh;
-    resize: vertical;
-    border: 1px solid var(--cream-dark);
-    padding: 0.7rem;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-    font-size: 0.7rem;
-    color: var(--black);
-    background: var(--cream);
-  }
-  .admin-actions {
-    display: flex;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-  }
-  .admin-actions button {
-    border: 1px solid var(--cream-dark);
-    background: var(--white);
-    color: var(--black);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.5rem 0.8rem;
-    cursor: pointer;
-  }
-  .admin-actions button:hover {
-    border-color: var(--bronze);
-    color: var(--bronze);
-  }
-  .admin-hint {
-    font-size: 0.68rem;
-    color: var(--muted);
-  }
+/* MANIFESTO */
+.manifesto {
+  padding: 6rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  border-bottom: 1px solid var(--graphite);
+  background: var(--concrete);
+}
+.manifesto-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 5vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: var(--white);
+}
+.manifesto-title .highlight { color: var(--acid); }
+.manifesto-right { display: flex; flex-direction: column; justify-content: space-between; }
+.manifesto-body {
+  font-size: 0.9rem;
+  line-height: 2;
+  color: var(--dust);
+}
+.manifesto-body p { margin-bottom: 1.2rem; }
+.manifesto-body strong { color: var(--fog); font-weight: 500; }
 
-  /* EDIT MODE */
-  .edit-toolbar {
-    position: fixed;
-    left: 1.5rem;
-    bottom: 1.5rem;
-    display: none;
-    gap: 0.6rem;
-    z-index: 999;
-  }
-  .edit-toolbar.visible { display: flex; }
-  .edit-btn {
-    border: 1px solid var(--cream-dark);
-    background: var(--white);
-    color: var(--black);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.5rem 0.8rem;
-    cursor: pointer;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-  }
-  .edit-btn:hover { border-color: var(--bronze); color: var(--bronze); }
-  body.edit-mode [data-editable="true"] {
-    outline: 1px dashed rgba(139,112,64,0.6);
-    outline-offset: 4px;
-    cursor: text;
-  }
-  .img-edit-wrap {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    display: none;
-    gap: 0.4rem;
-    z-index: 5;
-  }
-  body.edit-mode .img-edit-wrap { display: flex; }
-  .img-edit-btn {
-    background: rgba(244,239,228,0.95);
-    border: 1px solid var(--cream-dark);
-    font-size: 0.65rem;
-    padding: 0.35rem 0.5rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-  .img-edit-btn:hover { border-color: var(--bronze); color: var(--bronze); }
-  .edit-note {
-    position: fixed;
-    left: 1.5rem;
-    bottom: 4.2rem;
-    background: var(--white);
-    border: 1px solid var(--cream-dark);
-    padding: 0.5rem 0.7rem;
-    font-size: 0.68rem;
-    color: var(--muted);
-    display: none;
-    max-width: 320px;
-  }
-  .edit-note.visible { display: block; }
+.spec-table {
+  margin-top: 2rem;
+  border-top: 1px solid var(--graphite);
+  padding-top: 1.5rem;
+}
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(51,51,46,0.6);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+}
+.spec-row-key { color: var(--ash); }
+.spec-row-val { color: var(--fog); }
 
-  @media (max-width: 900px) {
-    nav { padding: 1.2rem 2rem; }
-    section { padding: 4rem 2rem; }
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-left { padding: 8rem 2rem 3rem; }
-    .hero-right { height: 50vh; }
-    .hero-scroll { display: none; }
-    .philosophy { grid-template-columns: 1fr; gap: 2rem; }
-    .projects-grid { grid-template-columns: 1fr; }
-    .project-card:first-child { grid-row: span 1; }
-    .feature { grid-template-columns: 1fr; }
-    .feature-content { padding: 3rem 2rem; }
-    .process-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .ai-strip { padding: 1rem 2rem; }
-    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
-    .admin-panel { right: 1rem; left: 1rem; width: auto; }
-    .edit-toolbar { left: 1rem; right: 1rem; }
-    .edit-note { left: 1rem; right: 1rem; max-width: none; }
-  }
+/* PROJECTS */
+.projects-section {
+  padding: 5rem 3rem;
+  border-bottom: 1px solid var(--graphite);
+}
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+}
+.projects-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 1;
+  letter-spacing: 0.03em;
+}
+.proj-count {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--ash);
+  letter-spacing: 0.1em;
+}
+
+/* PROJECT CARDS */
+.projects-list { display: flex; flex-direction: column; gap: 1px; background: var(--graphite); }
+.project-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 380px 120px;
+  align-items: stretch;
+  background: var(--concrete);
+  transition: background 0.2s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.project-row::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--acid);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.project-row:hover { background: var(--bunker); }
+.project-row:hover::after { transform: scaleY(1); }
+
+.proj-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  border-right: 1px solid var(--graphite);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--ash);
+}
+
+.proj-main {
+  padding: 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-right: 1px solid var(--graphite);
+}
+.proj-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  line-height: 1;
+}
+.proj-sub {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--ash);
+  letter-spacing: 0.06em;
+}
+
+.proj-img {
+  overflow: hidden;
+  border-right: 1px solid var(--graphite);
+}
+.proj-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: none;
+  transition: filter 0.5s, transform 0.5s;
+  display: block;
+}
+.project-row:hover .proj-img img {
+  filter: none;
+  transform: scale(1.04);
+}
+
+.proj-meta {
+  padding: 1.5rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.proj-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--acid);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid rgba(200,255,0,0.25);
+  align-self: flex-start;
+}
+.proj-year {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: var(--graphite);
+}
+.proj-arrow {
+  font-size: 1.2rem;
+  color: var(--ash);
+  transition: color 0.2s, transform 0.2s;
+  align-self: flex-end;
+}
+.project-row:hover .proj-arrow { color: var(--acid); transform: translateX(4px); }
+
+/* ADDITIONAL WORK */
+.projects-note {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--ash);
+  letter-spacing: 0.04em;
+  max-width: 72ch;
+  margin-bottom: 2rem;
+}
+.additional-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--graphite);
+}
+.additional-card {
+  background: var(--concrete);
+  display: flex;
+  flex-direction: column;
+}
+.additional-thumb img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+}
+.additional-meta {
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.additional-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.04em;
+  color: var(--white);
+}
+.additional-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--ash);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ART SECTION */
+.art-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--graphite);
+}
+.art-item {
+  background: var(--concrete);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--fog);
+  letter-spacing: 0.06em;
+}
+.art-item span:last-child { color: var(--ash); }
+
+/* FEATURED */
+.featured-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--graphite);
+  min-height: 580px;
+}
+.featured-img {
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid var(--graphite);
+}
+.featured-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: none;
+  transition: filter 0.6s;
+  display: block;
+}
+.featured-img:hover img { filter: none; }
+.featured-img .corner-mark.tl { top: 1.5rem; left: 1.5rem; }
+.featured-img .corner-mark.br { bottom: 1.5rem; right: 1.5rem; }
+.feat-label-img {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem;
+  color: rgba(200,255,0,0.6);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.featured-content {
+  padding: 4rem 3rem;
+  background: var(--concrete);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.feat-project-id {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--ash);
+  letter-spacing: 0.12em;
+  margin-bottom: 0.5rem;
+}
+.feat-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+.feat-title span { color: var(--acid); }
+.feat-body {
+  font-size: 0.88rem;
+  line-height: 1.9;
+  color: var(--dust);
+  margin-bottom: 2rem;
+}
+.feat-specs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--graphite);
+}
+.feat-spec {
+  padding: 1rem 1.2rem;
+  border-right: 1px solid var(--graphite);
+  border-bottom: 1px solid var(--graphite);
+}
+.feat-spec:nth-child(2n) { border-right: none; }
+.feat-spec:nth-last-child(-n+2) { border-bottom: none; }
+.fs-key {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--ash);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.3rem;
+}
+.fs-val {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--fog);
+}
+
+/* AI / PROCESS */
+.process-section {
+  padding: 5rem 3rem;
+  border-bottom: 1px solid var(--graphite);
+  background: var(--void);
+}
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--graphite);
+  margin-top: 3rem;
+}
+.process-cell {
+  background: var(--concrete);
+  padding: 2.5rem 2rem;
+  transition: background 0.2s;
+}
+.process-cell:hover { background: var(--bunker); }
+.pc-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--graphite);
+  margin-bottom: 1rem;
+  transition: color 0.3s;
+}
+.process-cell:hover .pc-num { color: var(--acid); }
+.pc-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: 0.8rem;
+  line-height: 1.1;
+}
+.pc-body {
+  font-size: 0.82rem;
+  line-height: 1.85;
+  color: var(--dust);
+  margin-bottom: 1.5rem;
+}
+.tools-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.tool-item {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--ash);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.tool-item::before {
+  content: '>';
+  color: var(--acid);
+  font-size: 0.7rem;
+}
+
+/* AI SYSTEM BANNER */
+.ai-banner {
+  background: var(--bunker);
+  border-top: 1px solid var(--graphite);
+  border-bottom: 1px solid var(--graphite);
+  padding: 1.2rem 3rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.ai-banner-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--acid);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.ai-tags {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.ai-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--graphite);
+  color: var(--fog);
+  letter-spacing: 0.06em;
+  transition: border-color 0.2s, color 0.2s;
+}
+.ai-tag:hover { border-color: var(--acid); color: var(--acid); }
+
+/* CONTACT */
+.contact-section {
+  padding: 6rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+  background: var(--concrete);
+}
+.contact-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 5vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+}
+.contact-title span { color: var(--acid); }
+.contact-right { display: flex; flex-direction: column; gap: 2rem; }
+.contact-email {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--fog);
+  text-decoration: none;
+  border-bottom: 1px solid var(--graphite);
+  padding-bottom: 0.8rem;
+  transition: color 0.2s, border-color 0.2s;
+  display: block;
+}
+.contact-email:hover { color: var(--acid); border-color: var(--acid); }
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.ci-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--graphite);
+}
+.ci-key { color: var(--ash); }
+.ci-val { color: var(--fog); }
+
+/* FOOTER */
+footer {
+  background: var(--void);
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--graphite);
+}
+.footer-id {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--ash);
+}
+.footer-id span { color: var(--acid); }
+.footer-copy {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem;
+  color: var(--graphite);
+}
+
+/* ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Blinking cursor */
+.blink {
+  animation: blink 1.2s step-end infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* EDIT MODE */
+.edit-toolbar {
+  position: fixed;
+  left: 1.5rem;
+  bottom: 1.5rem;
+  display: none;
+  gap: 0.6rem;
+  z-index: 999;
+}
+.edit-toolbar.visible { display: flex; }
+.edit-btn {
+  border: 1px solid var(--graphite);
+  background: var(--void);
+  color: var(--dust);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.7rem;
+  cursor: pointer;
+}
+.edit-btn:hover { color: var(--acid); border-color: var(--acid); }
+body.edit-mode [data-editable="true"] {
+  outline: 1px dashed rgba(200,255,0,0.35);
+  outline-offset: 4px;
+  cursor: text;
+}
+.img-edit-wrap {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: none;
+  gap: 0.4rem;
+  z-index: 5;
+}
+body.edit-mode .img-edit-wrap { display: flex; }
+.img-edit-btn {
+  background: rgba(8,8,7,0.9);
+  border: 1px solid var(--graphite);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  padding: 0.35rem 0.5rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dust);
+  cursor: pointer;
+}
+.img-edit-btn:hover { border-color: var(--acid); color: var(--acid); }
+.edit-note {
+  position: fixed;
+  left: 1.5rem;
+  bottom: 4.2rem;
+  background: rgba(8,8,7,0.95);
+  border: 1px solid var(--graphite);
+  padding: 0.5rem 0.7rem;
+  font-size: 0.58rem;
+  color: var(--dust);
+  display: none;
+  max-width: 320px;
+}
+.edit-note.visible { display: block; }
+
+/* ADMIN PANEL */
+.admin-panel {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  width: 380px;
+  max-width: calc(100vw - 3rem);
+  max-height: 80vh;
+  background: var(--void);
+  border: 1px solid var(--graphite);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  z-index: 999;
+  display: none;
+  flex-direction: column;
+}
+.admin-panel.visible { display: flex; }
+.admin-header {
+  padding: 0.9rem 1.2rem;
+  background: var(--concrete);
+  color: var(--white);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.admin-body {
+  padding: 1rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.admin-body p {
+  font-size: 0.64rem;
+  color: var(--dust);
+  line-height: 1.6;
+}
+#admin-json {
+  width: 100%;
+  min-height: 240px;
+  max-height: 40vh;
+  resize: vertical;
+  border: 1px solid var(--graphite);
+  padding: 0.7rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.64rem;
+  color: var(--white);
+  background: var(--concrete);
+}
+.admin-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.admin-actions button {
+  border: 1px solid var(--graphite);
+  background: var(--void);
+  color: var(--dust);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.7rem;
+  cursor: pointer;
+}
+.admin-actions button:hover { border-color: var(--acid); color: var(--acid); }
+.admin-hint {
+  font-size: 0.58rem;
+  color: var(--ash);
+}
+
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 7rem 1.5rem 3rem; border-right: none; }
+  .hero-right { height: 50vh; }
+  .data-strip { grid-template-columns: repeat(3, 1fr); }
+  .manifesto { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
+  .projects-section { padding: 3rem 1.5rem; }
+  .project-row { grid-template-columns: 50px 1fr 0 80px; }
+  .proj-img { display: none; }
+  .additional-grid { grid-template-columns: repeat(2, 1fr); }
+  .featured-section { grid-template-columns: 1fr; }
+  .featured-img { height: 40vh; border-right: none; border-bottom: 1px solid var(--graphite); }
+  .featured-content { padding: 2.5rem 1.5rem; }
+  .process-section { padding: 3rem 1.5rem; }
+  .process-grid { grid-template-columns: 1fr; }
+  .contact-section { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
+  footer { padding: 1.2rem 1.5rem; }
+  .edit-toolbar { left: 1rem; right: 1rem; }
+  .edit-note { left: 1rem; right: 1rem; max-width: none; }
+  .admin-panel { right: 1rem; left: 1rem; width: auto; }
+}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav id="nav">
-  <a href="#" class="nav-logo">Juan José Casis</a>
+<nav>
+  <div class="nav-id">JJC.AI // v2026</div>
   <ul class="nav-links">
     <li><a href="#projects">Proyectos</a></li>
-    <li><a href="#process">Proceso</a></li>
+    <li><a href="#process">Método</a></li>
     <li><a href="#contact">Contacto</a></li>
+    <li><button id="nav-lang" class="nav-edit" type="button">EN</button></li>
     <li><button id="nav-edit" class="nav-edit" type="button">Edit</button></li>
   </ul>
+  <div class="nav-status">
+    <div class="status-dot"></div>
+    Disponible — Panamá
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" style="padding:0;">
   <div class="hero-left">
-    <div class="hero-tag">Arquitecto de Diseño Conceptual · Panamá</div>
-    <h1 class="hero-name">
-      Donde la forma<br>se une con la <em>naturaleza</em><br>viva.
-    </h1>
+    <div>
+      <div class="hero-coords">08°59'N 79°31'W // ARQ. DE DISEÑO CONCEPTUAL</div>
+      <h1 class="hero-name">
+        JUAN<br>JOSÉ<br>CAS<span class="accent">-</span>IS
+      </h1>
+    </div>
+    <div class="hero-title-block">
+      <div class="htb-item">
+        <span class="htb-label">Especialidad</span>
+        <span class="htb-val">Diseño Conceptual</span>
+      </div>
+      <div class="htb-item">
+        <span class="htb-label">Tipología</span>
+        <span class="htb-val">Res. / Hospitalidad</span>
+      </div>
+      <div class="htb-item">
+        <span class="htb-label">Enfoque</span>
+        <span class="htb-val">Concepto + Ejecución</span>
+      </div>
+    </div>
     <p class="hero-desc">
-      Lidero visión arquitectónica conceptual — de la exploración volumétrica a propuestas listas para construir — con enfoque en diseño tropical contemporáneo, integración ecológica y flujos de trabajo potenciados por AI.
+      Arquitecto de diseño conceptual con 22 años de experiencia. Lidero visión arquitectónica desde la hipótesis volumétrica inicial hasta la propuesta lista para construir. Rigor técnico, velocidad de ideación y dominio de flujos AI sin perder profundidad.
     </p>
-    <a href="#projects" class="hero-cta">Ver Proyectos →</a>
+    <div class="hero-bottom">
+      <div class="hero-scroll-indicator">
+        <div class="scroll-line"></div>
+        Scroll
+      </div>
+      <a href="#contact" class="hero-cta">Disponible →</a>
+    </div>
   </div>
   <div class="hero-right">
-    <img class="hero-img"
-      src="assets/hero.jpg"
-      alt="Residencia tropical contemporánea">
-    <div class="hero-overlay"></div>
+    <img src="assets/hero.jpg"
+         alt="Arquitectura Tropical">
+    <div class="tech-overlay">
+      <div class="corner-mark tl"></div>
+      <div class="corner-mark tr"></div>
+      <div class="corner-mark bl"></div>
+      <div class="corner-mark br"></div>
+    </div>
+    <div class="img-caption">REF_001 // CASA YARARÉ, 2024</div>
+    <div class="img-proj-name">CONCEPTO TROPICAL</div>
   </div>
-  <div class="hero-scroll">Scroll</div>
 </section>
 
-<!-- AI TOOL STRIP -->
-<div class="ai-strip">
-  <span class="ai-strip-label">Workflow con AI</span>
-  <div class="ai-tools-list">
-    <span class="ai-tool"><span>✦</span>Midjourney</span>
-    <span class="ai-tool"><span>✦</span>Flux / Stable Diffusion</span>
-    <span class="ai-tool"><span>✦</span>ComfyUI</span>
-    <span class="ai-tool"><span>✦</span>ControlNet</span>
-    <span class="ai-tool"><span>✦</span>AI Upscaling</span>
-    <span class="ai-tool"><span>✦</span>ChatGPT / Claude</span>
-    <span class="ai-tool"><span>✦</span>Runway Gen-3</span>
+<!-- DATA STRIP -->
+<div class="data-strip">
+  <div class="data-cell">
+    <span class="dc-label">Experiencia</span>
+    <span class="dc-val">22<span class="dc-unit">YRS</span></span>
+  </div>
+  <div class="data-cell">
+    <span class="dc-label">Licencia</span>
+    <span class="dc-val">20 09<span class="dc-unit">LIC</span></span>
+  </div>
+  <div class="data-cell">
+    <span class="dc-label">Idiomas</span>
+    <span class="dc-val">2<span class="dc-unit">LANG</span></span>
+  </div>
+  <div class="data-cell">
+    <span class="dc-label">Posgrados</span>
+    <span class="dc-val">2<span class="dc-unit">PGR</span></span>
+  </div>
+  <div class="data-cell">
+    <span class="dc-label">Obra Construida</span>
+    <span class="dc-val">Sí<span class="dc-unit"></span></span>
   </div>
 </div>
 
-<!-- PHILOSOPHY -->
-<section class="philosophy">
-  <div class="fade-up">
-    <div class="section-label">Filosofía de Diseño</div>
-    <h2 class="section-title">
-      Arquitectura<br>como <em style="font-style:italic;">ecosistema<br>vivo.</em>
+<!-- MANIFESTO -->
+<section class="manifesto">
+  <div class="reveal">
+    <div class="s-label">Filosofía</div>
+    <h2 class="manifesto-title">
+      CONSTRUIR<br>LO QUE<br>EL<br><span class="highlight">TERRENO</span><br>EXIGE.
     </h2>
-    <div class="philosophy-stats">
-      <div>
-        <div class="stat-num">22+</div>
-        <div class="stat-label">Años de Experiencia</div>
+  </div>
+  <div class="manifesto-right reveal">
+    <div class="manifesto-body">
+      <p>La arquitectura tropical no es un problema de estética; es una cuestión de <strong>termodinámica, ventilación y comportamiento material</strong> bajo humedad y calor constantes. La forma honesta surge de resolver esas variables sin atajos.</p>
+      <p>Uso AI no como generador de estilo, sino como <strong>motor de hipótesis</strong>. Cada iteración prueba una lógica estructural, una sombra útil, una ventilación efectiva. El render es evidencia de pensamiento, no decoración.</p>
+      <p>La integración ecológica es un <strong>parámetro estructural primario</strong> del cual derivan todas las decisiones formales.</p>
+    </div>
+    <div class="spec-table">
+      <div class="spec-row">
+        <span class="spec-row-key">Software Base</span>
+        <span class="spec-row-val">AutoCAD / SketchUp / Revit</span>
       </div>
-      <div>
-        <div class="stat-num">2</div>
-        <div class="stat-label">Idiomas Profesionales</div>
+      <div class="spec-row">
+        <span class="spec-row-key">AI Toolchain</span>
+        <span class="spec-row-val">Midjourney / Flux / ControlNet</span>
       </div>
-      <div>
-        <div class="stat-num">2</div>
-        <div class="stat-label">Posgrados</div>
+      <div class="spec-row">
+        <span class="spec-row-key">BIM</span>
+        <span class="spec-row-val">Concepto → CD</span>
       </div>
-      <div>
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Enfoque Integral</div>
+      <div class="spec-row">
+        <span class="spec-row-key">Sistemas</span>
+        <span class="spec-row-val">Pasivos + Integración ecológica</span>
+      </div>
+      <div class="spec-row">
+        <span class="spec-row-key">Fabricación</span>
+        <span class="spec-row-val">CNC / 3D Print / Laser</span>
       </div>
     </div>
   </div>
-  <div class="philosophy-text fade-up">
-    <p>
-      La arquitectura debe ir más allá del abrigo: debe amplificar el entorno natural que habita. Mi proceso conceptual inicia con la lectura del terreno: topografía, luz y ritmos ecológicos. La forma construida surge como respuesta, nunca como imposición.
-    </p>
-    <p>
-      Mi trabajo abarca residencias de alto nivel, hospitalidad boutique y desarrollos mixtos en climas tropicales. Cada proyecto nace de una exploración rigurosa — estudios volumétricos, narrativa material y secuencias espaciales — antes de producir el primer plano técnico.
-    </p>
-    <p>
-      Integro herramientas de AI en cada etapa conceptual: ideación generativa, visualización en tiempo real para clientes, exploración de materiales y storytelling espacial. Esto acelera la toma de decisiones sin sacrificar profundidad de diseño.
-    </p>
-  </div>
 </section>
+
+<!-- AI BANNER -->
+<div class="ai-banner">
+  <span class="ai-banner-label">// Design Toolchain</span>
+  <div class="ai-tags">
+    <span class="ai-tag">Midjourney</span>
+    <span class="ai-tag">Flux</span>
+    <span class="ai-tag">ControlNet</span>
+    <span class="ai-tag">ComfyUI</span>
+    <span class="ai-tag">Runway Gen-3</span>
+    <span class="ai-tag">AI Upscaling</span>
+    <span class="ai-tag">Claude / ChatGPT</span>
+  </div>
+</div>
 
 <!-- PROJECTS -->
-<section id="projects">
+<section class="projects-section" id="projects">
   <div class="projects-header">
     <div>
-      <div class="section-label">Selección</div>
-      <h2 class="section-title">Proyectos Conceptuales</h2>
+      <div class="s-label">Selección</div>
+      <h2 class="projects-title">Registro de Proyectos</h2>
     </div>
-    <a href="#contact" class="view-all">Ver Todo →</a>
+    <span class="proj-count">// SELECTED WORK</span>
   </div>
 
-  <div class="projects-grid">
-    <!-- Card 1 — large -->
-    <div class="project-card fade-up">
-      <img src="assets/p1.jpg"
-           alt="Casa Yara">
-      <div class="project-overlay"></div>
-      <div class="project-info">
-        <div class="project-tag">Residencial · 2024 · Panamá</div>
-        <div class="project-title">Casa Yara</div>
-        <div class="project-sub">Residencia Modular Tropical — Costa Pacífica</div>
+  <div class="projects-list">
+    <!-- Row 1 -->
+    <div class="project-row reveal">
+      <div class="proj-index">01</div>
+      <div class="proj-main">
+        <div class="proj-name">Casa Yara</div>
+        <div class="proj-sub">Residencia Modular — Costa Pacífica // 420 m² // CLT + Concreto</div>
       </div>
-      <div class="project-arrow">↗</div>
+      <div class="proj-img">
+        <img src="assets/p1.jpg"
+             alt="Casa Yara">
+      </div>
+      <div class="proj-meta">
+        <span class="proj-tag">Residencial</span>
+        <div class="proj-year">2024</div>
+        <span class="proj-arrow">→</span>
+      </div>
     </div>
 
-    <!-- Card 2 -->
-    <div class="project-card fade-up">
-      <img src="assets/p2.jpg"
-           alt="Refugio Palmar">
-      <div class="project-info">
-        <div class="project-tag">Hospitalidad · 2024 · Costa Rica</div>
-        <div class="project-title">Refugio Palmar</div>
-        <div class="project-sub">Resort Boutique — 8 Villas</div>
+    <!-- Row 2 -->
+    <div class="project-row reveal">
+      <div class="proj-index">02</div>
+      <div class="proj-main">
+        <div class="proj-name">Refugio Palmar</div>
+        <div class="proj-sub">Resort Boutique — 8 Villas // Costa Rica // Off-grid Solar</div>
       </div>
-      <div class="project-arrow">↗</div>
+      <div class="proj-img">
+        <img src="assets/p2.jpg"
+             alt="Refugio Palmar">
+      </div>
+      <div class="proj-meta">
+        <span class="proj-tag">Hospitalidad</span>
+        <div class="proj-year">2024</div>
+        <span class="proj-arrow">→</span>
+      </div>
     </div>
 
-    <!-- Card 3 -->
-    <div class="project-card fade-up">
-      <img src="assets/p3.jpg"
-           alt="Residencia Canopea">
-      <div class="project-info">
-        <div class="project-tag">Residencial · 2023 · Ciudad de Panamá</div>
-        <div class="project-title">Residencia Canopea</div>
-        <div class="project-sub">Vertical Urbana — Sky Garden</div>
+    <!-- Row 3 -->
+    <div class="project-row reveal">
+      <div class="proj-index">03</div>
+      <div class="proj-main">
+        <div class="proj-name">Residencia Canopea</div>
+        <div class="proj-sub">Penthouse Urbano — Ciudad de Panamá // Sky Garden</div>
       </div>
-      <div class="project-arrow">↗</div>
+      <div class="proj-img">
+        <img src="assets/p3.jpg"
+             alt="Residencia Canopea">
+      </div>
+      <div class="proj-meta">
+        <span class="proj-tag">Residencial</span>
+        <div class="proj-year">2023</div>
+        <span class="proj-arrow">→</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FEATURED PROJECT -->
-<section class="feature" id="featured">
-  <div class="feature-img-wrap">
-    <img src="assets/featured.jpg"
-         alt="Proyecto Destacado">
+<!-- ADDITIONAL WORK -->
+<section class="projects-section" id="additional-work">
+  <div class="projects-header">
+    <div>
+      <div class="s-label">Exploraciones</div>
+      <h2 class="projects-title">Exploraciones / Estudios</h2>
+    </div>
   </div>
-  <div class="feature-content">
-    <div class="section-label">Concepto Destacado · 2024</div>
-    <h2 class="feature-title">Casa Yararé<br>— Canopy House</h2>
-    <p class="feature-text">
-      Residencia unifamiliar diseñada para disolver el límite entre el interior y el dosel forestal. El sistema estructural — híbrido de paneles CLT y concreto expuesto — permite que la vivienda conecte dos crestas, preservando intacto el suelo del bosque.<br><br>
-      La exploración asistida por AI generó múltiples iteraciones volumétricas en la primera semana conceptual, habilitando un proceso de co-navegación con el cliente en tiempo real. La propuesta final emergió de ese diálogo — no a pesar de la tecnología, sino a través de ella.
-    </p>
-    <div class="feature-specs">
-      <div>
-        <div class="spec-label">Área</div>
-        <div class="spec-val">420 m²</div>
+  <p class="projects-note">Serie de estudios conceptuales y exploraciones formales desarrolladas como parte de investigación proyectual y optimización de procesos de diseño.</p>
+  <div class="additional-grid">
+    <div class="additional-card">
+      <div class="additional-thumb"><img src="assets/p1.jpg" alt="Estudio 01"></div>
+      <div class="additional-meta">
+        <div class="additional-title">Estructura Modular Urbana</div>
+        <div class="additional-tag">Urban infill</div>
       </div>
-      <div>
-        <div class="spec-label">Estructura</div>
-        <div class="spec-val">CLT + Concreto</div>
+    </div>
+    <div class="additional-card">
+      <div class="additional-thumb"><img src="assets/p2.jpg" alt="Estudio 02"></div>
+      <div class="additional-meta">
+        <div class="additional-title">Sistema Contenedor Mixto</div>
+        <div class="additional-tag">Mixed-use</div>
       </div>
-      <div>
-        <div class="spec-label">Sistemas</div>
-        <div class="spec-val">Off-grid Solar + Recolección de Agua</div>
+    </div>
+    <div class="additional-card">
+      <div class="additional-thumb"><img src="assets/hero.jpg" alt="Estudio 03"></div>
+      <div class="additional-meta">
+        <div class="additional-title">Volumen Climático Tropical</div>
+        <div class="additional-tag">Clima + Ventilación</div>
       </div>
-      <div>
-        <div class="spec-label">AI Tools</div>
-        <div class="spec-val">Midjourney + ControlNet</div>
+    </div>
+    <div class="additional-card">
+      <div class="additional-thumb"><img src="assets/featured.jpg" alt="Estudio 04"></div>
+      <div class="additional-meta">
+        <div class="additional-title">Residencial Compacto</div>
+        <div class="additional-tag">Prefabricación</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="featured-section" id="featured">
+  <div class="featured-img">
+    <img src="assets/featured.jpg"
+         alt="Casa Yararé">
+    <div class="corner-mark tl"></div>
+    <div class="corner-mark br"></div>
+    <div class="feat-label-img">// CONCEPTO DESTACADO — AI ASSISTED</div>
+    <div class="tech-overlay"></div>
+  </div>
+  <div class="featured-content reveal">
+    <div>
+      <div class="feat-project-id">PROJECT_ID: CY-2024-001 // DESTACADO</div>
+      <h2 class="feat-title">CASA<br>YARARÉ<br><span>—</span></h2>
+      <p class="feat-body">
+        Residencia unifamiliar diseñada para unir dos crestas sin tocar el suelo del bosque. La lógica estructural — columna vertebral en CLT suspendida de dos núcleos de concreto — nace de la restricción ecológica: preservar el dosel, minimizar huella y captar lluvia desde la geometría de cubierta.<br><br>
+        Iteraciones AI en la primera semana conceptual y co-diseño en tiempo real con el cliente. La propuesta final es evidencia de proceso, no decoración.
+      </p>
+    </div>
+    <div class="feat-specs-grid">
+      <div class="feat-spec">
+        <div class="fs-key">Área Total</div>
+        <div class="fs-val">420 m²</div>
+      </div>
+      <div class="feat-spec">
+        <div class="fs-key">Estructura</div>
+        <div class="fs-val">CLT + Núcleos de Concreto</div>
+      </div>
+      <div class="feat-spec">
+        <div class="fs-key">Energía</div>
+        <div class="fs-val">Solar Off-grid</div>
+      </div>
+      <div class="feat-spec">
+        <div class="fs-key">AI Tools</div>
+        <div class="fs-val">Midjourney + ControlNet</div>
+      </div>
+      <div class="feat-spec">
+        <div class="fs-key">Agua</div>
+        <div class="fs-val">Recolección de Lluvia</div>
+      </div>
+      <div class="feat-spec">
+        <div class="fs-key">BIM</div>
+        <div class="fs-val">SD → DD</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PROCESS -->
-<section id="process" class="process">
-  <div class="section-label">Cómo Trabajo</div>
-  <h2 class="section-title">Del territorio al concepto<br>y a la propuesta.</h2>
+<section class="process-section" id="process">
+  <div class="s-label">Método</div>
+  <h2 class="projects-title reveal">Protocolo de Diseño</h2>
   <div class="process-grid">
-    <div class="process-step fade-up">
-      <div class="step-num">01</div>
-      <div class="step-title">Lectura de Sitio y Contexto</div>
-      <p class="step-text">Cada concepto inicia con una lectura profunda del terreno, clima, trayectoria solar y sistemas ecológicos. Uso AI para procesar fotos del sitio, topografía y precedentes en hipótesis espaciales rápidas.</p>
-      <div class="step-tools">
-        <span class="tool-badge">AutoCAD</span>
-        <span class="tool-badge">SketchUp</span>
-        <span class="tool-badge">AI Image Analysis</span>
+    <div class="process-cell reveal">
+      <div class="pc-num">01</div>
+      <div class="pc-title">Lectura de Sitio & Auditoría Ecológica</div>
+      <p class="pc-body">Topografía, asoleamiento, vientos, drenajes y vegetación existente se vuelven restricciones antes de dibujar forma. La AI procesa datos fotográficos y geoespaciales en hipótesis rápidas.</p>
+      <div class="tools-list">
+        <span class="tool-item">AutoCAD — documentación</span>
+        <span class="tool-item">SketchUp — masa base</span>
+        <span class="tool-item">AI image analysis — contexto</span>
       </div>
     </div>
-    <div class="process-step fade-up">
-      <div class="step-num">02</div>
-      <div class="step-title">Exploración Volumétrica</div>
-      <p class="step-text">Genero series de estudios de masa asistidos por AI para iterar forma, aperturas y lenguaje material. Esto comprime semanas de exploración análoga en horas de dirección de diseño precisa.</p>
-      <div class="step-tools">
-        <span class="tool-badge">Midjourney</span>
-        <span class="tool-badge">Flux</span>
-        <span class="tool-badge">ControlNet</span>
-        <span class="tool-badge">Revit</span>
+    <div class="process-cell reveal">
+      <div class="pc-num">02</div>
+      <div class="pc-title">Motor de Iteración Volumétrica</div>
+      <p class="pc-body">80–150 iteraciones AI por fase. Cada variante prueba hipótesis formales contra restricciones estructurales y ambientales. ControlNet ancla geometría; Midjourney/Flux exploran lenguaje material.</p>
+      <div class="tools-list">
+        <span class="tool-item">Midjourney — ideación</span>
+        <span class="tool-item">Flux — control</span>
+        <span class="tool-item">ControlNet — modelo</span>
+        <span class="tool-item">Revit — BIM</span>
       </div>
     </div>
-    <div class="process-step fade-up">
-      <div class="step-num">03</div>
-      <div class="step-title">Visualización y Propuesta</div>
-      <p class="step-text">Integro renders AI fotorealistas, tableros de materialidad y walkthroughs 3D en propuestas sólidas. El cliente navega la visión — no solo un plano técnico — desde la primera reunión.</p>
-      <div class="step-tools">
-        <span class="tool-badge">Adobe Suite</span>
-        <span class="tool-badge">Runway Gen-3</span>
-        <span class="tool-badge">BIM</span>
-        <span class="tool-badge">AI Upscaling</span>
+    <div class="process-cell reveal">
+      <div class="pc-num">03</div>
+      <div class="pc-title">Propuesta & Decisión con Cliente</div>
+      <p class="pc-body">Renders AI, tableros materiales y walkthroughs construyen un documento de decisión. El cliente comprende espacio antes del plano técnico. Alineación rápida, menos revisiones.</p>
+      <div class="tools-list">
+        <span class="tool-item">Adobe Suite — presentación</span>
+        <span class="tool-item">Runway Gen-3 — animación</span>
+        <span class="tool-item">Topaz — upscaling</span>
+        <span class="tool-item">BIM — entrega</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="contact">
-  <div class="section-label">Contacto</div>
-  <h2 class="section-title">Construyamos algo<br><em style="font-style:italic;color:var(--green)">extraordinario.</em></h2>
-  <p class="contact-sub">Disponible para roles full-time y colaboraciones selectas.<br>Idiomas: Español e Inglés.</p>
-  <a href="mailto:juanjosecasis@outlook.com" class="contact-email">juanjosecasis@outlook.com</a>
+<section class="contact-section" id="contact">
+  <div class="reveal">
+    <div class="s-label">Contacto</div>
+    <h2 class="contact-title">CONSTRUYAMOS<br><span>ALGO.</span></h2>
+  </div>
+  <div class="contact-right reveal">
+    <a href="mailto:juanjosecasis@outlook.com" class="contact-email">juanjosecasis@outlook.com</a>
+    <div class="contact-info">
+      <div class="ci-row">
+        <span class="ci-key">Ubicación</span>
+        <span class="ci-val">Panamá</span>
+      </div>
+      <div class="ci-row">
+        <span class="ci-key">Disponibilidad</span>
+        <span class="ci-val">Full-time</span>
+      </div>
+      <div class="ci-row">
+        <span class="ci-key">Idiomas</span>
+        <span class="ci-val">ES / EN</span>
+      </div>
+      <div class="ci-row">
+        <span class="ci-key">Experiencia</span>
+        <span class="ci-val">22+ años</span>
+      </div>
+      <div class="ci-row">
+        <span class="ci-key">Estado</span>
+        <span class="ci-val" style="color:var(--acid);">ABIERTO<span class="blink">_</span></span>
+      </div>
+    </div>
+  </div>
 </section>
 
 <footer>
-  <div class="footer-logo">Juan José Casis — Arquitecto</div>
-  <div class="footer-copy">© 2026 · Panamá</div>
+  <div class="footer-id">JJC.AI <span>// ARQUITECTO // PANAMÁ</span></div>
+  <div class="footer-copy">© 2026 — TODOS LOS DERECHOS RESERVADOS</div>
 </footer>
 
 <!-- EDIT MODE TOOLBAR -->
 <div id="edit-toolbar" class="edit-toolbar" aria-hidden="true">
   <button id="edit-toggle" class="edit-btn" type="button">Edit Mode</button>
+  <button id="edit-undo" class="edit-btn" type="button">Undo</button>
+  <button id="edit-redo" class="edit-btn" type="button">Redo</button>
+  <button id="edit-save" class="edit-btn" type="button">Guardar</button>
   <button id="edit-export" class="edit-btn" type="button">Export JSON</button>
   <button id="edit-reset" class="edit-btn" type="button">Reset</button>
 </div>
-<div id="edit-note" class="edit-note">Tip: En modo edición puedes hacer clic en los textos para editarlos y usar “Cambiar” sobre las imágenes.</div>
+<div id="edit-note" class="edit-note">En modo edición puedes editar textos inline y cambiar imágenes.</div>
 
 <!-- ADMIN PANEL -->
 <div id="admin-panel" class="admin-panel" aria-hidden="true">
-  <div class="admin-header">Editor Rápido</div>
+  <div class="admin-header">Editor JSON</div>
   <div class="admin-body">
-    <p>Edición directa vía JSON. Cambia textos o rutas de imágenes y pulsa “Aplicar”. Para mostrar este panel usa `?admin=1` o presiona `Ctrl+Shift+A`.</p>
+    <p>Edición directa vía JSON. Cambia textos o rutas de imágenes y pulsa “Aplicar”. Para mostrar este panel usa `?admin=1`.</p>
     <textarea id="admin-json" spellcheck="false"></textarea>
     <div class="admin-actions">
       <button id="admin-apply" type="button">Aplicar</button>
@@ -909,137 +1394,614 @@
 <script type="application/json" id="content-default">
 {
   "meta": {
-    "title": "Portfolio — Arquitecto de Diseño Conceptual"
+    "title": "Juan José Casis — Arquitecto"
   },
   "nav": {
-    "logo": "Juan José Casis",
+    "id": "JJC.AI // v2026",
     "links": [
-      { "href": "#projects", "label": "Proyectos" },
-      { "href": "#process", "label": "Proceso" },
-      { "href": "#contact", "label": "Contacto" }
-    ]
+      {
+        "href": "#projects",
+        "label": "Proyectos"
+      },
+      {
+        "href": "#process",
+        "label": "Método"
+      },
+      {
+        "href": "#contact",
+        "label": "Contacto"
+      }
+    ],
+    "status": "Disponible — Panamá"
   },
   "hero": {
-    "tag": "Arquitecto de Diseño Conceptual · Panamá",
-    "headlineHtml": "Donde la forma<br>se une con la <em>naturaleza</em><br>viva.",
-    "desc": "Lidero visión arquitectónica conceptual — de la exploración volumétrica a propuestas listas para construir — con enfoque en diseño tropical contemporáneo, integración ecológica y flujos de trabajo potenciados por AI.",
-    "cta": "Ver Proyectos →",
+    "coords": "08°59'N 79°31'W // ARQ. DE DISEÑO CONCEPTUAL",
+    "nameHtml": "JUAN<br>JOSÉ<br>CAS<span class=\"accent\">-</span>IS",
+    "titleBlock": [
+      {
+        "label": "Especialidad",
+        "val": "Diseño Conceptual"
+      },
+      {
+        "label": "Tipología",
+        "val": "Res. / Hospitalidad"
+      },
+      {
+        "label": "Enfoque",
+        "val": "Concepto + Ejecución"
+      }
+    ],
+    "desc": "Arquitecto con 22+ años de experiencia en diseño conceptual, desarrollo técnico y ejecución de obra. Trayectoria comprobada liderando proyectos desde hipótesis tempranas hasta realidad construida, con control sólido sobre estructura, respuesta climática, marcos regulatorios y procesos constructivos.",
+    "cta": "Disponible →",
     "image": "assets/hero.jpg",
-    "imageAlt": "Residencia tropical contemporánea"
+    "imageAlt": "Arquitectura Tropical",
+    "imgCaption": "REF_001 // CASA YARARÉ, 2024",
+    "imgProjName": "CONCEPTO TROPICAL"
   },
-  "aiStrip": {
-    "label": "Workflow con AI",
-    "tools": [
-      "Midjourney",
-      "Flux / Stable Diffusion",
-      "ComfyUI",
-      "ControlNet",
-      "AI Upscaling",
-      "ChatGPT / Claude",
-      "Runway Gen-3"
+  "dataStrip": [
+    {
+      "label": "Experiencia",
+      "val": "22",
+      "unit": "YRS"
+    },
+    {
+      "label": "Licencia",
+      "val": "20 09",
+      "unit": "LIC"
+    },
+    {
+      "label": "Idiomas",
+      "val": "2",
+      "unit": "LANG"
+    },
+    {
+      "label": "Posgrados",
+      "val": "2",
+      "unit": "PGR"
+    },
+    {
+      "label": "Obra Construida",
+      "val": "Sí",
+      "unit": ""
+    }
+  ],
+  "manifesto": {
+    "label": "Enfoque",
+    "titleHtml": "CONCEPTO<br>CON<br><span class=\"highlight\">CRITERIO</span>.",
+    "body": [
+      "Cada proyecto se plantea como un estudio: intención clara, restricciones bien definidas y decisiones verificables.",
+      "La exploración volumétrica se guía por clima, estructura y materialidad; el resultado es una síntesis operativa, no un gesto aislado.",
+      "El objetivo es avanzar rápido sin perder control del diseño.",
+      "El diseño no termina en la imagen: cada propuesta se desarrolla con criterio constructivo, coordinación técnica y viabilidad real, considerando normativa, costos y procesos de obra."
+    ],
+    "specs": [
+      {
+        "key": "Base",
+        "val": "Sitio + clima + estructura"
+      },
+      {
+        "key": "Proceso",
+        "val": "Iterar, comparar, depurar"
+      },
+      {
+        "key": "Entrega",
+        "val": "Concepto → propuesta"
+      },
+      {
+        "key": "Ritmo",
+        "val": "Decisiones rápidas"
+      },
+      {
+        "key": "Precisión",
+        "val": "Detalles claros"
+      },
+      {
+        "key": "Alcance",
+        "val": "Concepto → Construcción"
+      }
     ]
   },
-  "philosophy": {
-    "label": "Filosofía de Diseño",
-    "titleHtml": "Arquitectura<br>como <em style=\"font-style:italic;\">ecosistema<br>vivo.</em>",
-    "stats": [
-      { "num": "22+", "label": "Años de Experiencia" },
-      { "num": "2", "label": "Idiomas Profesionales" },
-      { "num": "2", "label": "Posgrados" },
-      { "num": "100%", "label": "Enfoque Integral" }
-    ],
-    "paragraphs": [
-      "La arquitectura debe ir más allá del abrigo: debe amplificar el entorno natural que habita. Mi proceso conceptual inicia con la lectura del terreno: topografía, luz y ritmos ecológicos. La forma construida surge como respuesta, nunca como imposición.",
-      "Mi trabajo abarca residencias de alto nivel, hospitalidad boutique y desarrollos mixtos en climas tropicales. Cada proyecto nace de una exploración rigurosa — estudios volumétricos, narrativa material y secuencias espaciales — antes de producir el primer plano técnico.",
-      "Integro herramientas de AI en cada etapa conceptual: ideación generativa, visualización en tiempo real para clientes, exploración de materiales y storytelling espacial. Esto acelera la toma de decisiones sin sacrificar profundidad de diseño."
+  "aiBanner": {
+    "label": "// Design Toolchain",
+    "tags": [
+      "Midjourney",
+      "Flux",
+      "ControlNet",
+      "ComfyUI",
+      "Runway Gen-3",
+      "AI Upscaling",
+      "Claude / ChatGPT"
     ]
   },
   "projects": {
     "label": "Selección",
-    "title": "Proyectos Conceptuales",
-    "viewAll": "Ver Todo →",
-    "cards": [
+    "title": "Registro de Proyectos",
+    "count": "// SELECTED WORK",
+    "rows": [
       {
+        "index": "01",
+        "name": "Casa Yara",
+        "sub": "Residencia Modular — Costa Pacífica // 420 m² // CLT + Concreto",
         "image": "assets/p1.jpg",
         "alt": "Casa Yara",
-        "tag": "Residencial · 2024 · Panamá",
-        "title": "Casa Yara",
-        "sub": "Residencia Modular Tropical — Costa Pacífica"
+        "tag": "Residencial",
+        "year": "2024"
       },
       {
+        "index": "02",
+        "name": "Hotel Contenedor Urbano",
+        "sub": "Base gastronómica + rooftop activo · Modular · Contenedores reciclados",
         "image": "assets/p2.jpg",
-        "alt": "Refugio Palmar",
-        "tag": "Hospitalidad · 2024 · Costa Rica",
-        "title": "Refugio Palmar",
-        "sub": "Resort Boutique — 8 Villas"
+        "alt": "Hotel Contenedor Urbano",
+        "tag": "Hospitalidad / Mixed-use",
+        "year": "2024"
       },
       {
+        "index": "03",
+        "name": "Residencia Canopea",
+        "sub": "Penthouse Urbano — Ciudad de Panamá // Sky Garden",
         "image": "assets/p3.jpg",
         "alt": "Residencia Canopea",
-        "tag": "Residencial · 2023 · Ciudad de Panamá",
-        "title": "Residencia Canopea",
-        "sub": "Vertical Urbana — Sky Garden"
+        "tag": "Residencial",
+        "year": "2023"
       }
     ]
   },
-  "feature": {
-    "label": "Concepto Destacado · 2024",
-    "titleHtml": "Casa Yararé<br>— Canopy House",
-    "textHtml": "Residencia unifamiliar diseñada para disolver el límite entre el interior y el dosel forestal. El sistema estructural — híbrido de paneles CLT y concreto expuesto — permite que la vivienda conecte dos crestas, preservando intacto el suelo del bosque.<br><br>La exploración asistida por AI generó múltiples iteraciones volumétricas en la primera semana conceptual, habilitando un proceso de co-navegación con el cliente en tiempo real. La propuesta final emergió de ese diálogo — no a pesar de la tecnología, sino a través de ella.",
+  "featured": {
     "image": "assets/featured.jpg",
-    "imageAlt": "Proyecto Destacado",
+    "alt": "Hotel Contenedor Urbano",
+    "labelImg": "// ESTUDIO DESTACADO",
+    "projectId": "PROJECT_ID: HCU-2024-01 // MIXED USE",
+    "titleHtml": "HOTEL<br>CONTENEDOR<br><span>URBANO</span>",
+    "bodyHtml": "Hotel urbano vertical con base gastronómica y rooftop activo — estructura prefabricada a partir de módulos de contenedor y sistema metálico expuesto.<br><br>Concebido como un sistema modular, donde contenedores reciclados se convierten en unidades habitables conectadas por una estructura metálica visible. La base activa la calle con un gastro/bar abierto, mientras los niveles superiores generan una composición volumétrica dinámica que favorece ventilación, vistas y expansión exterior. El rooftop funciona como punto de encuentro elevado, extendiendo la experiencia del edificio hacia la ciudad.<br><br>Arquitectura concebida para construir rápido, adaptarse fácil y activarse inmediatamente dentro del tejido urbano.<br><br>Desarrollado bajo criterios de viabilidad constructiva, coordinación técnica y adaptación a condiciones reales del sitio.",
     "specs": [
-      { "label": "Área", "val": "420 m²" },
-      { "label": "Estructura", "val": "CLT + Concreto" },
-      { "label": "Sistemas", "val": "Off-grid Solar + Recolección de Agua" },
-      { "label": "AI Tools", "val": "Midjourney + ControlNet" }
+      {
+        "key": "Programa",
+        "val": "Hotel + Gastro/Bar"
+      },
+      {
+        "key": "Sistema",
+        "val": "Modular Prefabricado"
+      },
+      {
+        "key": "Estructura",
+        "val": "Contenedores + Acero"
+      },
+      {
+        "key": "Rooftop",
+        "val": "Activación Urbana"
+      },
+      {
+        "key": "Uso",
+        "val": "Mixed-use"
+      },
+      {
+        "key": "Enfoque",
+        "val": "Urban Infill"
+      }
     ]
   },
   "process": {
-    "label": "Cómo Trabajo",
-    "titleHtml": "Del territorio al concepto<br>y a la propuesta.",
-    "steps": [
+    "label": "Método",
+    "title": "Protocolo de Diseño",
+    "cells": [
       {
         "num": "01",
-        "title": "Lectura de Sitio y Contexto",
-        "text": "Cada concepto inicia con una lectura profunda del terreno, clima, trayectoria solar y sistemas ecológicos. Uso AI para procesar fotos del sitio, topografía y precedentes en hipótesis espaciales rápidas.",
-        "tools": ["AutoCAD", "SketchUp", "AI Image Analysis"]
+        "title": "Lectura de Sitio & Auditoría Ecológica",
+        "body": "Topografía, asoleamiento, vientos, drenajes y vegetación existente se convierten en restricciones de diseño. Con esa base, se plantean hipótesis y se validan con criterio arquitectónico.",
+        "tools": [
+          "AutoCAD — documentación",
+          "SketchUp — masa base",
+          "AI image analysis — contexto"
+        ]
       },
       {
         "num": "02",
-        "title": "Exploración Volumétrica",
-        "text": "Genero series de estudios de masa asistidos por AI para iterar forma, aperturas y lenguaje material. Esto comprime semanas de exploración análoga en horas de dirección de diseño precisa.",
-        "tools": ["Midjourney", "Flux", "ControlNet", "Revit"]
+        "title": "Motor de Iteración Volumétrica",
+        "body": "Iteraciones rápidas para comparar proporciones, aperturas y materialidad. Se selecciona por desempeño y coherencia formal.",
+        "tools": [
+          "Midjourney — ideación",
+          "Flux — control",
+          "ControlNet — modelo",
+          "Revit — BIM"
+        ]
       },
       {
         "num": "03",
-        "title": "Visualización y Propuesta",
-        "text": "Integro renders AI fotorealistas, tableros de materialidad y walkthroughs 3D en propuestas sólidas. El cliente navega la visión — no solo un plano técnico — desde la primera reunión.",
-        "tools": ["Adobe Suite", "Runway Gen-3", "BIM", "AI Upscaling"]
+        "title": "Propuesta & Decisión con Cliente",
+        "body": "Renders, documentación técnica y criterios constructivos consolidan la propuesta. El cliente comprende el proyecto antes de ejecución, reduciendo incertidumbre en obra, optimizando decisiones y facilitando coordinación entre disciplinas. Incluye dirección conceptual, coordinación técnica y supervisión de criterios de calidad. Liderazgo de equipos interdisciplinarios en desarrollo de proyectos, coordinación técnica y mentoría de arquitectos jóvenes en procesos de diseño y ejecución.",
+        "tools": [
+          "Adobe Suite — presentación",
+          "Runway Gen-3 — animación",
+          "Topaz — upscaling",
+          "BIM — entrega"
+        ]
       }
     ]
   },
   "contact": {
     "label": "Contacto",
-    "titleHtml": "Construyamos algo<br><em style=\"font-style:italic;color:var(--green)\">extraordinario.</em>",
-    "subHtml": "Disponible para roles full-time y colaboraciones selectas.<br>Idiomas: Español e Inglés.",
-    "email": "juanjosecasis@outlook.com"
+    "titleHtml": "CONSTRUYAMOS<br><span>ALGO.</span>",
+    "email": "juanjosecasis@outlook.com",
+    "info": [
+      {
+        "key": "Ubicación",
+        "val": "Panamá"
+      },
+      {
+        "key": "Experiencia Reciente",
+        "val": "UNODC — Inspección Arquitectónica"
+      },
+      {
+        "key": "Disponibilidad",
+        "val": "Full-time"
+      },
+      {
+        "key": "Idiomas",
+        "val": "ES / EN"
+      },
+      {
+        "key": "Experiencia",
+        "val": "22+ años"
+      },
+      {
+        "key": "Estado",
+        "val": "ABIERTO<span class=\"blink\">_</span>",
+        "highlight": true
+      }
+    ]
   },
   "footer": {
-    "logo": "Juan José Casis — Arquitecto",
-    "copy": "© 2026 · Panamá"
+    "idHtml": "JJC.AI <span>// ARQUITECTO // PANAMÁ</span>",
+    "copy": "© 2026 — Portafolio conceptual desarrollado con metodologías digitales avanzadas y herramientas de apoyo generativo, bajo criterio y control arquitectónico."
+  },
+  "additionalWork": {
+    "title": "Exploraciones / Estudios",
+    "desc": "Serie de estudios conceptuales y exploraciones formales desarrolladas como parte de investigación proyectual y optimización de procesos de diseño.",
+    "items": [
+      {
+        "title": "Estructura Modular Urbana",
+        "tag": "Urban infill",
+        "image": "assets/p1.jpg"
+      },
+      {
+        "title": "Sistema Contenedor Mixto",
+        "tag": "Mixed-use",
+        "image": "assets/p2.jpg"
+      },
+      {
+        "title": "Volumen Climático Tropical",
+        "tag": "Clima + Ventilación",
+        "image": "assets/hero.jpg"
+      },
+      {
+        "title": "Residencial Compacto",
+        "tag": "Prefabricación",
+        "image": "assets/featured.jpg"
+      }
+    ]
+  },
+  "i18n": {
+    "en": {
+      "meta": {
+        "title": "Juan Jose Casis — Architect"
+      },
+      "nav": {
+        "id": "JJC.AI // v2026",
+        "links": [
+          {
+            "href": "#projects",
+            "label": "Projects"
+          },
+          {
+            "href": "#process",
+            "label": "Method"
+          },
+          {
+            "href": "#contact",
+            "label": "Contact"
+          }
+        ],
+        "status": "Available — Panama"
+      },
+      "hero": {
+        "coords": "08°59'N 79°31'W // CONCEPT DESIGN ARCHITECT",
+        "nameHtml": "JUAN<br>JOSE<br>CAS<span class=\"accent\">-</span>IS",
+        "titleBlock": [
+          {
+            "label": "Specialization",
+            "val": "Concept Design"
+          },
+          {
+            "label": "Typology",
+            "val": "Res. / Hospitality"
+          },
+          {
+            "label": "Focus",
+            "val": "Concept + Execution"
+          }
+        ],
+        "desc": "Architect with 22+ years of experience across conceptual design, technical development and construction execution. Proven track record leading projects from early-stage hypothesis to built reality, with strong control over structure, climate response, regulatory frameworks and construction processes.",
+        "cta": "Available →",
+        "image": "assets/hero.jpg",
+        "imageAlt": "Tropical Architecture",
+        "imgCaption": "REF_001 // CASA YARARE, 2024",
+        "imgProjName": "TROPICAL CONCEPT"
+      },
+      "dataStrip": [
+        {
+          "label": "Experience",
+          "val": "22",
+          "unit": "YRS"
+        },
+        {
+          "label": "License",
+          "val": "20 09",
+          "unit": "LIC"
+        },
+        {
+          "label": "Languages",
+          "val": "2",
+          "unit": "LANG"
+        },
+        {
+          "label": "Postgrad",
+          "val": "2",
+          "unit": "PGR"
+        },
+        {
+          "label": "Built Work",
+          "val": "Yes",
+          "unit": ""
+        }
+      ],
+      "manifesto": {
+        "label": "Approach",
+        "titleHtml": "CONCEPT<br>WITH<br><span class=\"highlight\">CRITERIA</span>.",
+        "body": [
+          "Each project is framed as a study: clear intent, defined constraints, and verifiable decisions.",
+          "Volumetric exploration is guided by climate, structure, and materiality; the result is an operational synthesis, not an isolated gesture.",
+          "The goal is speed without loss of control.",
+          "Design does not end at the image: each proposal is developed with constructive criteria, technical coordination and real feasibility, considering codes, costs and construction processes."
+        ],
+        "specs": [
+          {
+            "key": "Basis",
+            "val": "Site + climate + structure"
+          },
+          {
+            "key": "Process",
+            "val": "Iterate, compare, refine"
+          },
+          {
+            "key": "Delivery",
+            "val": "Concept → proposal"
+          },
+          {
+            "key": "Pace",
+            "val": "Fast decisions"
+          },
+          {
+            "key": "Precision",
+            "val": "Clear details"
+          },
+          {
+            "key": "Scope",
+            "val": "Concept → Construction"
+          }
+        ]
+      },
+      "aiBanner": {
+        "label": "// Design Toolchain",
+        "tags": [
+          "Midjourney",
+          "Flux",
+          "ControlNet",
+          "ComfyUI",
+          "Runway Gen-3",
+          "AI Upscaling",
+          "Claude / ChatGPT"
+        ]
+      },
+      "projects": {
+        "label": "Selected",
+        "title": "Project Log",
+        "count": "// SELECTED WORK",
+        "rows": [
+          {
+            "index": "01",
+            "name": "Casa Yara",
+            "sub": "Modular Residence — Pacific Coast // 420 m² // CLT + Concrete",
+            "image": "assets/p1.jpg",
+            "alt": "Casa Yara",
+            "tag": "Residential",
+            "year": "2024"
+          },
+          {
+            "index": "02",
+            "name": "Urban Container Hotel",
+            "sub": "Food & beverage base + active rooftop · Modular · Recycled containers",
+            "image": "assets/p2.jpg",
+            "alt": "Urban Container Hotel",
+            "tag": "Hospitality / Mixed-use",
+            "year": "2024"
+          },
+          {
+            "index": "03",
+            "name": "Residencia Canopea",
+            "sub": "Urban Penthouse — Panama City // Sky Garden",
+            "image": "assets/p3.jpg",
+            "alt": "Residencia Canopea",
+            "tag": "Residential",
+            "year": "2023"
+          }
+        ]
+      },
+      "featured": {
+        "image": "assets/featured.jpg",
+        "alt": "Hotel Contenedor Urbano",
+        "labelImg": "// FEATURED STUDY",
+        "projectId": "PROJECT_ID: HCU-2024-01 // MIXED USE",
+        "titleHtml": "URBAN<br>CONTAINER<br><span>HOTEL</span>",
+        "bodyHtml": "Vertical urban hotel with a food & beverage base and active rooftop — prefabricated from container modules and exposed steel structure.<br><br>Conceived as a modular system where recycled containers become habitable units connected by a visible steel frame. The base activates the street with an open gastro/bar, while upper levels create a dynamic volumetric composition that improves ventilation, views, and outdoor expansion. The rooftop operates as an elevated gathering point, extending the building’s experience into the city.<br><br>Architecture designed to build fast, adapt easily and activate immediately within the urban fabric.<br><br>Developed under constructive feasibility criteria, technical coordination, and adaptation to real site conditions.",
+        "specs": [
+          {
+            "key": "Program",
+            "val": "Hotel + Gastro/Bar"
+          },
+          {
+            "key": "System",
+            "val": "Prefabricated Modular"
+          },
+          {
+            "key": "Structure",
+            "val": "Containers + Steel"
+          },
+          {
+            "key": "Rooftop",
+            "val": "Urban Activation"
+          },
+          {
+            "key": "Use",
+            "val": "Mixed-use"
+          },
+          {
+            "key": "Approach",
+            "val": "Urban Infill"
+          }
+        ]
+      },
+      "process": {
+        "label": "Method",
+        "title": "Design Protocol",
+        "cells": [
+          {
+            "num": "01",
+            "title": "Site Reading & Ecological Audit",
+            "body": "Topography, sun path, winds, drainage and existing vegetation become design constraints. With this base, hypotheses are formed and validated with architectural criteria.",
+            "tools": [
+              "AutoCAD — documentation",
+              "SketchUp — base massing",
+              "AI image analysis — context"
+            ]
+          },
+          {
+            "num": "02",
+            "title": "Volumetric Iteration Engine",
+            "body": "Rapid iterations to compare proportions, apertures and materiality. Selection is based on performance and formal coherence.",
+            "tools": [
+              "Midjourney — ideation",
+              "Flux — control",
+              "ControlNet — model",
+              "Revit — BIM"
+            ]
+          },
+          {
+            "num": "03",
+            "title": "Proposal & Decision with Client",
+            "body": "Renders, technical documentation and constructive criteria consolidate the proposal. The client understands the project before execution, reducing uncertainty on site, optimizing decisions and facilitating coordination between disciplines. Includes conceptual direction, technical coordination and quality criteria supervision. Leadership of interdisciplinary teams in project development, technical coordination, and mentoring of junior architects in design and execution processes.",
+            "tools": [
+              "Adobe Suite — presentation",
+              "Runway Gen-3 — animation",
+              "Topaz — upscaling",
+              "BIM — delivery"
+            ]
+          }
+        ]
+      },
+      "contact": {
+        "label": "Contact",
+        "titleHtml": "LET'S<br><span>BUILD.</span>",
+        "email": "juanjosecasis@outlook.com",
+        "info": [
+          {
+            "key": "Location",
+            "val": "Panama"
+          },
+          {
+            "key": "Recent Experience",
+            "val": "UNODC — Architectural Inspection"
+          },
+          {
+            "key": "Availability",
+            "val": "Full-time"
+          },
+          {
+            "key": "Languages",
+            "val": "ES / EN"
+          },
+          {
+            "key": "Experience",
+            "val": "22+ years"
+          },
+          {
+            "key": "Status",
+            "val": "OPEN<span class=\"blink\">_</span>",
+            "highlight": true
+          }
+        ]
+      },
+      "footer": {
+        "idHtml": "JJC.AI <span>// ARCHITECT // PANAMA</span>",
+        "copy": "© 2026 — Conceptual portfolio developed with advanced digital methodologies and generative support tools, under architectural criteria and control."
+      },
+      "additionalWork": {
+        "title": "Explorations / Studies",
+        "desc": "Series of conceptual studies and formal explorations developed as part of project research and optimization of design processes.",
+        "items": [
+          {
+            "title": "Urban Modular Structure",
+            "tag": "Urban infill",
+            "image": "assets/p1.jpg"
+          },
+          {
+            "title": "Mixed Container System",
+            "tag": "Mixed-use",
+            "image": "assets/p2.jpg"
+          },
+          {
+            "title": "Tropical Climate Volume",
+            "tag": "Climate + Ventilation",
+            "image": "assets/hero.jpg"
+          },
+          {
+            "title": "Compact Residential",
+            "tag": "Prefabrication",
+            "image": "assets/featured.jpg"
+          }
+        ]
+      },
+      "art": {
+        "title": "Art / Exploration",
+        "desc": "Artistic work focused on composition, materiality and spatial perception, as an extension of architectural thinking.",
+        "items": [
+          {
+            "title": "Material Studies",
+            "tag": "Texture / Light"
+          },
+          {
+            "title": "Spatial Composition",
+            "tag": "Volume"
+          },
+          {
+            "title": "Perception and Scale",
+            "tag": "Rhythm"
+          }
+        ]
+      }
+    }
   }
 }
 </script>
 
 <script>
-  const defaultContent = JSON.parse(document.getElementById('content-default').textContent);
+  let defaultContent = JSON.parse(document.getElementById('content-default').textContent);
   let currentContent = defaultContent;
   let editMode = false;
+  let historyStack = [];
+  let redoStack = [];
+  let recordTimer = null;
 
-  function getPath(obj, path) {
-    return path.split('.').reduce((o, k) => (o ? o[k] : undefined), obj);
-  }
   function setPath(obj, path, value) {
     const keys = path.split('.');
     const last = keys.pop();
@@ -1051,14 +2013,49 @@
     o[last] = value;
   }
 
+  function cloneContent(c) {
+    return JSON.parse(JSON.stringify(c));
+  }
+
+  function pushHistory() {
+    const snap = JSON.stringify(currentContent);
+    if (historyStack.length && historyStack[historyStack.length - 1] === snap) return;
+    historyStack.push(snap);
+    if (historyStack.length > 50) historyStack.shift();
+    redoStack = [];
+  }
+
+  function scheduleRecord() {
+    if (!editMode) return;
+    if (recordTimer) clearTimeout(recordTimer);
+    recordTimer = setTimeout(() => pushHistory(), 250);
+  }
+
+  function saveDraft() {
+    try {
+      const payload = { lang: currentLang, content: currentContent };
+      localStorage.setItem('draft', JSON.stringify(payload));
+    } catch (e) {}
+  }
+
+  function loadDraft() {
+    try {
+      const raw = localStorage.getItem('draft');
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (e) {
+      return null;
+    }
+  }
+
   function applyContent(c) {
     if (!c) return;
     document.title = c.meta?.title || document.title;
 
-    const navLogo = document.querySelector('.nav-logo');
-    if (navLogo) navLogo.textContent = c.nav?.logo || navLogo.textContent;
-
+    const navId = document.querySelector('.nav-id');
     const navLinks = document.querySelectorAll('.nav-links a');
+    const navStatus = document.querySelector('.nav-status');
+    if (navId) navId.textContent = c.nav?.id || navId.textContent;
     if (c.nav?.links && navLinks.length >= c.nav.links.length) {
       c.nav.links.forEach((l, i) => {
         if (navLinks[i]) {
@@ -1067,128 +2064,170 @@
         }
       });
     }
+    if (navStatus) navStatus.lastChild.textContent = ` ${c.nav?.status || navStatus.textContent}`;
 
-    const heroTag = document.querySelector('.hero-tag');
+    const heroCoords = document.querySelector('.hero-coords');
     const heroName = document.querySelector('.hero-name');
     const heroDesc = document.querySelector('.hero-desc');
     const heroCta = document.querySelector('.hero-cta');
-    const heroImg = document.querySelector('.hero-img');
-    if (heroTag) heroTag.textContent = c.hero?.tag || heroTag.textContent;
-    if (heroName) heroName.innerHTML = c.hero?.headlineHtml || heroName.innerHTML;
+    const heroImg = document.querySelector('.hero-right img');
+    const heroCaption = document.querySelector('.img-caption');
+    const heroProj = document.querySelector('.img-proj-name');
+    if (heroCoords) heroCoords.textContent = c.hero?.coords || heroCoords.textContent;
+    if (heroName) heroName.innerHTML = c.hero?.nameHtml || heroName.innerHTML;
     if (heroDesc) heroDesc.textContent = c.hero?.desc || heroDesc.textContent;
     if (heroCta) heroCta.textContent = c.hero?.cta || heroCta.textContent;
-    if (heroImg && c.hero?.image) {
-      heroImg.src = c.hero.image;
-      heroImg.alt = c.hero.imageAlt || heroImg.alt;
-    }
+    if (heroImg && c.hero?.image) { heroImg.src = c.hero.image; heroImg.alt = c.hero.imageAlt || heroImg.alt; }
+    if (heroCaption) heroCaption.textContent = c.hero?.imgCaption || heroCaption.textContent;
+    if (heroProj) heroProj.textContent = c.hero?.imgProjName || heroProj.textContent;
 
-    const aiLabel = document.querySelector('.ai-strip-label');
-    const aiList = document.querySelector('.ai-tools-list');
-    if (aiLabel) aiLabel.textContent = c.aiStrip?.label || aiLabel.textContent;
-    if (aiList && Array.isArray(c.aiStrip?.tools)) {
-      aiList.innerHTML = c.aiStrip.tools.map(t => `<span class="ai-tool"><span>✦</span>${t}</span>`).join('');
-    }
-
-    const philLabel = document.querySelector('.philosophy .section-label');
-    const philTitle = document.querySelector('.philosophy .section-title');
-    const philStats = document.querySelector('.philosophy-stats');
-    const philText = document.querySelector('.philosophy-text');
-    if (philLabel) philLabel.textContent = c.philosophy?.label || philLabel.textContent;
-    if (philTitle) philTitle.innerHTML = c.philosophy?.titleHtml || philTitle.innerHTML;
-    if (philStats && Array.isArray(c.philosophy?.stats)) {
-      philStats.innerHTML = c.philosophy.stats.map(s => `
-        <div>
-          <div class="stat-num">${s.num}</div>
-          <div class="stat-label">${s.label}</div>
+    const htb = document.querySelector('.hero-title-block');
+    if (htb && Array.isArray(c.hero?.titleBlock)) {
+      htb.innerHTML = c.hero.titleBlock.map(i => `
+        <div class="htb-item">
+          <span class="htb-label">${i.label}</span>
+          <span class="htb-val">${i.val}</span>
         </div>`).join('');
     }
-    if (philText && Array.isArray(c.philosophy?.paragraphs)) {
-      philText.innerHTML = c.philosophy.paragraphs.map(p => `<p>${p}</p>`).join('');
+
+    const dataStrip = document.querySelector('.data-strip');
+    if (dataStrip && Array.isArray(c.dataStrip)) {
+      dataStrip.innerHTML = c.dataStrip.map(d => `
+        <div class="data-cell">
+          <span class="dc-label">${d.label}</span>
+          <span class="dc-val">${d.val}<span class="dc-unit">${d.unit || ''}</span></span>
+        </div>`).join('');
     }
 
-    const projLabel = document.querySelector('#projects .section-label');
-    const projTitle = document.querySelector('#projects .section-title');
-    const projViewAll = document.querySelector('#projects .view-all');
+    const manLabel = document.querySelector('.manifesto .s-label');
+    const manTitle = document.querySelector('.manifesto-title');
+    const manBody = document.querySelector('.manifesto-body');
+    const manSpecs = document.querySelector('.spec-table');
+    if (manLabel) manLabel.textContent = c.manifesto?.label || manLabel.textContent;
+    if (manTitle) manTitle.innerHTML = c.manifesto?.titleHtml || manTitle.innerHTML;
+    if (manBody && Array.isArray(c.manifesto?.body)) {
+      manBody.innerHTML = c.manifesto.body.map(p => `<p>${p}</p>`).join('');
+    }
+    if (manSpecs && Array.isArray(c.manifesto?.specs)) {
+      manSpecs.innerHTML = c.manifesto.specs.map(s => `
+        <div class="spec-row">
+          <span class="spec-row-key">${s.key}</span>
+          <span class="spec-row-val">${s.val}</span>
+        </div>`).join('');
+    }
+
+    const aiLabel = document.querySelector('.ai-banner-label');
+    const aiTags = document.querySelector('.ai-tags');
+    if (aiLabel) aiLabel.textContent = c.aiBanner?.label || aiLabel.textContent;
+    if (aiTags && Array.isArray(c.aiBanner?.tags)) {
+      aiTags.innerHTML = c.aiBanner.tags.map(t => `<span class="ai-tag">${t}</span>`).join('');
+    }
+
+    const projLabel = document.querySelector('.projects-section .s-label');
+    const projTitle = document.querySelector('.projects-title');
+    const projCount = document.querySelector('.proj-count');
+    const projList = document.querySelector('.projects-list');
     if (projLabel) projLabel.textContent = c.projects?.label || projLabel.textContent;
     if (projTitle) projTitle.textContent = c.projects?.title || projTitle.textContent;
-    if (projViewAll) projViewAll.textContent = c.projects?.viewAll || projViewAll.textContent;
-
-    const projCards = document.querySelectorAll('.projects-grid .project-card');
-    if (Array.isArray(c.projects?.cards)) {
-      c.projects.cards.forEach((card, i) => {
-        const cardEl = projCards[i];
-        if (!cardEl) return;
-        const img = cardEl.querySelector('img');
-        const tag = cardEl.querySelector('.project-tag');
-        const title = cardEl.querySelector('.project-title');
-        const sub = cardEl.querySelector('.project-sub');
-        if (img && card.image) {
-          img.src = card.image;
-          img.alt = card.alt || img.alt;
-        }
-        if (tag) tag.textContent = card.tag || tag.textContent;
-        if (title) title.textContent = card.title || title.textContent;
-        if (sub) sub.textContent = card.sub || sub.textContent;
-      });
-    }
-
-    const featImg = document.querySelector('.feature-img-wrap img');
-    const featLabel = document.querySelector('.feature .section-label');
-    const featTitle = document.querySelector('.feature-title');
-    const featText = document.querySelector('.feature-text');
-    const featSpecs = document.querySelector('.feature-specs');
-    if (featImg && c.feature?.image) {
-      featImg.src = c.feature.image;
-      featImg.alt = c.feature.imageAlt || featImg.alt;
-    }
-    if (featLabel) featLabel.textContent = c.feature?.label || featLabel.textContent;
-    if (featTitle) featTitle.innerHTML = c.feature?.titleHtml || featTitle.innerHTML;
-    if (featText) featText.innerHTML = c.feature?.textHtml || featText.innerHTML;
-    if (featSpecs && Array.isArray(c.feature?.specs)) {
-      featSpecs.innerHTML = c.feature.specs.map(s => `
-        <div>
-          <div class="spec-label">${s.label}</div>
-          <div class="spec-val">${s.val}</div>
-        </div>`).join('');
-    }
-
-    const procLabel = document.querySelector('#process .section-label');
-    const procTitle = document.querySelector('#process .section-title');
-    const procGrid = document.querySelector('.process-grid');
-    if (procLabel) procLabel.textContent = c.process?.label || procLabel.textContent;
-    if (procTitle) procTitle.innerHTML = c.process?.titleHtml || procTitle.innerHTML;
-    if (procGrid && Array.isArray(c.process?.steps)) {
-      procGrid.innerHTML = c.process.steps.map(step => `
-        <div class="process-step fade-up">
-          <div class="step-num">${step.num}</div>
-          <div class="step-title">${step.title}</div>
-          <p class="step-text">${step.text}</p>
-          <div class="step-tools">
-            ${step.tools.map(t => `<span class="tool-badge">${t}</span>`).join('')}
+    if (projCount) projCount.textContent = c.projects?.count || projCount.textContent;
+    if (projList && Array.isArray(c.projects?.rows)) {
+      projList.innerHTML = c.projects.rows.map(r => `
+        <div class="project-row reveal">
+          <div class="proj-index">${r.index}</div>
+          <div class="proj-main">
+            <div class="proj-name">${r.name}</div>
+            <div class="proj-sub">${r.sub}</div>
+          </div>
+          <div class="proj-img">
+            <img src="${r.image}" alt="${r.alt || ''}">
+          </div>
+          <div class="proj-meta">
+            <span class="proj-tag">${r.tag}</span>
+            <div class="proj-year">${r.year}</div>
+            <span class="proj-arrow">→</span>
           </div>
         </div>`).join('');
     }
 
-    const contactLabel = document.querySelector('#contact .section-label');
-    const contactTitle = document.querySelector('#contact .section-title');
-    const contactSub = document.querySelector('#contact .contact-sub');
-    const contactEmail = document.querySelector('#contact .contact-email');
+    const addTitle = document.querySelector('#additional-work .projects-title');
+    const addDesc = document.querySelector('#additional-work .projects-note');
+    const addGrid = document.querySelector('#additional-work .additional-grid');
+    if (addTitle) addTitle.textContent = c.additionalWork?.title || addTitle.textContent;
+    if (addDesc) addDesc.textContent = c.additionalWork?.desc || addDesc.textContent;
+    if (addGrid && Array.isArray(c.additionalWork?.items)) {
+      addGrid.innerHTML = c.additionalWork.items.map(i => `
+        <div class="additional-card">
+          <div class="additional-thumb"><img src="${i.image}" alt="${i.title}"></div>
+          <div class="additional-meta">
+            <div class="additional-title">${i.title}</div>
+            <div class="additional-tag">${i.tag}</div>
+          </div>
+        </div>`).join('');
+    }
+
+
+    const featImg = document.querySelector('.featured-img img');
+    const featLabel = document.querySelector('.feat-label-img');
+    const featProjectId = document.querySelector('.feat-project-id');
+    const featTitle = document.querySelector('.feat-title');
+    const featBody = document.querySelector('.feat-body');
+    const featSpecs = document.querySelector('.feat-specs-grid');
+    if (featImg && c.featured?.image) { featImg.src = c.featured.image; featImg.alt = c.featured.alt || featImg.alt; }
+    if (featLabel) featLabel.textContent = c.featured?.labelImg || featLabel.textContent;
+    if (featProjectId) featProjectId.textContent = c.featured?.projectId || featProjectId.textContent;
+    if (featTitle) featTitle.innerHTML = c.featured?.titleHtml || featTitle.innerHTML;
+    if (featBody) featBody.innerHTML = c.featured?.bodyHtml || featBody.innerHTML;
+    if (featSpecs && Array.isArray(c.featured?.specs)) {
+      featSpecs.innerHTML = c.featured.specs.map(s => `
+        <div class="feat-spec">
+          <div class="fs-key">${s.key}</div>
+          <div class="fs-val">${s.val}</div>
+        </div>`).join('');
+    }
+
+    const procLabel = document.querySelector('.process-section .s-label');
+    const procTitle = document.querySelector('.process-section .projects-title');
+    const procGrid = document.querySelector('.process-grid');
+    if (procLabel) procLabel.textContent = c.process?.label || procLabel.textContent;
+    if (procTitle) procTitle.textContent = c.process?.title || procTitle.textContent;
+    if (procGrid && Array.isArray(c.process?.cells)) {
+      procGrid.innerHTML = c.process.cells.map(cell => `
+        <div class="process-cell reveal">
+          <div class="pc-num">${cell.num}</div>
+          <div class="pc-title">${cell.title}</div>
+          <p class="pc-body">${cell.body}</p>
+          <div class="tools-list">
+            ${cell.tools.map(t => `<span class="tool-item">${t}</span>`).join('')}
+          </div>
+        </div>`).join('');
+    }
+
+    const contactLabel = document.querySelector('.contact-section .s-label');
+    const contactTitle = document.querySelector('.contact-title');
+    const contactEmail = document.querySelector('.contact-email');
+    const contactInfo = document.querySelector('.contact-info');
     if (contactLabel) contactLabel.textContent = c.contact?.label || contactLabel.textContent;
     if (contactTitle) contactTitle.innerHTML = c.contact?.titleHtml || contactTitle.innerHTML;
-    if (contactSub) contactSub.innerHTML = c.contact?.subHtml || contactSub.innerHTML;
     if (contactEmail && c.contact?.email) {
       contactEmail.textContent = c.contact.email;
       contactEmail.setAttribute('href', `mailto:${c.contact.email}`);
     }
+    if (contactInfo && Array.isArray(c.contact?.info)) {
+      contactInfo.innerHTML = c.contact.info.map(i => `
+        <div class="ci-row">
+          <span class="ci-key">${i.key}</span>
+          <span class="ci-val" ${i.highlight ? 'style="color:var(--acid);"' : ''}>${i.val}</span>
+        </div>`).join('');
+    }
 
-    const footerLogo = document.querySelector('.footer-logo');
+    const footerId = document.querySelector('.footer-id');
     const footerCopy = document.querySelector('.footer-copy');
-    if (footerLogo) footerLogo.textContent = c.footer?.logo || footerLogo.textContent;
+    if (footerId) footerId.innerHTML = c.footer?.idHtml || footerId.innerHTML;
     if (footerCopy) footerCopy.textContent = c.footer?.copy || footerCopy.textContent;
 
     currentContent = c;
     applyEditableBindings();
-    observeFadeUps();
+    observeReveals();
   }
 
   async function loadContent() {
@@ -1196,32 +2235,33 @@
       const res = await fetch('content.json', { cache: 'no-store' });
       if (!res.ok) throw new Error('no content.json');
       const data = await res.json();
-      applyContent(data);
+      defaultContent = data;
+      const draft = loadDraft();
+      if (draft && draft.content) {
+        currentLang = draft.lang || 'es';
+        applyContent(draft.content);
+        if (navLang) navLang.textContent = currentLang === 'es' ? 'EN' : 'ES';
+      } else {
+        applyContent(data);
+        try {
+          const saved = localStorage.getItem('lang');
+          if (saved === 'en') setLang('en');
+        } catch (e) {}
+      }
     } catch (e) {
       applyContent(defaultContent);
     }
   }
 
-  // Nav scroll effect
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  });
-
-  // Intersection Observer for fade-up
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
 
-  function observeFadeUps() {
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  function observeReveals() {
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   }
-  observeFadeUps();
 
   // Admin panel
   const adminPanel = document.getElementById('admin-panel');
@@ -1244,13 +2284,6 @@
   if (new URLSearchParams(window.location.search).has('admin')) {
     showAdmin(true);
   }
-
-  window.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
-      e.preventDefault();
-      showAdmin(!adminPanel.classList.contains('visible'));
-    }
-  });
 
   if (adminApply) {
     adminApply.addEventListener('click', () => {
@@ -1281,15 +2314,33 @@
     adminClose.addEventListener('click', () => showAdmin(false));
   }
 
-  loadContent();
-
   // Edit Mode
   const editToolbar = document.getElementById('edit-toolbar');
   const editToggle = document.getElementById('edit-toggle');
+  const editUndo = document.getElementById('edit-undo');
+  const editRedo = document.getElementById('edit-redo');
+  const editSave = document.getElementById('edit-save');
   const editExport = document.getElementById('edit-export');
   const editReset = document.getElementById('edit-reset');
   const editNote = document.getElementById('edit-note');
   const navEdit = document.getElementById('nav-edit');
+  const navLang = document.getElementById('nav-lang');
+  let currentLang = 'es';
+
+  function getLangContent(lang) {
+    if (lang === 'en' && defaultContent.i18n && defaultContent.i18n.en) {
+      return defaultContent.i18n.en;
+    }
+    return defaultContent;
+  }
+
+  function setLang(lang) {
+    currentLang = lang;
+    applyContent(getLangContent(lang));
+    if (navLang) navLang.textContent = lang === 'es' ? 'EN' : 'ES';
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+    saveDraft();
+  }
 
   function setEditable(el, path, mode, html = false) {
     if (!el) return;
@@ -1299,67 +2350,93 @@
       el.addEventListener('input', () => {
         const val = html ? el.innerHTML : el.textContent;
         setPath(currentContent, path, val);
+        scheduleRecord();
+        saveDraft();
       });
     }
   }
 
   function applyEditableBindings() {
     if (!editMode) return;
-    setEditable(document.querySelector('.hero-tag'), 'hero.tag', true);
-    setEditable(document.querySelector('.hero-name'), 'hero.headlineHtml', true, true);
+    setEditable(document.querySelector('.nav-id'), 'nav.id', true);
+
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach((a, i) => setEditable(a, `nav.links.${i}.label`, true));
+
+    setEditable(document.querySelector('.hero-coords'), 'hero.coords', true);
+    setEditable(document.querySelector('.hero-name'), 'hero.nameHtml', true, true);
     setEditable(document.querySelector('.hero-desc'), 'hero.desc', true);
     setEditable(document.querySelector('.hero-cta'), 'hero.cta', true);
+    setEditable(document.querySelector('.img-caption'), 'hero.imgCaption', true);
+    setEditable(document.querySelector('.img-proj-name'), 'hero.imgProjName', true);
 
-    setEditable(document.querySelector('.philosophy .section-label'), 'philosophy.label', true);
-    setEditable(document.querySelector('.philosophy .section-title'), 'philosophy.titleHtml', true, true);
+    const htbLabels = document.querySelectorAll('.htb-label');
+    const htbVals = document.querySelectorAll('.htb-val');
+    htbLabels.forEach((l, i) => setEditable(l, `hero.titleBlock.${i}.label`, true));
+    htbVals.forEach((v, i) => setEditable(v, `hero.titleBlock.${i}.val`, true, true));
 
-    const philParagraphs = document.querySelectorAll('.philosophy-text p');
-    philParagraphs.forEach((p, i) => {
-      setEditable(p, `philosophy.paragraphs.${i}`, true);
+    const dcLabels = document.querySelectorAll('.dc-label');
+    const dcVals = document.querySelectorAll('.dc-val');
+    dcLabels.forEach((l, i) => setEditable(l, `dataStrip.${i}.label`, true));
+    dcVals.forEach((v, i) => setEditable(v, `dataStrip.${i}.val`, true));
+
+    setEditable(document.querySelector('.manifesto .s-label'), 'manifesto.label', true);
+    setEditable(document.querySelector('.manifesto-title'), 'manifesto.titleHtml', true, true);
+    document.querySelectorAll('.manifesto-body p').forEach((p, i) => setEditable(p, `manifesto.body.${i}`, true, true));
+    document.querySelectorAll('.spec-row').forEach((row, i) => {
+      const k = row.querySelector('.spec-row-key');
+      const v = row.querySelector('.spec-row-val');
+      setEditable(k, `manifesto.specs.${i}.key`, true);
+      setEditable(v, `manifesto.specs.${i}.val`, true);
     });
 
-    const statNums = document.querySelectorAll('.philosophy-stats .stat-num');
-    const statLabels = document.querySelectorAll('.philosophy-stats .stat-label');
-    statNums.forEach((n, i) => setEditable(n, `philosophy.stats.${i}.num`, true));
-    statLabels.forEach((l, i) => setEditable(l, `philosophy.stats.${i}.label`, true));
+    setEditable(document.querySelector('.projects-section .s-label'), 'projects.label', true);
+    setEditable(document.querySelector('.projects-title'), 'projects.title', true);
+    setEditable(document.querySelector('.proj-count'), 'projects.count', true);
 
-    setEditable(document.querySelector('#projects .section-label'), 'projects.label', true);
-    setEditable(document.querySelector('#projects .section-title'), 'projects.title', true);
-    setEditable(document.querySelector('#projects .view-all'), 'projects.viewAll', true);
-
-    const projectCards = document.querySelectorAll('.projects-grid .project-card');
-    projectCards.forEach((card, i) => {
-      setEditable(card.querySelector('.project-tag'), `projects.cards.${i}.tag`, true);
-      setEditable(card.querySelector('.project-title'), `projects.cards.${i}.title`, true);
-      setEditable(card.querySelector('.project-sub'), `projects.cards.${i}.sub`, true);
+    document.querySelectorAll('.project-row').forEach((row, i) => {
+      setEditable(row.querySelector('.proj-index'), `projects.rows.${i}.index`, true);
+      setEditable(row.querySelector('.proj-name'), `projects.rows.${i}.name`, true);
+      setEditable(row.querySelector('.proj-sub'), `projects.rows.${i}.sub`, true);
+      setEditable(row.querySelector('.proj-tag'), `projects.rows.${i}.tag`, true);
+      setEditable(row.querySelector('.proj-year'), `projects.rows.${i}.year`, true);
     });
 
-    setEditable(document.querySelector('.feature .section-label'), 'feature.label', true);
-    setEditable(document.querySelector('.feature-title'), 'feature.titleHtml', true, true);
-    setEditable(document.querySelector('.feature-text'), 'feature.textHtml', true, true);
-
-    const specLabels = document.querySelectorAll('.feature-specs .spec-label');
-    const specVals = document.querySelectorAll('.feature-specs .spec-val');
-    specLabels.forEach((l, i) => setEditable(l, `feature.specs.${i}.label`, true));
-    specVals.forEach((v, i) => setEditable(v, `feature.specs.${i}.val`, true));
-
-    setEditable(document.querySelector('#process .section-label'), 'process.label', true);
-    setEditable(document.querySelector('#process .section-title'), 'process.titleHtml', true, true);
-    const processSteps = document.querySelectorAll('.process-step');
-    processSteps.forEach((step, i) => {
-      setEditable(step.querySelector('.step-num'), `process.steps.${i}.num`, true);
-      setEditable(step.querySelector('.step-title'), `process.steps.${i}.title`, true);
-      setEditable(step.querySelector('.step-text'), `process.steps.${i}.text`, true);
-      const tools = step.querySelectorAll('.tool-badge');
-      tools.forEach((t, j) => setEditable(t, `process.steps.${i}.tools.${j}`, true));
+    setEditable(document.querySelector('#additional-work .projects-title'), 'additionalWork.title', true);
+    setEditable(document.querySelector('#additional-work .projects-note'), 'additionalWork.desc', true);
+    document.querySelectorAll('#additional-work .additional-card').forEach((card, i) => {
+      setEditable(card.querySelector('.additional-title'), `additionalWork.items.${i}.title`, true);
+      setEditable(card.querySelector('.additional-tag'), `additionalWork.items.${i}.tag`, true);
     });
 
-    setEditable(document.querySelector('#contact .section-label'), 'contact.label', true);
-    setEditable(document.querySelector('#contact .section-title'), 'contact.titleHtml', true, true);
-    setEditable(document.querySelector('#contact .contact-sub'), 'contact.subHtml', true, true);
-    setEditable(document.querySelector('#contact .contact-email'), 'contact.email', true);
 
-    setEditable(document.querySelector('.footer-logo'), 'footer.logo', true);
+    setEditable(document.querySelector('.feat-label-img'), 'featured.labelImg', true);
+    setEditable(document.querySelector('.feat-project-id'), 'featured.projectId', true);
+    setEditable(document.querySelector('.feat-title'), 'featured.titleHtml', true, true);
+    setEditable(document.querySelector('.feat-body'), 'featured.bodyHtml', true, true);
+    document.querySelectorAll('.feat-spec').forEach((spec, i) => {
+      setEditable(spec.querySelector('.fs-key'), `featured.specs.${i}.key`, true);
+      setEditable(spec.querySelector('.fs-val'), `featured.specs.${i}.val`, true);
+    });
+
+    setEditable(document.querySelector('.process-section .s-label'), 'process.label', true);
+    setEditable(document.querySelector('.process-section .projects-title'), 'process.title', true);
+    document.querySelectorAll('.process-cell').forEach((cell, i) => {
+      setEditable(cell.querySelector('.pc-num'), `process.cells.${i}.num`, true);
+      setEditable(cell.querySelector('.pc-title'), `process.cells.${i}.title`, true);
+      setEditable(cell.querySelector('.pc-body'), `process.cells.${i}.body`, true);
+      cell.querySelectorAll('.tool-item').forEach((t, j) => setEditable(t, `process.cells.${i}.tools.${j}`, true));
+    });
+
+    setEditable(document.querySelector('.contact-section .s-label'), 'contact.label', true);
+    setEditable(document.querySelector('.contact-title'), 'contact.titleHtml', true, true);
+    setEditable(document.querySelector('.contact-email'), 'contact.email', true);
+    document.querySelectorAll('.ci-row').forEach((row, i) => {
+      setEditable(row.querySelector('.ci-key'), `contact.info.${i}.key`, true);
+      setEditable(row.querySelector('.ci-val'), `contact.info.${i}.val`, true, true);
+    });
+
+    setEditable(document.querySelector('.footer-id'), 'footer.idHtml', true, true);
     setEditable(document.querySelector('.footer-copy'), 'footer.copy', true);
   }
 
@@ -1387,6 +2464,8 @@
       if (url) {
         img.src = url;
         setPath(currentContent, path, url);
+        scheduleRecord();
+        saveDraft();
       }
     });
     btnFile.addEventListener('click', () => input.click());
@@ -1397,6 +2476,8 @@
       reader.onload = () => {
         img.src = reader.result;
         setPath(currentContent, path, reader.result);
+        scheduleRecord();
+        saveDraft();
       };
       reader.readAsDataURL(file);
     });
@@ -1408,11 +2489,11 @@
   }
 
   function enableImageEditors() {
-    addImageEditor('.hero-img', 'hero.image');
-    addImageEditor('.projects-grid .project-card:nth-child(1) img', 'projects.cards.0.image');
-    addImageEditor('.projects-grid .project-card:nth-child(2) img', 'projects.cards.1.image');
-    addImageEditor('.projects-grid .project-card:nth-child(3) img', 'projects.cards.2.image');
-    addImageEditor('.feature-img-wrap img', 'feature.image');
+    addImageEditor('.hero-right img', 'hero.image');
+    document.querySelectorAll('.project-row .proj-img img').forEach((img, i) => {
+      addImageEditor(`.projects-list .project-row:nth-child(${i + 1}) .proj-img img`, `projects.rows.${i}.image`);
+    });
+    addImageEditor('.featured-img img', 'featured.image');
   }
 
   function setEditMode(on) {
@@ -1421,6 +2502,9 @@
     editToolbar.classList.toggle('visible', on);
     editNote.classList.toggle('visible', on);
     if (on) {
+      historyStack = [];
+      redoStack = [];
+      pushHistory();
       applyEditableBindings();
       enableImageEditors();
     } else {
@@ -1448,6 +2532,45 @@
   if (navEdit) {
     navEdit.addEventListener('click', () => setEditMode(!editMode));
   }
+  if (editUndo) {
+    editUndo.addEventListener('click', () => {
+      if (historyStack.length <= 1) return;
+      const current = historyStack.pop();
+      redoStack.push(current);
+      const prev = historyStack[historyStack.length - 1];
+      applyContent(JSON.parse(prev));
+      saveDraft();
+    });
+  }
+  if (editRedo) {
+    editRedo.addEventListener('click', () => {
+      if (!redoStack.length) return;
+      const next = redoStack.pop();
+      historyStack.push(next);
+      applyContent(JSON.parse(next));
+      saveDraft();
+    });
+  }
+  if (editSave) {
+    editSave.addEventListener('click', () => {
+      saveDraft();
+      const script = document.getElementById('content-default');
+      if (script) script.textContent = JSON.stringify(currentContent, null, 2);
+      defaultContent = cloneContent(currentContent);
+      const blob = new Blob([JSON.stringify(currentContent, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'content.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(a.href);
+      if (adminJson) refreshAdminJson();
+    });
+  }
+  if (navLang) {
+    navLang.addEventListener('click', () => setLang(currentLang === 'es' ? 'en' : 'es'));
+  }
   if (editExport) {
     editExport.addEventListener('click', () => {
       const blob = new Blob([JSON.stringify(currentContent, null, 2)], { type: 'application/json' });
@@ -1465,6 +2588,9 @@
       applyContent(JSON.parse(document.getElementById('content-default').textContent));
     });
   }
+
+  loadContent();
+  observeReveals();
 </script>
 </body>
 </html>
