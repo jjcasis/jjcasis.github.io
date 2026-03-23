@@ -567,6 +567,66 @@
     color: var(--muted);
   }
 
+  /* EDIT MODE */
+  .edit-toolbar {
+    position: fixed;
+    left: 1.5rem;
+    bottom: 1.5rem;
+    display: none;
+    gap: 0.6rem;
+    z-index: 999;
+  }
+  .edit-toolbar.visible { display: flex; }
+  .edit-btn {
+    border: 1px solid var(--cream-dark);
+    background: var(--white);
+    color: var(--black);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  }
+  .edit-btn:hover { border-color: var(--bronze); color: var(--bronze); }
+  body.edit-mode [data-editable="true"] {
+    outline: 1px dashed rgba(139,112,64,0.6);
+    outline-offset: 4px;
+    cursor: text;
+  }
+  .img-edit-wrap {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: none;
+    gap: 0.4rem;
+    z-index: 5;
+  }
+  body.edit-mode .img-edit-wrap { display: flex; }
+  .img-edit-btn {
+    background: rgba(244,239,228,0.95);
+    border: 1px solid var(--cream-dark);
+    font-size: 0.65rem;
+    padding: 0.35rem 0.5rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .img-edit-btn:hover { border-color: var(--bronze); color: var(--bronze); }
+  .edit-note {
+    position: fixed;
+    left: 1.5rem;
+    bottom: 4.2rem;
+    background: var(--white);
+    border: 1px solid var(--cream-dark);
+    padding: 0.5rem 0.7rem;
+    font-size: 0.68rem;
+    color: var(--muted);
+    display: none;
+    max-width: 320px;
+  }
+  .edit-note.visible { display: block; }
+
   @media (max-width: 900px) {
     nav { padding: 1.2rem 2rem; }
     section { padding: 4rem 2rem; }
@@ -583,6 +643,8 @@
     .ai-strip { padding: 1rem 2rem; }
     footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
     .admin-panel { right: 1rem; left: 1rem; width: auto; }
+    .edit-toolbar { left: 1rem; right: 1rem; }
+    .edit-note { left: 1rem; right: 1rem; max-width: none; }
   }
 </style>
 </head>
@@ -809,6 +871,14 @@
   <div class="footer-copy">© 2026 · Panamá</div>
 </footer>
 
+<!-- EDIT MODE TOOLBAR -->
+<div id="edit-toolbar" class="edit-toolbar" aria-hidden="true">
+  <button id="edit-toggle" class="edit-btn" type="button">Edit Mode</button>
+  <button id="edit-export" class="edit-btn" type="button">Export JSON</button>
+  <button id="edit-reset" class="edit-btn" type="button">Reset</button>
+</div>
+<div id="edit-note" class="edit-note">Tip: En modo edición puedes hacer clic en los textos para editarlos y usar “Cambiar” sobre las imágenes.</div>
+
 <!-- ADMIN PANEL -->
 <div id="admin-panel" class="admin-panel" aria-hidden="true">
   <div class="admin-header">Editor Rápido</div>
@@ -953,6 +1023,21 @@
 <script>
   const defaultContent = JSON.parse(document.getElementById('content-default').textContent);
   let currentContent = defaultContent;
+  let editMode = false;
+
+  function getPath(obj, path) {
+    return path.split('.').reduce((o, k) => (o ? o[k] : undefined), obj);
+  }
+  function setPath(obj, path, value) {
+    const keys = path.split('.');
+    const last = keys.pop();
+    let o = obj;
+    keys.forEach(k => {
+      if (!(k in o)) o[k] = {};
+      o = o[k];
+    });
+    o[last] = value;
+  }
 
   function applyContent(c) {
     if (!c) return;
@@ -1090,6 +1175,8 @@
     if (footerCopy) footerCopy.textContent = c.footer?.copy || footerCopy.textContent;
 
     currentContent = c;
+    applyEditableBindings();
+    observeFadeUps();
   }
 
   async function loadContent() {
@@ -1119,7 +1206,10 @@
     });
   }, { threshold: 0.12 });
 
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  function observeFadeUps() {
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  }
+  observeFadeUps();
 
   // Admin panel
   const adminPanel = document.getElementById('admin-panel');
@@ -1180,6 +1270,185 @@
   }
 
   loadContent();
+
+  // Edit Mode
+  const editToolbar = document.getElementById('edit-toolbar');
+  const editToggle = document.getElementById('edit-toggle');
+  const editExport = document.getElementById('edit-export');
+  const editReset = document.getElementById('edit-reset');
+  const editNote = document.getElementById('edit-note');
+
+  function setEditable(el, path, mode, html = false) {
+    if (!el) return;
+    el.dataset.editable = mode ? 'true' : 'false';
+    el.contentEditable = mode ? 'true' : 'false';
+    if (mode) {
+      el.addEventListener('input', () => {
+        const val = html ? el.innerHTML : el.textContent;
+        setPath(currentContent, path, val);
+      });
+    }
+  }
+
+  function applyEditableBindings() {
+    if (!editMode) return;
+    setEditable(document.querySelector('.hero-tag'), 'hero.tag', true);
+    setEditable(document.querySelector('.hero-name'), 'hero.headlineHtml', true, true);
+    setEditable(document.querySelector('.hero-desc'), 'hero.desc', true);
+    setEditable(document.querySelector('.hero-cta'), 'hero.cta', true);
+
+    setEditable(document.querySelector('.philosophy .section-label'), 'philosophy.label', true);
+    setEditable(document.querySelector('.philosophy .section-title'), 'philosophy.titleHtml', true, true);
+
+    const philParagraphs = document.querySelectorAll('.philosophy-text p');
+    philParagraphs.forEach((p, i) => {
+      setEditable(p, `philosophy.paragraphs.${i}`, true);
+    });
+
+    const statNums = document.querySelectorAll('.philosophy-stats .stat-num');
+    const statLabels = document.querySelectorAll('.philosophy-stats .stat-label');
+    statNums.forEach((n, i) => setEditable(n, `philosophy.stats.${i}.num`, true));
+    statLabels.forEach((l, i) => setEditable(l, `philosophy.stats.${i}.label`, true));
+
+    setEditable(document.querySelector('#projects .section-label'), 'projects.label', true);
+    setEditable(document.querySelector('#projects .section-title'), 'projects.title', true);
+    setEditable(document.querySelector('#projects .view-all'), 'projects.viewAll', true);
+
+    const projectCards = document.querySelectorAll('.projects-grid .project-card');
+    projectCards.forEach((card, i) => {
+      setEditable(card.querySelector('.project-tag'), `projects.cards.${i}.tag`, true);
+      setEditable(card.querySelector('.project-title'), `projects.cards.${i}.title`, true);
+      setEditable(card.querySelector('.project-sub'), `projects.cards.${i}.sub`, true);
+    });
+
+    setEditable(document.querySelector('.feature .section-label'), 'feature.label', true);
+    setEditable(document.querySelector('.feature-title'), 'feature.titleHtml', true, true);
+    setEditable(document.querySelector('.feature-text'), 'feature.textHtml', true, true);
+
+    const specLabels = document.querySelectorAll('.feature-specs .spec-label');
+    const specVals = document.querySelectorAll('.feature-specs .spec-val');
+    specLabels.forEach((l, i) => setEditable(l, `feature.specs.${i}.label`, true));
+    specVals.forEach((v, i) => setEditable(v, `feature.specs.${i}.val`, true));
+
+    setEditable(document.querySelector('#process .section-label'), 'process.label', true);
+    setEditable(document.querySelector('#process .section-title'), 'process.titleHtml', true, true);
+    const processSteps = document.querySelectorAll('.process-step');
+    processSteps.forEach((step, i) => {
+      setEditable(step.querySelector('.step-num'), `process.steps.${i}.num`, true);
+      setEditable(step.querySelector('.step-title'), `process.steps.${i}.title`, true);
+      setEditable(step.querySelector('.step-text'), `process.steps.${i}.text`, true);
+      const tools = step.querySelectorAll('.tool-badge');
+      tools.forEach((t, j) => setEditable(t, `process.steps.${i}.tools.${j}`, true));
+    });
+
+    setEditable(document.querySelector('#contact .section-label'), 'contact.label', true);
+    setEditable(document.querySelector('#contact .section-title'), 'contact.titleHtml', true, true);
+    setEditable(document.querySelector('#contact .contact-sub'), 'contact.subHtml', true, true);
+    setEditable(document.querySelector('#contact .contact-email'), 'contact.email', true);
+
+    setEditable(document.querySelector('.footer-logo'), 'footer.logo', true);
+    setEditable(document.querySelector('.footer-copy'), 'footer.copy', true);
+  }
+
+  function addImageEditor(imgSelector, path) {
+    const img = document.querySelector(imgSelector);
+    if (!img || img.dataset.imgEditor) return;
+    img.dataset.imgEditor = 'true';
+    const wrap = document.createElement('div');
+    wrap.className = 'img-edit-wrap';
+    const btnUrl = document.createElement('button');
+    btnUrl.className = 'img-edit-btn';
+    btnUrl.type = 'button';
+    btnUrl.textContent = 'URL';
+    const btnFile = document.createElement('button');
+    btnFile.className = 'img-edit-btn';
+    btnFile.type = 'button';
+    btnFile.textContent = 'Cambiar';
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.style.display = 'none';
+
+    btnUrl.addEventListener('click', () => {
+      const url = prompt('URL de imagen:');
+      if (url) {
+        img.src = url;
+        setPath(currentContent, path, url);
+      }
+    });
+    btnFile.addEventListener('click', () => input.click());
+    input.addEventListener('change', () => {
+      const file = input.files && input.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        img.src = reader.result;
+        setPath(currentContent, path, reader.result);
+      };
+      reader.readAsDataURL(file);
+    });
+    wrap.appendChild(btnUrl);
+    wrap.appendChild(btnFile);
+    img.parentElement.style.position = 'relative';
+    img.parentElement.appendChild(wrap);
+    img.parentElement.appendChild(input);
+  }
+
+  function enableImageEditors() {
+    addImageEditor('.hero-img', 'hero.image');
+    addImageEditor('.projects-grid .project-card:nth-child(1) img', 'projects.cards.0.image');
+    addImageEditor('.projects-grid .project-card:nth-child(2) img', 'projects.cards.1.image');
+    addImageEditor('.projects-grid .project-card:nth-child(3) img', 'projects.cards.2.image');
+    addImageEditor('.feature-img-wrap img', 'feature.image');
+  }
+
+  function setEditMode(on) {
+    editMode = on;
+    document.body.classList.toggle('edit-mode', on);
+    editToolbar.classList.toggle('visible', on);
+    editNote.classList.toggle('visible', on);
+    if (on) {
+      applyEditableBindings();
+      enableImageEditors();
+    } else {
+      document.querySelectorAll('[data-editable="true"]').forEach(el => {
+        el.contentEditable = 'false';
+        el.dataset.editable = 'false';
+      });
+    }
+  }
+
+  if (new URLSearchParams(window.location.search).has('edit')) {
+    setEditMode(true);
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'e') {
+      e.preventDefault();
+      setEditMode(!editMode);
+    }
+  });
+
+  if (editToggle) {
+    editToggle.addEventListener('click', () => setEditMode(!editMode));
+  }
+  if (editExport) {
+    editExport.addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(currentContent, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'content.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(a.href);
+    });
+  }
+  if (editReset) {
+    editReset.addEventListener('click', () => {
+      applyContent(JSON.parse(document.getElementById('content-default').textContent));
+    });
+  }
 </script>
 </body>
 </html>
