@@ -966,14 +966,23 @@ body.edit-mode .img-edit-wrap { display: flex; }
 
 @media (max-width: 900px) {
   nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1rem; }
+  .nav-status { display: none; }
   .hero { grid-template-columns: 1fr; }
   .hero-left { padding: 7rem 1.5rem 3rem; border-right: none; }
   .hero-right { height: 50vh; }
+  .hero-name { font-size: clamp(3.8rem, 14vw, 6rem); }
+  .hero-title-block { gap: 1.5rem; }
+  .hero-desc { max-width: none; }
   .data-strip { grid-template-columns: repeat(3, 1fr); }
+  .data-cell { padding: 1rem 1.2rem; }
   .manifesto { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
   .projects-section { padding: 3rem 1.5rem; }
-  .project-row { grid-template-columns: 50px 1fr 0 80px; }
-  .proj-img { display: none; }
+  .project-row { grid-template-columns: 50px 1fr 140px 70px; }
+  .proj-img { display: block; }
+  .proj-img img { height: 100%; }
+  .proj-main { padding: 1.5rem; }
+  .proj-meta { padding: 1.2rem 0.8rem; }
   .additional-grid { grid-template-columns: repeat(2, 1fr); }
   .featured-section { grid-template-columns: 1fr; }
   .featured-img { height: 40vh; border-right: none; border-bottom: 1px solid var(--graphite); }
@@ -985,6 +994,25 @@ body.edit-mode .img-edit-wrap { display: flex; }
   .edit-toolbar { left: 1rem; right: 1rem; }
   .edit-note { left: 1rem; right: 1rem; max-width: none; }
   .admin-panel { right: 1rem; left: 1rem; width: auto; }
+}
+
+@media (max-width: 600px) {
+  nav { padding: 0.8rem 1rem; }
+  .nav-links { gap: 0.6rem; }
+  .nav-links a, .nav-edit { font-size: 0.55rem; }
+  .hero-left { padding: 6.5rem 1rem 2.5rem; }
+  .hero-right { height: 40vh; }
+  .data-strip { grid-template-columns: repeat(2, 1fr); }
+  .data-cell { padding: 0.9rem 1rem; }
+  .projects-header { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+  .project-row { grid-template-columns: 40px 1fr 120px 60px; }
+  .proj-index { padding: 1.2rem 0.6rem; }
+  .proj-main { padding: 1.2rem; }
+  .proj-name { font-size: 1.6rem; }
+  .proj-sub { font-size: 0.6rem; }
+  .additional-grid { grid-template-columns: 1fr; }
+  .additional-thumb img { height: 160px; }
+  .featured-img { height: 36vh; }
 }
 </style>
 </head>
