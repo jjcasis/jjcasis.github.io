@@ -56,22 +56,22 @@
     },
     {
       "label": "Licencia",
-      "val": "2009-001-070LIC",
+      "val": "2009-001-070 LIC",
       "unit": "LIC"
     },
     {
       "label": "diseno Y DESARROLLO conceptual ",
-      "val": "Sí NIVEL: AVANZADO",
+      "val": "Sí  NIVEL: AVANZADO",
       "unit": "LANG"
     },
     {
       "label": "DISENO Y dESARROLLO DE PLANOS ",
-      "val": "Sí NIVEL: AVANZADO",
+      "val": "Sí  NIVEL: AVANZADO",
       "unit": "PGR"
     },
     {
       "label": "INSPECCION TECNICA DE Obra ",
-      "val": "Sí NIVEL: AVANZADO",
+      "val": "Sí  NIVEL: AVANZADO",
       "unit": ""
     }
   ],
@@ -162,7 +162,7 @@
     "alt": "Hotel Contenedor Urbano",
     "labelImg": "// ESTUDIO DESTACADO",
     "projectId": "PROJECT_ID: HCU-2024-01 // MIXED USE",
-    "titleHtml": "HOTEL<br>CONTENEDOR<br><span>URBANO</span>",
+    "titleHtml": "THE DOCK<br><span>CONTENEDOR URBANO</span>",
     "bodyHtml": "Hotel urbano vertical con base gastronómica y rooftop activo — estructura prefabricada a partir de módulos de contenedor y sistema metálico expuesto.<br><br>Concebido como un sistema modular, donde contenedores reciclados se convierten en unidades habitables conectadas por una estructura metálica visible. La base activa la calle con un gastro/bar abierto, mientras los niveles superiores generan una composición volumétrica dinámica que favorece ventilación, vistas y expansión exterior. El rooftop funciona como punto de encuentro elevado, extendiendo la experiencia del edificio hacia la ciudad.<br><br>Arquitectura concebida para construir rápido, adaptarse fácil y activarse inmediatamente dentro del tejido urbano.<br><br>Desarrollado bajo criterios de viabilidad constructiva, coordinación técnica y adaptación a condiciones reales del sitio.",
     "specs": [
       {
@@ -267,26 +267,26 @@
   },
   "additionalWork": {
     "title": "Exploraciones / Estudios",
-    "desc": "Serie de estudios conceptuales y exploraciones formales desarrolladas como parte de investigación proyectual y optimización de procesos de diseño.",
+    "desc": "Serie de estudios conceptuales y exploraciones formales desarrolladas como parte de investigación proyectual y optimización de procesos de diseño IA.",
     "items": [
       {
-        "title": "Estructura Modular Urbana",
-        "tag": "Urban infill",
+        "title": "CIELO RETREAT",
+        "tag": "ECO WELLNESS LODGE",
         "image": "assets/additionalwork_items_0_image.png"
       },
       {
-        "title": "Sistema Contenedor Mixto",
-        "tag": "Mixed-use",
+        "title": "MALIBU LODGE",
+        "tag": "SINGLE FAMILY BEACH HUT",
         "image": "assets/additionalwork_items_1_image.png"
       },
       {
-        "title": "Volumen Climático Tropical",
-        "tag": "Clima + Ventilación",
+        "title": "BRISA TWINS",
+        "tag": "BEACH FRONT DUPLEX",
         "image": "assets/additionalwork_items_2_image.png"
       },
       {
-        "title": "Residencial Compacto",
-        "tag": "Prefabricación",
+        "title": "LA CHOZA",
+        "tag": "MOUNTAIN HOUSE",
         "image": "assets/additionalwork_items_3_image.png"
       }
     ]
@@ -604,8 +604,8 @@
         ]
       },
       "operational": {
-        "label": "Capacity",
-        "titleHtml": "OPERATIONAL<br>CAPACITY<br><span class=\"highlight\">REAL</span>",
+        "label": "HARD + SOFT SKILLS",
+        "titleHtml": "OPERATIONAL<br><span class=\"highlight\">CAPACITY</span>",
         "blocks": [
           {
             "title": "Integrated Architecture",
@@ -658,8 +658,8 @@
     }
   },
   "operational": {
-    "label": "Capacidad",
-    "titleHtml": "CAPACIDAD<br>OPERATIVA<br><span class=\"highlight\">REAL</span>",
+    "label": "HARD + SOFT SKILLS",
+    "titleHtml": "CAPACIDAD<br><span class=\"highlight\">OPERATIVA</span>",
     "blocks": [
       {
         "title": "Arquitectura Integral",
