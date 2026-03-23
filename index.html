@@ -498,6 +498,54 @@ section { position: relative; z-index: 1; }
   align-self: flex-end;
 }
 .project-row:hover .proj-arrow { color: var(--acid); transform: translateX(4px); }
+.proj-toggle {
+  display: none;
+  margin-top: 0.6rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--acid);
+  border: 1px solid rgba(200,255,0,0.25);
+  padding: 0.25rem 0.5rem;
+  background: transparent;
+  align-self: flex-start;
+  cursor: pointer;
+}
+.proj-toggle:hover { border-color: var(--acid); }
+.proj-sub {
+  transition: max-height 0.25s ease, opacity 0.25s ease;
+}
+
+/* IMAGE MODAL */
+.img-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(8,8,7,0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.img-modal.visible { display: flex; }
+.img-modal img {
+  max-width: 92vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border: 1px solid var(--graphite);
+}
+.img-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--acid);
+  border: 1px solid var(--graphite);
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
+  background: var(--void);
+}
 
 /* ADDITIONAL WORK */
 .projects-note {
@@ -978,11 +1026,14 @@ body.edit-mode .img-edit-wrap { display: flex; }
   .data-cell { padding: 1rem 1.2rem; }
   .manifesto { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 1.5rem; }
   .projects-section { padding: 3rem 1.5rem; }
-  .project-row { grid-template-columns: 50px 1fr 140px 70px; }
+  .project-row { grid-template-columns: 50px 1fr 180px 70px; }
   .proj-img { display: block; }
   .proj-img img { height: 100%; }
   .proj-main { padding: 1.5rem; }
   .proj-meta { padding: 1.2rem 0.8rem; }
+  .proj-sub { max-height: 0; opacity: 0; overflow: hidden; }
+  .project-row.open .proj-sub { max-height: 200px; opacity: 1; }
+  .proj-toggle { display: inline-flex; }
   .additional-grid { grid-template-columns: repeat(2, 1fr); }
   .featured-section { grid-template-columns: 1fr; }
   .featured-img { height: 40vh; border-right: none; border-bottom: 1px solid var(--graphite); }
@@ -1005,11 +1056,12 @@ body.edit-mode .img-edit-wrap { display: flex; }
   .data-strip { grid-template-columns: repeat(2, 1fr); }
   .data-cell { padding: 0.9rem 1rem; }
   .projects-header { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
-  .project-row { grid-template-columns: 40px 1fr 120px 60px; }
+  .project-row { grid-template-columns: 36px 1fr 200px 56px; }
   .proj-index { padding: 1.2rem 0.6rem; }
   .proj-main { padding: 1.2rem; }
   .proj-name { font-size: 1.6rem; }
   .proj-sub { font-size: 0.6rem; }
+  .proj-img { min-height: 180px; }
   .additional-grid { grid-template-columns: 1fr; }
   .additional-thumb img { height: 160px; }
   .featured-img { height: 36vh; }
@@ -1176,6 +1228,7 @@ body.edit-mode .img-edit-wrap { display: flex; }
       <div class="proj-main">
         <div class="proj-name">Casa Yara</div>
         <div class="proj-sub">Residencia Modular — Costa Pacífica // 420 m² // CLT + Concreto</div>
+        <button class="proj-toggle" type="button">Detalles</button>
       </div>
       <div class="proj-img">
         <img src="assets/p1.jpg"
@@ -1194,6 +1247,7 @@ body.edit-mode .img-edit-wrap { display: flex; }
       <div class="proj-main">
         <div class="proj-name">Refugio Palmar</div>
         <div class="proj-sub">Resort Boutique — 8 Villas // Costa Rica // Off-grid Solar</div>
+        <button class="proj-toggle" type="button">Detalles</button>
       </div>
       <div class="proj-img">
         <img src="assets/p2.jpg"
@@ -1212,6 +1266,7 @@ body.edit-mode .img-edit-wrap { display: flex; }
       <div class="proj-main">
         <div class="proj-name">Residencia Canopea</div>
         <div class="proj-sub">Penthouse Urbano — Ciudad de Panamá // Sky Garden</div>
+        <button class="proj-toggle" type="button">Detalles</button>
       </div>
       <div class="proj-img">
         <img src="assets/p3.jpg"
@@ -1392,6 +1447,12 @@ body.edit-mode .img-edit-wrap { display: flex; }
   <div class="footer-id">JJC.AI <span>// ARQUITECTO // PANAMÁ</span></div>
   <div class="footer-copy">© 2026 — TODOS LOS DERECHOS RESERVADOS</div>
 </footer>
+
+<!-- IMAGE MODAL -->
+<div id="img-modal" class="img-modal" aria-hidden="true">
+  <button id="img-modal-close" class="img-modal-close" type="button">Cerrar</button>
+  <img id="img-modal-view" src="" alt="Imagen ampliada">
+</div>
 
 <!-- EDIT MODE TOOLBAR -->
 <div id="edit-toolbar" class="edit-toolbar" aria-hidden="true">
@@ -2174,6 +2235,7 @@ body.edit-mode .img-edit-wrap { display: flex; }
           <div class="proj-main">
             <div class="proj-name">${r.name}</div>
             <div class="proj-sub">${r.sub}</div>
+            <button class="proj-toggle" type="button">Detalles</button>
           </div>
           <div class="proj-img">
             <img src="${withCacheBust(r.image)}" alt="${r.alt || ''}">
@@ -2265,6 +2327,8 @@ body.edit-mode .img-edit-wrap { display: flex; }
     currentContent = c;
     applyEditableBindings();
     observeReveals();
+    bindProjectInteractions();
+    bindImageModal();
   }
 
   async function loadContent() {
@@ -2364,6 +2428,9 @@ body.edit-mode .img-edit-wrap { display: flex; }
   const editNote = document.getElementById('edit-note');
   const navEdit = document.getElementById('nav-edit');
   const navLang = document.getElementById('nav-lang');
+  const imgModal = document.getElementById('img-modal');
+  const imgModalView = document.getElementById('img-modal-view');
+  const imgModalClose = document.getElementById('img-modal-close');
   let currentLang = 'es';
 
   function getLangContent(lang) {
@@ -2533,6 +2600,49 @@ body.edit-mode .img-edit-wrap { display: flex; }
       addImageEditor(`.projects-list .project-row:nth-child(${i + 1}) .proj-img img`, `projects.rows.${i}.image`);
     });
     addImageEditor('.featured-img img', 'featured.image');
+  }
+
+  function bindProjectInteractions() {
+    const labels = currentLang === 'en'
+      ? { open: 'Details', close: 'Close' }
+      : { open: 'Detalles', close: 'Cerrar' };
+    document.querySelectorAll('.project-row').forEach(row => {
+      const toggle = row.querySelector('.proj-toggle');
+      if (toggle) {
+        toggle.textContent = row.classList.contains('open') ? labels.close : labels.open;
+        toggle.addEventListener('click', () => {
+          row.classList.toggle('open');
+          toggle.textContent = row.classList.contains('open') ? labels.close : labels.open;
+        });
+      }
+    });
+  }
+
+  function bindImageModal() {
+    document.querySelectorAll('.proj-img img, .featured-img img, .hero-right img').forEach(img => {
+      img.addEventListener('click', () => {
+        if (!imgModal || !imgModalView) return;
+        imgModalView.src = img.src;
+        imgModal.classList.add('visible');
+        imgModal.setAttribute('aria-hidden', 'false');
+      });
+    });
+    if (imgModalClose) {
+      imgModalClose.addEventListener('click', () => {
+        imgModal.classList.remove('visible');
+        imgModal.setAttribute('aria-hidden', 'true');
+        imgModalView.src = '';
+      });
+    }
+    if (imgModal) {
+      imgModal.addEventListener('click', (e) => {
+        if (e.target === imgModal) {
+          imgModal.classList.remove('visible');
+          imgModal.setAttribute('aria-hidden', 'true');
+          imgModalView.src = '';
+        }
+      });
+    }
   }
 
   function setEditMode(on) {
