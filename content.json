@@ -25,7 +25,7 @@
     "status": "Disponible — Panamá"
   },
   "hero": {
-    "coords": "08°59'N 79°31'W // ARQ. DE DISEÑO CONCEPTUAL",
+    "coords": "08°59'N 79°31'W // ARQUITECTO. ",
     "nameHtml": "Jj<span style=\"color: rgb(200, 255, 0); font-size: clamp(5rem, 9vw, 9rem); letter-spacing: 0.02em; font-weight: 300;\">-</span>CASIS",
     "titleBlock": [
       {
@@ -56,22 +56,22 @@
     },
     {
       "label": "Licencia",
-      "val": "2009-001-070 LIC",
+      "val": "2009-001-070 JTIA",
       "unit": "LIC"
     },
     {
       "label": "diseno Y DESARROLLO conceptual ",
-      "val": "Sí  NIVEL: AVANZADO",
+      "val": "Sí NIVEL: AVANZADO",
       "unit": "LANG"
     },
     {
       "label": "DISENO Y dESARROLLO DE PLANOS ",
-      "val": "Sí  NIVEL: AVANZADO",
+      "val": "Sí NIVEL: AVANZADO",
       "unit": "PGR"
     },
     {
       "label": "INSPECCION TECNICA DE Obra ",
-      "val": "Sí  NIVEL: AVANZADO",
+      "val": "Sí NIVEL: AVANZADO",
       "unit": ""
     }
   ],
@@ -162,8 +162,8 @@
     "alt": "Hotel Contenedor Urbano",
     "labelImg": "// ESTUDIO DESTACADO",
     "projectId": "PROJECT_ID: HCU-2024-01 // MIXED USE",
-    "titleHtml": "THE DOCK<br><span>CONTENEDOR URBANO</span>",
-    "bodyHtml": "Hotel urbano vertical con base gastronómica y rooftop activo — estructura prefabricada a partir de módulos de contenedor y sistema metálico expuesto.<br><br>Concebido como un sistema modular, donde contenedores reciclados se convierten en unidades habitables conectadas por una estructura metálica visible. La base activa la calle con un gastro/bar abierto, mientras los niveles superiores generan una composición volumétrica dinámica que favorece ventilación, vistas y expansión exterior. El rooftop funciona como punto de encuentro elevado, extendiendo la experiencia del edificio hacia la ciudad.<br><br>Arquitectura concebida para construir rápido, adaptarse fácil y activarse inmediatamente dentro del tejido urbano.<br><br>Desarrollado bajo criterios de viabilidad constructiva, coordinación técnica y adaptación a condiciones reales del sitio.",
+    "titleHtml": "HOTEL<br>CONTENEDOR<br><span>URBANO</span>",
+    "bodyHtml": "Hotel urbano inteligente con sistema \"Self Check-in\" con gastrobar / rooftop — estructura prefabricada a partir de módulos de contenedor y sistema metálico expuesto.<br><br>Concebido como un sistema modular, donde contenedores reciclados se convierten en unidades habitables conectadas por una estructura metálica visible. La base activa la calle con un jardin&nbsp; abierto,&nbsp; que articula el espacio, mientras los niveles superiores generan una composición volumétrica dinámica que favorece ventilación, vistas y expansión exterior. El rooftop funciona como punto de encuentro elevado, extendiendo la experiencia del edificio hacia la ciudad.<br><br>Arquitectura concebida para construir rápido, adaptarse fácil y activarse inmediatamente dentro del tejido urbano.<br><br>Desarrollado bajo criterios de viabilidad constructiva, coordinación técnica y adaptación a condiciones reales del sitio.",
     "specs": [
       {
         "key": "Programa",
@@ -267,26 +267,26 @@
   },
   "additionalWork": {
     "title": "Exploraciones / Estudios",
-    "desc": "Serie de estudios conceptuales y exploraciones formales desarrolladas como parte de investigación proyectual y optimización de procesos de diseño IA.",
+    "desc": "Serie de estudios conceptuales y exploraciones formales desarrolladas como parte de investigación proyectual y optimización de procesos de diseño.",
     "items": [
       {
-        "title": "CIELO RETREAT",
-        "tag": "ECO WELLNESS LODGE",
+        "title": "Estructura Modular Urbana",
+        "tag": "Urban infill",
         "image": "assets/additionalwork_items_0_image.png"
       },
       {
-        "title": "MALIBU LODGE",
-        "tag": "SINGLE FAMILY BEACH HUT",
+        "title": "Sistema Contenedor Mixto",
+        "tag": "Mixed-use",
         "image": "assets/additionalwork_items_1_image.png"
       },
       {
-        "title": "BRISA TWINS",
-        "tag": "BEACH FRONT DUPLEX",
+        "title": "Volumen Climático Tropical",
+        "tag": "Clima + Ventilación",
         "image": "assets/additionalwork_items_2_image.png"
       },
       {
-        "title": "LA CHOZA",
-        "tag": "MOUNTAIN HOUSE",
+        "title": "Residencial Compacto",
+        "tag": "Prefabricación",
         "image": "assets/additionalwork_items_3_image.png"
       }
     ]
@@ -604,8 +604,8 @@
         ]
       },
       "operational": {
-        "label": "HARD + SOFT SKILLS",
-        "titleHtml": "OPERATIONAL<br><span class=\"highlight\">CAPACITY</span>",
+        "label": "Capacity",
+        "titleHtml": "OPERATIONAL<br>CAPACITY<br><span class=\"highlight\">REAL</span>",
         "blocks": [
           {
             "title": "Integrated Architecture",
@@ -658,8 +658,8 @@
     }
   },
   "operational": {
-    "label": "HARD + SOFT SKILLS",
-    "titleHtml": "CAPACIDAD<br><span class=\"highlight\">OPERATIVA</span>",
+    "label": "Capacidad",
+    "titleHtml": "CAPACIDAD<br>OPERATIVA<br><span class=\"highlight\">REAL</span>",
     "blocks": [
       {
         "title": "Arquitectura Integral",
