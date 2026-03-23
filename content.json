@@ -26,22 +26,22 @@
   },
   "hero": {
     "coords": "08°59'N 79°31'W // ARQ. DE DISEÑO CONCEPTUAL",
-    "nameHtml": "JUAN<br>JOSÉ<br>CAS<span class=\"accent\">-</span>IS",
+    "nameHtml": "Jj<span style=\"color: rgb(200, 255, 0); font-size: clamp(5rem, 9vw, 9rem); letter-spacing: 0.02em; font-weight: 300;\">-</span>CASIS",
     "titleBlock": [
       {
-        "label": "Especialidad",
-        "val": "Diseño Conceptual"
+        "label": "PROFESION",
+        "val": "Arquitecto&nbsp;"
       },
       {
-        "label": "Tipología",
-        "val": "Res. / Hospitalidad"
+        "label": "especialidades",
+        "val": "Concepto + Ejecución + Supervisión&nbsp;QA/QC<br>"
       },
       {
-        "label": "Enfoque",
-        "val": "Concepto + Ejecución"
+        "label": "EXPERIENCIA",
+        "val": "24+ años en proyectos."
       }
     ],
-    "desc": "Arquitecto con 22+ años de experiencia en diseño conceptual, desarrollo técnico y ejecución de obra. Trayectoria comprobada liderando proyectos desde hipótesis tempranas hasta realidad construida, con control sólido sobre estructura, respuesta climática, marcos regulatorios y procesos constructivos.",
+    "desc": "Arquitecto con 24+ años de experiencia en diseño conceptual, desarrollo técnico y ejecución de obra. Trayectoria comprobada liderando proyectos desde ideacion temprana hasta realidad construida, con control y seguimiento tecnico de todos los procesos constructivos.",
     "cta": "Disponible →",
     "image": "assets/hero.jpg",
     "imageAlt": "Arquitectura Tropical",
@@ -50,34 +50,34 @@
   },
   "dataStrip": [
     {
-      "label": "Experiencia",
-      "val": "22",
+      "label": "Experiencia EN ARQUITECTURA",
+      "val": "24+YRS",
       "unit": "YRS"
     },
     {
       "label": "Licencia",
-      "val": "20 09",
+      "val": "2009-001-070LIC",
       "unit": "LIC"
     },
     {
-      "label": "Idiomas",
-      "val": "2",
+      "label": "diseno Y DESARROLLO conceptual ",
+      "val": "Sí NIVEL: AVANZADO",
       "unit": "LANG"
     },
     {
-      "label": "Posgrados",
-      "val": "2",
+      "label": "DISENO Y dESARROLLO DE PLANOS ",
+      "val": "Sí NIVEL: AVANZADO",
       "unit": "PGR"
     },
     {
-      "label": "Obra Construida",
-      "val": "Sí",
+      "label": "INSPECCION TECNICA DE Obra ",
+      "val": "Sí NIVEL: AVANZADO",
       "unit": ""
     }
   ],
   "manifesto": {
-    "label": "Enfoque",
-    "titleHtml": "CONCEPTO<br>CON<br><span class=\"highlight\">CRITERIO</span>.",
+    "label": "Enfoque integral",
+    "titleHtml": "de CONCEPTO<br><span class=\"highlight\">a contruccion</span>",
     "body": [
       "Cada proyecto se plantea como un estudio: intención clara, restricciones bien definidas y decisiones verificables.",
       "La exploración volumétrica se guía por clima, estructura y materialidad; el resultado es una síntesis operativa, no un gesto aislado.",
@@ -125,7 +125,7 @@
   },
   "projects": {
     "label": "Selección",
-    "title": "Registro de Proyectos",
+    "title": "PROYECTOS DESTACADOS",
     "count": "// SELECTED WORK",
     "rows": [
       {
@@ -193,12 +193,12 @@
   },
   "process": {
     "label": "Método",
-    "title": "Protocolo de Diseño",
+    "title": "Protocolos prefab",
     "cells": [
       {
         "num": "01",
-        "title": "Lectura de Sitio & Auditoría Ecológica",
-        "body": "Topografía, asoleamiento, vientos, drenajes y vegetación existente se convierten en restricciones de diseño. Con esa base, se plantean hipótesis y se validan con criterio arquitectónico.",
+        "title": "Lectura de Sitio + Definición de Sistema",
+        "body": "Topografía, clima y normativa se cruzan con la definición temprana de sistema constructivo y lógica de servicios. El proyecto se plantea como un ensamblaje donde estructura, envolvente y sistemas (ventilación, agua, energía) se integran desde el inicio. El objetivo no es solo forma, sino desempeño: reducir carga térmica, optimizar ventilación y anticipar infraestructura técnica.",
         "tools": [
           "AutoCAD — documentación",
           "SketchUp — masa base",
@@ -207,8 +207,8 @@
       },
       {
         "num": "02",
-        "title": "Motor de Iteración Volumétrica",
-        "body": "Iteraciones rápidas para comparar proporciones, aperturas y materialidad. Se selecciona por desempeño y coherencia formal.",
+        "title": "Iteración como Sistema (datos + forma] ",
+        "body": "Las iteraciones no son solo estéticas, sino estrategias de optimización general de las mejores alternativas de diseno: soluciones que se van explorando  guiados por el programa de requerimientos,  junto a todos los factores: materialidad, logistica,  presupuestos, normativas tanto tecnicass como ambientales. Cada variante se valida por constructibilidad, eficiencia y coherencia técnica.",
         "tools": [
           "Midjourney — ideación",
           "Flux — control",
@@ -218,8 +218,8 @@
       },
       {
         "num": "03",
-        "title": "Propuesta & Decisión con Cliente",
-        "body": "Renders, documentación técnica y criterios constructivos consolidan la propuesta. El cliente comprende el proyecto antes de ejecución, reduciendo incertidumbre en obra, optimizando decisiones y facilitando coordinación entre disciplinas. Incluye dirección conceptual, coordinación técnica y supervisión de criterios de calidad. Liderazgo de equipos interdisciplinarios en desarrollo de proyectos, coordinación técnica y mentoría de arquitectos jóvenes en procesos de diseño y ejecución.",
+        "title": "Propuesta como Sistema Construible",
+        "body": "La propuesta se consolida como un sistema integrado: estructura, arquitectura y servicios coordinados. Instalaciones técnicas se consideran desde el diseño, reduciendo conflictos en obra. El resultado es un proyecto claro, ejecutable y con mayor control sobre calidad, costos y tiempos.",
         "tools": [
           "Adobe Suite — presentación",
           "Runway Gen-3 — animación",
@@ -272,22 +272,22 @@
       {
         "title": "Estructura Modular Urbana",
         "tag": "Urban infill",
-        "image": "assets/p1.jpg"
+        "image": "assets/additionalwork_items_0_image.png"
       },
       {
         "title": "Sistema Contenedor Mixto",
         "tag": "Mixed-use",
-        "image": "assets/p2.jpg"
+        "image": "assets/additionalwork_items_1_image.png"
       },
       {
         "title": "Volumen Climático Tropical",
         "tag": "Clima + Ventilación",
-        "image": "assets/hero.jpg"
+        "image": "assets/additionalwork_items_2_image.png"
       },
       {
         "title": "Residencial Compacto",
         "tag": "Prefabricación",
-        "image": "assets/featured.jpg"
+        "image": "assets/additionalwork_items_3_image.png"
       }
     ]
   },
@@ -491,8 +491,8 @@
         "cells": [
           {
             "num": "01",
-            "title": "Site Reading & Ecological Audit",
-            "body": "Topography, sun path, winds, drainage and existing vegetation become design constraints. With this base, hypotheses are formed and validated with architectural criteria.",
+            "title": "Site Reading + System Definition",
+            "body": "Topography, climate and codes intersect with early definition of the construction system and services logic. The project is conceived as an assembly where structure, envelope and systems (ventilation, water, energy) are integrated from the start. The goal is not only form, but performance: reduce heat load, optimize ventilation and anticipate technical infrastructure.",
             "tools": [
               "AutoCAD — documentation",
               "SketchUp — base massing",
@@ -501,8 +501,8 @@
           },
           {
             "num": "02",
-            "title": "Volumetric Iteration Engine",
-            "body": "Rapid iterations to compare proportions, apertures and materiality. Selection is based on performance and formal coherence.",
+            "title": "Iteration as System (Form + Performance)",
+            "body": "Iterations do not seek aesthetics, but optimization: proportion, materiality, assembly logic and environmental behavior. Solutions are evaluated for light prefabrication and efficient systems: cross ventilation, solar control, water capture and passive strategies. Each variant is validated for constructability, efficiency and technical coherence.",
             "tools": [
               "Midjourney — ideation",
               "Flux — control",
@@ -512,8 +512,8 @@
           },
           {
             "num": "03",
-            "title": "Proposal & Decision with Client",
-            "body": "Renders, technical documentation and constructive criteria consolidate the proposal. The client understands the project before execution, reducing uncertainty on site, optimizing decisions and facilitating coordination between disciplines. Includes conceptual direction, technical coordination and quality criteria supervision. Leadership of interdisciplinary teams in project development, technical coordination, and mentoring of junior architects in design and execution processes.",
+            "title": "Proposal as Buildable System",
+            "body": "The proposal is consolidated as an integrated system: structure, architecture and services coordinated. Installations, drainage, passive conditioning and technical networks are considered from design, reducing conflicts on site. The result is a clear, executable project with greater control over quality, cost and schedule.",
             "tools": [
               "Adobe Suite — presentation",
               "Runway Gen-3 — animation",
@@ -602,110 +602,58 @@
             "tag": "Rhythm"
           }
         ]
-      },
-      "operational": {
-        "label": "Capacity",
-        "titleHtml": "OPERATIONAL<br>CAPACITY<br><span class=\"highlight\">REAL</span>",
-        "blocks": [
-          {
-            "title": "Integrated Architecture",
-            "body": "Design, development and execution of architectural projects across all phases — from conceptual hypothesis to construction delivery and technical supervision."
-          },
-          {
-            "title": "Technical Execution",
-            "list": [
-              "Construction inspection (QA/QC)",
-              "Technical documentation and reporting",
-              "Compliance with regulations and permits",
-              "Review of materials, systems and submittals",
-              "Construction progress tracking and issue resolution"
-            ]
-          },
-          {
-            "title": "Project Management",
-            "list": [
-              "Cost estimation and budgeting",
-              "Proposal and contract preparation",
-              "Client coordination and advisory",
-              "Schedule monitoring and execution control"
-            ]
-          },
-          {
-            "title": "Leadership",
-            "list": [
-              "Leadership of multidisciplinary teams",
-              "Coordination between design, engineering and construction",
-              "Mentorship of junior architects",
-              "Decision-making under real project constraints"
-            ]
-          },
-          {
-            "title": "Systems & Tools",
-            "tags": [
-              "AutoCAD / Revit / SketchUp",
-              "BIM workflows",
-              "Assisted design pipelines",
-              "Digital fabrication (CNC / Laser / 3D)",
-              "Adobe Suite / Visualization"
-            ]
-          },
-          {
-            "title": "Field Experience — UNODC",
-            "body": "On-site architectural inspector for United Nations projects. Responsible for quality control, technical validation, contractor coordination and compliance with institutional standards."
-          }
-        ]
       }
     }
   },
   "operational": {
-    "label": "Capacidad",
-    "titleHtml": "CAPACIDAD<br>OPERATIVA<br><span class=\"highlight\">REAL</span>",
+    "label": "Curriculum vitae",
+    "titleHtml": "capacidad&nbsp;<br><span class=\"highlight\">operativa</span>",
     "blocks": [
       {
         "title": "Arquitectura Integral",
-        "body": "Diseño, desarrollo y ejecución de proyectos arquitectónicos en todas sus fases — de la hipótesis conceptual a la entrega de obra y supervisión técnica."
+        "body": "Design, development and execution of architectural projects across all phases — from conceptual hypothesis to construction delivery and technical supervision."
       },
       {
         "title": "Ejecución Técnica",
         "list": [
-          "Inspección de obra (QA/QC)",
-          "Documentación técnica y reportes",
-          "Cumplimiento normativo y permisos",
-          "Revisión de materiales, sistemas y submittals",
-          "Seguimiento de avance y resolución de incidencias"
+          "Construction inspection (QA/QC)",
+          "Technical documentation and reporting",
+          "Compliance with regulations and permits",
+          "Review of materials, systems and submittals",
+          "Construction progress tracking and issue resolution"
         ]
       },
       {
         "title": "Gestión de Proyecto",
         "list": [
-          "Estimación de costos y presupuestos",
-          "Preparación de propuestas y contratos",
-          "Coordinación y asesoría al cliente",
-          "Monitoreo de cronogramas y control de ejecución"
+          "Cost estimation and budgeting",
+          "Proposal and contract preparation",
+          "Client coordination and advisory",
+          "Schedule monitoring and execution control"
         ]
       },
       {
         "title": "Liderazgo",
         "list": [
-          "Liderazgo de equipos multidisciplinarios",
-          "Coordinación entre diseño, ingeniería y construcción",
-          "Mentoría de arquitectos jóvenes",
-          "Toma de decisiones bajo restricciones reales"
+          "Leadership of multidisciplinary teams",
+          "Coordination between design, engineering and construction",
+          "Mentorship of junior architects",
+          "Decision-making under real project constraints"
         ]
       },
       {
         "title": "Sistemas & Herramientas",
         "tags": [
           "AutoCAD / Revit / SketchUp",
-          "Flujos BIM",
-          "Pipelines de diseño asistido",
-          "Fabricación digital (CNC / Laser / 3D)",
-          "Adobe Suite / Visualización"
+          "BIM workflows",
+          "AI-assisted design pipelines",
+          "Digital fabrication (CNC / Laser / 3D)",
+          "Adobe Suite / Visualization tools"
         ]
       },
       {
-        "title": "Experiencia de Campo — UNODC",
-        "body": "Inspector arquitectónico en proyectos de Naciones Unidas. Control de calidad, validación técnica, coordinación con contratistas y cumplimiento de estándares institucionales."
+        "title": "Field Experience — UNODC",
+        "body": "On-site architectural inspector for United Nations projects. Responsible for quality control, technical validation, contractor coordination and compliance with institutional standards."
       }
     ]
   }
