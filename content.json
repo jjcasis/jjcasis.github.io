@@ -602,58 +602,110 @@
             "tag": "Rhythm"
           }
         ]
+      },
+      "operational": {
+        "label": "Capacity",
+        "titleHtml": "OPERATIONAL<br>CAPACITY<br><span class=\"highlight\">REAL</span>",
+        "blocks": [
+          {
+            "title": "Integrated Architecture",
+            "body": "Design, development and execution of architectural projects across all phases — from conceptual hypothesis to construction delivery and technical supervision."
+          },
+          {
+            "title": "Technical Execution",
+            "list": [
+              "Construction inspection (QA/QC)",
+              "Technical documentation and reporting",
+              "Compliance with regulations and permits",
+              "Review of materials, systems and submittals",
+              "Construction progress tracking and issue resolution"
+            ]
+          },
+          {
+            "title": "Project Management",
+            "list": [
+              "Cost estimation and budgeting",
+              "Proposal and contract preparation",
+              "Client coordination and advisory",
+              "Schedule monitoring and execution control"
+            ]
+          },
+          {
+            "title": "Leadership",
+            "list": [
+              "Leadership of multidisciplinary teams",
+              "Coordination between design, engineering and construction",
+              "Mentorship of junior architects",
+              "Decision-making under real project constraints"
+            ]
+          },
+          {
+            "title": "Systems & Tools",
+            "tags": [
+              "AutoCAD / Revit / SketchUp",
+              "BIM workflows",
+              "AI-assisted design pipelines",
+              "Digital fabrication (CNC / Laser / 3D)",
+              "Adobe Suite / Visualization tools"
+            ]
+          },
+          {
+            "title": "Field Experience — UNODC",
+            "body": "On-site architectural inspector for United Nations projects. Responsible for quality control, technical validation, contractor coordination and compliance with institutional standards."
+          }
+        ]
       }
     }
   },
   "operational": {
-    "label": "Curriculum vitae",
-    "titleHtml": "capacidad&nbsp;<br><span class=\"highlight\">operativa</span>",
+    "label": "Capacidad",
+    "titleHtml": "CAPACIDAD<br>OPERATIVA<br><span class=\"highlight\">REAL</span>",
     "blocks": [
       {
         "title": "Arquitectura Integral",
-        "body": "Design, development and execution of architectural projects across all phases — from conceptual hypothesis to construction delivery and technical supervision."
+        "body": "Diseño, desarrollo y ejecución de proyectos arquitectónicos en todas sus fases — de la hipótesis conceptual a la entrega de obra y supervisión técnica."
       },
       {
         "title": "Ejecución Técnica",
         "list": [
-          "Construction inspection (QA/QC)",
-          "Technical documentation and reporting",
-          "Compliance with regulations and permits",
-          "Review of materials, systems and submittals",
-          "Construction progress tracking and issue resolution"
+          "Inspección de obra (QA/QC)",
+          "Documentación técnica y reportes",
+          "Cumplimiento normativo y permisos",
+          "Revisión de materiales, sistemas y submittals",
+          "Seguimiento de avance y resolución de incidencias"
         ]
       },
       {
         "title": "Gestión de Proyecto",
         "list": [
-          "Cost estimation and budgeting",
-          "Proposal and contract preparation",
-          "Client coordination and advisory",
-          "Schedule monitoring and execution control"
+          "Estimación de costos y presupuestos",
+          "Preparación de propuestas y contratos",
+          "Coordinación y asesoría al cliente",
+          "Monitoreo de cronogramas y control de ejecución"
         ]
       },
       {
         "title": "Liderazgo",
         "list": [
-          "Leadership of multidisciplinary teams",
-          "Coordination between design, engineering and construction",
-          "Mentorship of junior architects",
-          "Decision-making under real project constraints"
+          "Liderazgo de equipos multidisciplinarios",
+          "Coordinación entre diseño, ingeniería y construcción",
+          "Mentoría de arquitectos jóvenes",
+          "Toma de decisiones bajo restricciones reales"
         ]
       },
       {
         "title": "Sistemas & Herramientas",
         "tags": [
           "AutoCAD / Revit / SketchUp",
-          "BIM workflows",
-          "AI-assisted design pipelines",
-          "Digital fabrication (CNC / Laser / 3D)",
-          "Adobe Suite / Visualization tools"
+          "Flujos BIM",
+          "Pipelines de diseño asistido",
+          "Fabricación digital (CNC / Laser / 3D)",
+          "Adobe Suite / Visualización"
         ]
       },
       {
-        "title": "Field Experience — UNODC",
-        "body": "On-site architectural inspector for United Nations projects. Responsible for quality control, technical validation, contractor coordination and compliance with institutional standards."
+        "title": "Experiencia de Campo — UNODC",
+        "body": "Inspector arquitectónico en proyectos de Naciones Unidas. Control de calidad, validación técnica, coordinación con contratistas y cumplimiento de estándares institucionales."
       }
     ]
   }
