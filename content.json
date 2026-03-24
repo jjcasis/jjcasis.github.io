@@ -270,23 +270,23 @@
     "desc": "Serie de estudios conceptuales y exploraciones formales desarrolladas como parte de investigación proyectual y optimización de procesos de diseño.",
     "items": [
       {
-        "title": "Estructura Modular Urbana",
-        "tag": "Urban infill",
+        "title": "vida retreat",
+        "tag": "eco wellness hotel",
         "image": "assets/additionalwork_items_0_image.png"
       },
       {
-        "title": "Sistema Contenedor Mixto",
-        "tag": "Mixed-use",
+        "title": "malibu docks",
+        "tag": "family surf pods",
         "image": "assets/additionalwork_items_1_image.png"
       },
       {
-        "title": "Volumen Climático Tropical",
-        "tag": "Clima + Ventilación",
+        "title": "brisa twins",
+        "tag": "beach front duplex",
         "image": "assets/additionalwork_items_2_image.png"
       },
       {
-        "title": "Residencial Compacto",
-        "tag": "Prefabricación",
+        "title": "la choza",
+        "tag": "single family house ",
         "image": "assets/additionalwork_items_3_image.png"
       }
     ]
